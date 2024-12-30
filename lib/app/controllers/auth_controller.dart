@@ -3,7 +3,6 @@ import 'package:injectable/injectable.dart' as i;
 import 'package:mymanislier/app/data/models/authModel/auth_model.dart';
 import 'package:mymanislier/app/data/services/authService/auth_service.dart';
 import 'package:mymanislier/app/utils/helpers/exporter.dart';
-import 'package:mymanislier/app/utils/helpers/extensions/extensions.dart';
 
 @i.lazySingleton
 @i.injectable
@@ -17,43 +16,40 @@ class AuthController extends GetxController {
 
   // Observable variables for user input
   final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  final signupUsernameController = TextEditingController();
+  final signupEmailController = TextEditingController();
+  final signupPasswordController = TextEditingController();
+  final signupConfirmPasswordController = TextEditingController();
+
   final forgotEmailController = TextEditingController();
-  final passController = TextEditingController();
 
-  final registerfirstnameController = TextEditingController();
-  final registerlastnameController = TextEditingController();
-  final registerEmailController = TextEditingController();
-  final registerPassController = TextEditingController();
-  final registerConfirmPassController = TextEditingController();
+  final newPasswordController = TextEditingController();
+  final confirmNewPasswordController = TextEditingController();
 
-  final registerverificationCode = TextEditingController();
-
-  final resetPassController = TextEditingController();
-  final confirmPassController = TextEditingController();
-  final nameController = TextEditingController();
-  final phoneNumberController = TextEditingController();
   final verificationCode = TextEditingController();
-  final genderController = ExpansionTileController();
+  final signupRerificationCode = TextEditingController();
 
-  final loginState = ApiState.initial().obs;
+  final RxBool userAgreementCheck = false.obs;
+
+  final signinState = ApiState.initial().obs;
   final forgotState = ApiState.initial().obs;
   final resetPassState = ApiState.initial().obs;
   final registerState = ApiState.initial().obs;
   final verificationState = ApiState.initial().obs;
 
   final currentStep = 0.obs;
+  final signupCurrentStep = 0.obs;
   final day = ''.obs;
   final month = ''.obs;
   final year = ''.obs;
 
-  RxBool isDropdownVisible = false.obs;
-  RxBool iscityDropdownVisible = false.obs;
-
-
-
   RxBool ispassword = true.obs;
   RxBool isConfirmpassword = true.obs;
   RxBool isAgree = true.obs;
+
+  final selectedImage = Rxn<File>();
 
   // State variables for loading and model
   Rxn<AuthModel> authModel = Rxn<AuthModel>();
@@ -68,38 +64,74 @@ class AuthController extends GetxController {
     Get.snackbar('Error', message);
   }
 
-  // Login method
-  void login(BuildContext context) {
-    if (!Form.of(context).validate()) {
+  // Sign In method
+  void signIn(FormState? formState) {
+    if (formState == null || !formState.validate()) {
       return;
     }
+    Get.offAllNamed(AppRoutes.welcomeHomeScreen);
 
-    Future.delayed(
-      const Duration(seconds: 5),
-      () => getIt<AuthService>().login(
-        emailController.text,
-        passController.text.convertMd5,
-        deviceToken: '',
-        deviceType: switch (Platform.operatingSystem) {
-          'android' => 'Android',
-          'ios' => 'iOS',
-          _ => 'Other',
-        },
-      ),
-    ).handler(
-      loginState,
-      onSuccess: (value) {
-        if (value != null) {
-          authModel.value = value;
-          showSuccess(authModel.value!.ResponseMsg);
-          // Get.offNamed(AppRoutes.theme);
-        }
-      },
-      onFailed: (value) {
-        // If the onFailed is called that means your ApiState has FailedState value
-        showError(value.error.description);
-      },
-    );
+    // Future.delayed(
+    //   const Duration(seconds: 5),
+    //   () => getIt<AuthService>().login(
+    //     emailController.text,
+    //     passwordController.text.convertMd5,
+    //     deviceToken: '',
+    //     deviceType: switch (Platform.operatingSystem) {
+    //       'android' => 'Android',
+    //       'ios' => 'iOS',
+    //       _ => 'Other',
+    //     },
+    //   ),
+    // ).handler(
+    //   signinState,
+    //   onSuccess: (value) {
+    //     if (value != null) {
+    //       authModel.value = value;
+    //       showSuccess(authModel.value!.ResponseMsg);
+    //       // Get.offNamed(AppRoutes.theme);
+    //     }
+    //   },
+    //   onFailed: (value) {
+    //     // If the onFailed is called that means your ApiState has FailedState value
+    //     showError(value.error.description);
+    //   },
+    // );
+  }
+
+  // Sign Up method
+  void signUp(FormState? formState) {
+    if (formState == null || !formState.validate()) {
+      return;
+    }
+    Get.toNamed(AppRoutes.signUpAuthenticationScreen);
+
+    // Future.delayed(
+    //   const Duration(seconds: 5),
+    //   () => getIt<AuthService>().login(
+    //     emailController.text,
+    //     passwordController.text.convertMd5,
+    //     deviceToken: '',
+    //     deviceType: switch (Platform.operatingSystem) {
+    //       'android' => 'Android',
+    //       'ios' => 'iOS',
+    //       _ => 'Other',
+    //     },
+    //   ),
+    // ).handler(
+    //   signinState,
+    //   onSuccess: (value) {
+    //     if (value != null) {
+    //       authModel.value = value;
+    //       showSuccess(authModel.value!.ResponseMsg);
+    //       // Get.offNamed(AppRoutes.theme);
+    //     }
+    //   },
+    //   onFailed: (value) {
+    //     // If the onFailed is called that means your ApiState has FailedState value
+    //     showError(value.error.description);
+    //   },
+    // );
   }
 
   void sendOtp(BuildContext context) {
@@ -109,8 +141,8 @@ class AuthController extends GetxController {
 
     getIt<AuthService>()
         .sendOTP(
-      registerEmailController.text,
-      nameController.text,
+      signupEmailController.text,
+      signupUsernameController.text,
     )
         .handler(
       registerState,
@@ -137,10 +169,10 @@ class AuthController extends GetxController {
 
     getIt<AuthService>()
         .register(
-      email: registerEmailController.text,
-      pass: registerPassController.text.convertMd5,
-      phone: phoneNumberController.text,
-      name: nameController.text,
+      email: signupEmailController.text,
+      pass: signupPasswordController.text.convertMd5,
+      phone: '',
+      name: signupUsernameController.text,
       ccode: '+91',
       role: 'Student',
       otp: verificationCode.text,
@@ -191,8 +223,8 @@ class AuthController extends GetxController {
       return;
     }
     getIt<AuthService>()
-        .resetPassword(
-            forgotEmailController.text, resetPassController.text.convertMd5)
+        .resetPassword(forgotEmailController.text,
+            signupUsernameController.text.convertMd5)
         .handler(
       resetPassState,
       onSuccess: (value) {
@@ -241,15 +273,10 @@ class AuthController extends GetxController {
     super.dispose();
     emailController.dispose();
     forgotEmailController.dispose();
-    registerEmailController.dispose();
-    passController.dispose();
-    registerPassController.dispose();
-    resetPassController.dispose();
-    confirmPassController.dispose();
-    nameController.dispose();
-    phoneNumberController.dispose();
+    passwordController.dispose();
+    signupUsernameController.dispose();
     verificationCode.dispose();
-    loginState.close();
+    signinState.close();
     forgotState.close();
     resetPassState.close();
     registerState.close();
