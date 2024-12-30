@@ -20,7 +20,7 @@ class AppTheme {
       error: const Color(0xffFF7B7B),
       onError: const Color(0xffFF7B7B),
       surface: const Color(0xffF8F9FA),
-      onSurface: const Color(0xff7D71EC),
+      onSurface: const Color(0xff2E2F32),
       outline: Get.theme.customColors.primaryColor,
     ),
     extensions: const <ThemeExtension<dynamic>>[
@@ -70,7 +70,7 @@ class AppTheme {
 
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        disabledBackgroundColor: const Color(0xff7D71EC).withOpacity(0.5),
+        disabledBackgroundColor: const Color(0xff902368).withOpacity(0.5),
         backgroundColor: Get.theme.customColors.primaryColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
@@ -121,14 +121,14 @@ class AppTheme {
     fontFamily: 'Montserrat',
     checkboxTheme: CheckboxThemeData(
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
       visualDensity: VisualDensity.compact,
       fillColor: WidgetStateProperty.resolveWith(
         (states) {
           if (states.contains(WidgetState.selected)) {
             return Get.theme.customColors.primaryColor;
           }
-          return Get.theme.customColors.white;
+          return Get.theme.customColors.greyBg;
         },
       ),
     ),
@@ -193,7 +193,7 @@ class AppTheme {
           fontFamily: 'Montserrat',
           color: Get.theme.customColors.black,
           fontSize: 26,
-          fontWeight: FontWeight.w600),
+          fontWeight: FontWeight.w700),
       headlineMedium: TextStyle(
           fontFamily: 'Montserrat',
           color: Get.theme.customColors.black,
@@ -247,7 +247,7 @@ class AppTheme {
     useMaterial3: true,
     colorScheme: ColorScheme(
       brightness: Brightness.dark,
-      primary: const Color(0xff7D71EC),
+      primary: const Color(0xff902368),
       onPrimary: const Color(0xffffffff),
       primaryContainer: Get.theme.customColors.bgOneColor,
       secondary: const Color(0xff0F3D4D),
@@ -256,7 +256,7 @@ class AppTheme {
       error: const Color(0xffFF7B7B),
       onError: const Color(0xffFF7B7B),
       surface: const Color(0xffF8F9FA),
-      onSurface: const Color(0xff7D71EC),
+      onSurface: const Color(0xff902368),
       outline: Get.theme.customColors.primaryColor,
     ),
     extensions: const <ThemeExtension<dynamic>>[
@@ -265,8 +265,8 @@ class AppTheme {
     scaffoldBackgroundColor: Get.theme.customColors.black,
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        disabledBackgroundColor: const Color(0xff7D71EC).withOpacity(0.5),
-        backgroundColor: const Color(0xff7D71EC),
+        disabledBackgroundColor: const Color(0xff902368).withOpacity(0.5),
+        backgroundColor: const Color(0xff902368),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
@@ -311,14 +311,14 @@ class AppTheme {
     fontFamily: 'Montserrat',
     checkboxTheme: CheckboxThemeData(
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
       visualDensity: VisualDensity.compact,
       fillColor: WidgetStateProperty.resolveWith(
         (states) {
           if (states.contains(WidgetState.selected)) {
             return Get.theme.customColors.primaryColor;
           }
-          return Get.theme.customColors.black;
+          return Get.theme.customColors.greyBg;
         },
       ),
     ),

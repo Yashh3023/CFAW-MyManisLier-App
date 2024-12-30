@@ -7,6 +7,7 @@ class CustomColors extends ThemeExtension<CustomColors> {
     required this.greyTextColor,
     required this.greyBg,
     required this.textfieldFillColor,
+    required this.appBarIcBg,
     required this.transparent,
     required this.red,
     required this.black,
@@ -23,6 +24,7 @@ class CustomColors extends ThemeExtension<CustomColors> {
   final Color? greyTextColor;
   final Color? greyBg;
   final Color? textfieldFillColor;
+  final Color? appBarIcBg;
   final Color? transparent;
   final Color? red;
   final Color? black;
@@ -37,14 +39,15 @@ class CustomColors extends ThemeExtension<CustomColors> {
   // Default light theme colors
   static const light = CustomColors(
     primaryColor: Color(0xff902368),
-    bgColor: Color(0xff000000),
+    bgColor: Color(0xff14151A),
     greyBg: Color(0XFF0E0F11),
     secondaryColor: Color(0xffC791B0),
     greyTextColor: Color(0xFF7A7C7E),
     textfieldFillColor: Color(0xFF0E0F11),
+    appBarIcBg: Color(0xff9A3073),
     transparent: Colors.transparent,
-    red: Color(0xffFF7B7B),
-    black: Color(0xff04163C),
+    red: Color(0xffFF2929),
+    black: Color(0xff000000),
     white: Colors.white,
     blackColor: Colors.black,
     bgOneColor: Color(0xffE8EAEB),
@@ -60,9 +63,10 @@ class CustomColors extends ThemeExtension<CustomColors> {
     secondaryColor: Color(0xffC791B0),
     greyTextColor: Color(0xFF7E808C),
     textfieldFillColor: Color(0xFF0E0F11),
+    appBarIcBg: Color(0xff9A3073),
     transparent: Colors.transparent,
-    red: Color(0xffFF7B7B),
-    black: Color(0xff04163C),
+    red: Color(0xffFF2929),
+    black: Color(0xff000000),
     white: Colors.white,
     blackColor: Colors.black,
     bgOneColor: Color(0xffE8EAEB),
@@ -76,6 +80,7 @@ class CustomColors extends ThemeExtension<CustomColors> {
     Color? bgColor,
     Color? greyBg,
     Color? textfieldFillColor,
+    Color? appBarIcBg,
     Color? transparent,
     Color? red,
     Color? black,
@@ -92,6 +97,7 @@ class CustomColors extends ThemeExtension<CustomColors> {
       bgColor: bgColor ?? this.bgColor,
       greyBg: greyBg ?? this.greyBg,
       textfieldFillColor: textfieldFillColor ?? this.textfieldFillColor,
+      appBarIcBg: appBarIcBg ?? this.appBarIcBg,
       transparent: transparent ?? this.transparent,
       red: red ?? this.red,
       black: black ?? this.black,
@@ -114,6 +120,7 @@ class CustomColors extends ThemeExtension<CustomColors> {
       greyTextColor: Color.lerp(greyTextColor, other.greyTextColor, t),
       textfieldFillColor:
           Color.lerp(textfieldFillColor, other.textfieldFillColor, t),
+      appBarIcBg: Color.lerp(appBarIcBg, other.appBarIcBg, t),
       transparent: Color.lerp(transparent, other.transparent, t),
       red: Color.lerp(red, other.red, t),
       black: Color.lerp(black, other.black, t),
