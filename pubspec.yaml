@@ -41,6 +41,8 @@ dependencies:
   siri_wave:
   flutter_sinusoidals_v2: ^0.2.3
   image_picker: ^1.1.2
+  readmore: ^3.0.0
+  syncfusion_flutter_charts: ^28.1.37
 
   cupertino_icons: ^1.0.8
 

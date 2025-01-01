@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:mymanislier/app/utils/helpers/exporter.dart';
 
 class SignUpAuthenticationScreen extends GetItHook<AuthController> {
@@ -12,7 +14,7 @@ class SignUpAuthenticationScreen extends GetItHook<AuthController> {
       key: _formKey,
       child: Scaffold(
         resizeToAvoidBottomInset: true,
-      backgroundColor: Get.theme.customColors.black,
+        backgroundColor: Get.theme.customColors.black,
         appBar: _buildAppBar(),
         body: _buildBody(context),
         bottomNavigationBar: _buildresendCodeRedirect(),
@@ -155,14 +157,6 @@ class SignUpAuthenticationScreen extends GetItHook<AuthController> {
           if (_formKey.currentState?.validate() ?? false) {
             Get.focusScope!.unfocus();
             _showAlertSuccessfulDialog(Get.context!);
-          } else {
-            Get.snackbar(
-              'Validation Error',
-              'Please enter the OTP before proceeding.',
-              snackPosition: SnackPosition.BOTTOM,
-              backgroundColor: Get.theme.customColors.red?.withOpacity(0.5),
-              colorText: Get.theme.customColors.white,
-            );
           }
         },
       ),
@@ -182,7 +176,7 @@ class SignUpAuthenticationScreen extends GetItHook<AuthController> {
                 Get.toNamed(AppRoutes.signup);
               },
             style: Get.textTheme.bodySmall?.copyWith(
-              color: Get.theme.customColors.secondaryColor,
+              color: Get.theme.customColors.darkGreyBorder,
             ),
           ),
         ],
@@ -194,34 +188,46 @@ class SignUpAuthenticationScreen extends GetItHook<AuthController> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: Get.theme.customColors.greyBg,
-          title: Column(
-            children: [
-              CustomImageView(
-                imagePath: AssetConstants.svgCongratulation,
+        return Stack(
+          children: [
+            BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+              child: Container(
+                color: Colors.black.withOpacity(0.5),
               ),
-              Gap(20.h),
-              CenterText(
-                AppStrings.T.lbl_congratulations,
-                style: Get.theme.textTheme.headlineLarge!
-                    .copyWith(color: Get.theme.customColors.white),
+            ),
+            Center(
+              child: AlertDialog(
+                backgroundColor: Get.theme.customColors.greyBg,
+                title: Column(
+                  children: [
+                    CustomImageView(
+                      imagePath: AssetConstants.svgCongratulation,
+                    ),
+                    Gap(20.h),
+                    CenterText(
+                      AppStrings.T.lbl_congratulations,
+                      style: Get.theme.textTheme.headlineLarge!
+                          .copyWith(color: Get.theme.customColors.white),
+                    ),
+                    Gap(14.h),
+                    CenterText(
+                      AppStrings.T.lbl_account_created_successfully,
+                      style: Get.theme.textTheme.bodySmall!.copyWith(
+                          color: Get.theme.customColors.greyTextColor),
+                    ),
+                    Gap(30.h),
+                    CustomElevatedButton(
+                      text: AppStrings.T.lbl_ok,
+                      onPressed: () {
+                        Get.offAllNamed(AppRoutes.sigin);
+                      },
+                    )
+                  ],
+                ),
               ),
-              Gap(14.h),
-              CenterText(
-                AppStrings.T.lbl_account_created_successfully,
-                style: Get.theme.textTheme.bodySmall!
-                    .copyWith(color: Get.theme.customColors.greyTextColor),
-              ),
-              Gap(30.h),
-              CustomElevatedButton(
-                text: AppStrings.T.lbl_ok,
-                onPressed: () {
-                  Get.offAllNamed(AppRoutes.sigin);
-                },
-              )
-            ],
-          ),
+            ),
+          ],
         );
       },
     );

@@ -12,7 +12,7 @@ class AuthenticationScreen extends GetItHook<AuthController> {
       key: _formKey,
       child: Scaffold(
         resizeToAvoidBottomInset: true,
-      backgroundColor: Get.theme.customColors.black,
+        backgroundColor: Get.theme.customColors.black,
         appBar: _buildAppBar(),
         body: _buildBody(context),
         bottomNavigationBar: _buildresendCodeRedirect(),
@@ -173,7 +173,7 @@ class AuthenticationScreen extends GetItHook<AuthController> {
                 Get.toNamed(AppRoutes.signup);
               },
             style: Get.textTheme.bodySmall?.copyWith(
-              color: Get.theme.customColors.secondaryColor,
+              color: Get.theme.customColors.darkGreyBorder,
             ),
           ),
         ],

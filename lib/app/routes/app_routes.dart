@@ -10,4 +10,6 @@ class AppRoutes {
   static const String welcomeHomeScreen = '/welcomeHomeScreen';
   static const String genericQuestionsScreen = '/genericQuestionsScreen';
   static const String unlockAnalysisScreen = '/unlockAnalysisScreen';
+  static const String chatBasedQuestionsScreen = '/chatBasedQuestionsScreen';
+  static const String analysisScreen = '/analysisScreen';
 }

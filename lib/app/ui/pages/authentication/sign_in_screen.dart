@@ -12,7 +12,7 @@ class SignInScreen extends GetItHook<AuthController> {
       key: _formKey,
       child: Scaffold(
         resizeToAvoidBottomInset: true,
-      backgroundColor: Get.theme.customColors.black,
+        backgroundColor: Get.theme.customColors.black,
         appBar: _buildAppBar(),
         body: _buildBody(context),
         bottomNavigationBar: _buildRegisterRedirect(),
@@ -71,6 +71,7 @@ class SignInScreen extends GetItHook<AuthController> {
   Widget _buildEmailField() {
     return TextInputField(
       type: InputType.email,
+      keyboardType: TextInputType.emailAddress,
       prefixIcon: CustomImageView(
         imagePath: AssetConstants.icEmail,
         margin: const EdgeInsets.all(16),
@@ -86,6 +87,7 @@ class SignInScreen extends GetItHook<AuthController> {
     return Obx(
       () => TextInputField(
         type: InputType.password,
+        keyboardType: TextInputType.visiblePassword,
         prefixIcon: CustomImageView(
           imagePath: AssetConstants.icLock,
           margin: const EdgeInsets.all(16),
@@ -124,7 +126,7 @@ class SignInScreen extends GetItHook<AuthController> {
           style: Get.theme.textTheme.bodySmall?.copyWith(
               fontSize: 16.sp,
               fontWeight: FontWeight.w400,
-              color: Get.theme.customColors.secondaryColor),
+              color: Get.theme.customColors.darkGreyBorder),
         ),
       ),
     );
@@ -165,7 +167,7 @@ class SignInScreen extends GetItHook<AuthController> {
                 Get.toNamed(AppRoutes.signup);
               },
             style: Get.textTheme.bodySmall?.copyWith(
-              color: Get.theme.customColors.secondaryColor,
+              color: Get.theme.customColors.darkGreyBorder,
             ),
           ),
         ],

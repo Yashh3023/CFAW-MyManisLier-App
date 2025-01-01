@@ -6,6 +6,8 @@ import 'package:mymanislier/app/ui/pages/authentication/signup_authentication_sc
 import 'package:mymanislier/app/ui/pages/authentication/reset_password_screen.dart';
 import 'package:mymanislier/app/ui/pages/authentication/sign_up_screen.dart';
 import 'package:mymanislier/app/ui/pages/authentication/sign_in_screen.dart';
+import 'package:mymanislier/app/ui/pages/home/analysis_screen.dart';
+import 'package:mymanislier/app/ui/pages/home/chat_based_questions_screen.dart';
 import 'package:mymanislier/app/ui/pages/home/generic_questions_screen.dart';
 import 'package:mymanislier/app/ui/pages/home/unlock_analysis_screen.dart';
 import 'package:mymanislier/app/ui/pages/home/welcome_home_screen.dart';
@@ -67,6 +69,16 @@ class AppPages {
     GetPage(
       name: AppRoutes.unlockAnalysisScreen,
       page: UnlockAnalysisScreen.new,
+    ),
+    // Chat Based Questions Screen
+    GetPage(
+      name: AppRoutes.chatBasedQuestionsScreen,
+      page: ChatBasedQuestionsScreen.new,
+    ),
+    // Analysis Screen
+    GetPage(
+      name: AppRoutes.analysisScreen,
+      page: AnalysisScreen.new,
     ),
   ];
 }

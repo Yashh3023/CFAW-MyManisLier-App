@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:mymanislier/app/utils/helpers/exporter.dart';
 
 class ResetPasswordScreen extends GetItHook<AuthController> {
@@ -82,6 +84,7 @@ class ResetPasswordScreen extends GetItHook<AuthController> {
     return Obx(
       () => TextInputField(
         type: InputType.password,
+        keyboardType: TextInputType.visiblePassword,
         prefixIcon: CustomImageView(
           imagePath: AssetConstants.icLock,
           margin: EdgeInsets.symmetric(horizontal: 16.w),
@@ -156,34 +159,46 @@ class ResetPasswordScreen extends GetItHook<AuthController> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: Get.theme.customColors.greyBg,
-          title: Column(
-            children: [
-              CustomImageView(
-                imagePath: AssetConstants.svgSuccessful,
+        return Stack(
+          children: [
+            BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+              child: Container(
+                color: Colors.black.withOpacity(0.5),
               ),
-              Gap(20.h),
-              CenterText(
-                AppStrings.T.lbl_successful,
-                style: Get.theme.textTheme.headlineLarge!
-                    .copyWith(color: Get.theme.customColors.white),
+            ),
+            Center(
+              child: AlertDialog(
+                backgroundColor: Get.theme.customColors.greyBg,
+                title: Column(
+                  children: [
+                    CustomImageView(
+                      imagePath: AssetConstants.svgSuccessful,
+                    ),
+                    Gap(20.h),
+                    CenterText(
+                      AppStrings.T.lbl_successful,
+                      style: Get.theme.textTheme.headlineLarge!
+                          .copyWith(color: Get.theme.customColors.white),
+                    ),
+                    Gap(14.h),
+                    CenterText(
+                      AppStrings.T.lbl_congratilation_message_for_success,
+                      style: Get.theme.textTheme.bodySmall!.copyWith(
+                          color: Get.theme.customColors.greyTextColor),
+                    ),
+                    Gap(30.h),
+                    CustomElevatedButton(
+                      text: AppStrings.T.lbl_ok,
+                      onPressed: () {
+                        Get.offAllNamed(AppRoutes.sigin);
+                      },
+                    )
+                  ],
+                ),
               ),
-              Gap(14.h),
-              CenterText(
-                AppStrings.T.lbl_congratilation_message_for_success,
-                style: Get.theme.textTheme.bodySmall!
-                    .copyWith(color: Get.theme.customColors.greyTextColor),
-              ),
-              Gap(30.h),
-              CustomElevatedButton(
-                text: AppStrings.T.lbl_ok,
-                onPressed: () {
-                  Get.offAllNamed(AppRoutes.sigin);
-                },
-              )
-            ],
-          ),
+            ),
+          ],
         );
       },
     );

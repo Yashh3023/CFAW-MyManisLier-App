@@ -120,6 +120,8 @@
     "lbl_paste_text_conversaion_here": "Paste text conversaion here",
     "lbl_welcome": "Welcome👋",
     "lbl_or": "OR",
+    "lbl_yes": "Yes",
+    "lbl_no": "No",
     "lbl_paste": "Paste",
     "lbl_next": "Next",
     "lbl_upload_screenshots": "Upload screenshots",
@@ -137,7 +139,32 @@
     "lbl_inconsistency_flags": "Inconsistency Flags",
     "lbl_inconsistency_flags_description": "Identify and flag inconsistencies within the data...",
     "lbl_basic_analysis_package": "Basic Analysis Package",
-    "lbl_pay_and_get_results": "Pay & Get Results"
+    "lbl_pay_and_get_results": "Pay & Get Results",
+    "lbl_pay_now": "Pay Now",
+    "lbl_secure_link": "Secure, 1-click checkout with Link",
+    "lbl_card_number": "Card number",
+    "lbl_expiration": "Expiration",
+    "lbl_cvc": "CVC",
+    "lbl_country": "Country",
+    "lbl_thanks": "Thanks!",
+    "lbl_payment_successful_message": "Your payment was successful.",
+    "lbl_close": "Close",
+    "lbl_enter_your_response": "Enter your response",
+    "lbl_chat_based_questions": "Chat based questions",
+    "lbl_analysis": "Analysis",
+    "lbl_your_analysis_is_ready": "Your Analysis is Ready!",
+    "lbl_go_to_new_analysis": "Go to New Analysis",
+    "lbl_overall_summary": "Overall Summary",
+    "lbl_detailed_insights": "Detailed Insights",
+    "lbl_detailed_insights_description": "Here’s a breakdown of the key findings from the conversation",
+    "lbl_sentiment_analysis": "Sentiment Analysis",
+    "lbl_inconsistency_flags": "Inconsistency Flags",
+    "lbl_behavioral_patterns": "Behavioral Patterns",
+    "lbl_positive": "Positive",
+    "lbl_casual": "Casual",
+    "lbl_neutral": "Neutral",
+    "lbl_formal": "Formal"
+
 
     
 

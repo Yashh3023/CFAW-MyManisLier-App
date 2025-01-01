@@ -355,7 +355,7 @@ class SignUpScreen extends GetItHook<AuthController> {
                     Get.focusScope!.unfocus();
                   },
                 style: Get.textTheme.bodySmall?.copyWith(
-                  color: Get.theme.customColors.secondaryColor,
+                  color: Get.theme.customColors.darkGreyBorder,
                 ),
               ),
               AppSpan(
@@ -371,7 +371,7 @@ class SignUpScreen extends GetItHook<AuthController> {
                     Get.focusScope!.unfocus();
                   },
                 style: Get.textTheme.bodySmall?.copyWith(
-                  color: Get.theme.customColors.secondaryColor,
+                  color: Get.theme.customColors.darkGreyBorder,
                 ),
               ),
             ],
@@ -427,7 +427,7 @@ class SignUpScreen extends GetItHook<AuthController> {
                 Get.toNamed(AppRoutes.sigin);
               },
             style: Get.textTheme.bodySmall?.copyWith(
-              color: Get.theme.customColors.secondaryColor,
+              color: Get.theme.customColors.darkGreyBorder,
             ),
           ),
         ],
