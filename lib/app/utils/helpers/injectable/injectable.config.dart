@@ -42,6 +42,7 @@ extension GetItInjectableX on _i174.GetIt {
       preResolve: true,
     );
     gh.singleton<_i361.Dio>(() => registerModule.dio());
+    gh.lazySingleton<_i105.HomeController>(() => _i105.HomeController());
     gh.lazySingleton<_i181.AppController>(() => _i181.AppController());
     gh.lazySingleton<_i92.AuthController>(
       () => _i92.AuthController(),

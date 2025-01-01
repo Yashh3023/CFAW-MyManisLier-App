@@ -77,6 +77,7 @@ flutter:
     - assets/images/icon/
     - assets/images/png/home/
     - assets/images/png/other/
+    - assets/images/png/authentication/
     - assets/images/svg/splash/
     - assets/images/svg/authentication/
     - assets/images/svg/home/
@@ -105,9 +106,24 @@ flutter:
         
     - family: Montserrat
       fonts:
-        - asset: assets/fonts/montserrat/montserrat.bold.ttf
-        - asset: assets/fonts/montserrat/montserrat.regular.ttf
-
+        - asset: assets/fonts/montserrat/Montserrat-Black.ttf
+        - asset: assets/fonts/montserrat/Montserrat-BlackItalic.ttf
+        - asset: assets/fonts/montserrat/Montserrat-Bold.ttf
+        - asset: assets/fonts/montserrat/Montserrat-BoldItalic.ttf
+        - asset: assets/fonts/montserrat/Montserrat-ExtraBold.ttf
+        - asset: assets/fonts/montserrat/Montserrat-ExtraBoldItalic.ttf
+        - asset: assets/fonts/montserrat/Montserrat-ExtraLight.ttf
+        - asset: assets/fonts/montserrat/Montserrat-ExtraLightItalic.ttf
+        - asset: assets/fonts/montserrat/Montserrat-Italic.ttf
+        - asset: assets/fonts/montserrat/Montserrat-Light.ttf
+        - asset: assets/fonts/montserrat/Montserrat-LightItalic.ttf
+        - asset: assets/fonts/montserrat/Montserrat-Medium.ttf
+        - asset: assets/fonts/montserrat/Montserrat-MediumItalic.ttf
+        - asset: assets/fonts/montserrat/Montserrat-Regular.ttf
+        - asset: assets/fonts/montserrat/Montserrat-SemiBold.ttf
+        - asset: assets/fonts/montserrat/Montserrat-SemiBoldItalic.ttf
+        - asset: assets/fonts/montserrat/Montserrat-Thin.ttf
+        - asset: assets/fonts/montserrat/Montserrat-ThinItalic.ttf
 
 
 flutter_native_splash:

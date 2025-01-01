@@ -36,7 +36,7 @@ class SignUpAuthenticationScreen extends GetItHook<AuthController> {
       padding:
           EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.0.w, vertical: 8.0.h),
+        padding: EdgeInsets.symmetric(horizontal: 20.0.w, vertical: 20.0.h),
         child: Column(
           children: [
             _buildHeader(),
@@ -62,13 +62,17 @@ class SignUpAuthenticationScreen extends GetItHook<AuthController> {
           style: Get.theme.textTheme.headlineLarge!
               .copyWith(color: Get.theme.customColors.white),
         ),
-        Gap(5.h),
+        Gap(10.h),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
           child: CenterText(
             AppStrings.T.lbl_authentication_subtitle,
-            style: Get.theme.textTheme.labelMedium!
-                .copyWith(color: Get.theme.customColors.greyTextColor),
+            style: Get.theme.textTheme.labelMedium!.copyWith(
+              color: Get.theme.customColors.grey,
+              letterSpacing: 0.1,
+              fontSize: 16.0.sp,
+              fontWeight: FontWeight.w400,
+            ),
           ),
         ),
       ],
@@ -77,7 +81,8 @@ class SignUpAuthenticationScreen extends GetItHook<AuthController> {
 
   Widget _buildImageSection() {
     return CustomImageView(
-      imagePath: AssetConstants.svgAuthCircle,
+      imagePath: AssetConstants.pngAuthCircle,
+      height: 200,
     );
   }
 
@@ -88,11 +93,6 @@ class SignUpAuthenticationScreen extends GetItHook<AuthController> {
         pinAnimationType: PinAnimationType.slide,
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         hapticFeedbackType: HapticFeedbackType.lightImpact,
-        preFilledWidget: Text(
-          '-',
-          style: Get.theme.textTheme.bodyLarge!
-              .copyWith(color: Get.theme.customColors.white),
-        ),
         validator: AppValidations.verificationCodeValidation,
         focusedPinTheme: _buildPinTheme(border: Get.theme.primaryColor),
         defaultPinTheme: _buildPinTheme(),
@@ -123,14 +123,18 @@ class SignUpAuthenticationScreen extends GetItHook<AuthController> {
       children: [
         CenterText(
           AppStrings.T.lbl_code_was_sent,
-          style: Get.theme.textTheme.labelMedium!
-              .copyWith(color: Get.theme.customColors.greyTextColor),
+          style: Get.theme.textTheme.labelMedium!.copyWith(
+            color: Get.theme.customColors.grey,
+            letterSpacing: 0.1,
+            fontSize: 16.0.sp,
+            fontWeight: FontWeight.w400,
+          ),
         ),
         Gap(8.h),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: CenterText(
-            'johndory007@gmail.com',
+            controller.signupEmailController.text,
             style: Get.theme.textTheme.labelMedium!.copyWith(
               color: Get.theme.customColors.white,
               fontWeight: FontWeight.w500,
@@ -169,15 +173,15 @@ class SignUpAuthenticationScreen extends GetItHook<AuthController> {
       child: AppRichText(
         spans: [
           AppSpan(
-            text: AppStrings.T.lbl_resend,
+            text: AppStrings.T.lbl_resend_code,
             recognizer: TapGestureRecognizer()
               ..onTap = () {
                 Get.focusScope!.unfocus();
-                Get.toNamed(AppRoutes.signup);
               },
             style: Get.textTheme.bodySmall?.copyWith(
-              color: Get.theme.customColors.darkGreyBorder,
-            ),
+                color: Get.theme.customColors.secondaryColor,
+                decorationColor: Get.theme.customColors.secondaryColor,
+                decoration: TextDecoration.underline),
           ),
         ],
       ),

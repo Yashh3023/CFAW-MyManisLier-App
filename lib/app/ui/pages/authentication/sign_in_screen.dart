@@ -30,9 +30,9 @@ class SignInScreen extends GetItHook<AuthController> {
   Widget _buildBody(BuildContext context) {
     return SingleChildScrollView(
       padding:
-          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom / 4),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.0.w, vertical: 8.0.h),
+        padding: EdgeInsets.symmetric(horizontal: 20.0.w, vertical: 20.0.h),
         child: Column(
           children: [
             _buildHeader(),
@@ -58,11 +58,14 @@ class SignInScreen extends GetItHook<AuthController> {
           style: Get.theme.textTheme.headlineLarge!
               .copyWith(color: Get.theme.customColors.white),
         ),
-        Gap(5.h),
+        Gap(15.h),
         CenterText(
           AppStrings.T.lbl_get_sign_in_message,
-          style: Get.theme.textTheme.labelMedium!
-              .copyWith(color: Get.theme.customColors.greyTextColor),
+          style: Get.theme.textTheme.labelMedium!.copyWith(
+              color: Get.theme.customColors.grey,
+              fontWeight: FontWeight.w400,
+              letterSpacing: 0.1,
+              fontSize: 16.0.sp),
         ),
       ],
     );
@@ -123,10 +126,12 @@ class SignInScreen extends GetItHook<AuthController> {
         alignment: Alignment.topRight,
         child: AppText(
           AppStrings.T.forgotPassword,
-          style: Get.theme.textTheme.bodySmall?.copyWith(
+          style: Get.theme.textTheme.labelMedium?.copyWith(
               fontSize: 16.sp,
               fontWeight: FontWeight.w400,
-              color: Get.theme.customColors.darkGreyBorder),
+              decoration: TextDecoration.underline,
+              decorationColor: Get.theme.customColors.secondaryColor,
+              color: Get.theme.customColors.secondaryColor),
         ),
       ),
     );
@@ -156,7 +161,7 @@ class SignInScreen extends GetItHook<AuthController> {
           AppSpan(
             text: AppStrings.T.registerRedirect,
             style: Get.textTheme.bodySmall?.copyWith(
-              color: Get.theme.customColors.greyTextColor,
+              color: Get.theme.customColors.grey,
             ),
           ),
           AppSpan(
@@ -167,8 +172,9 @@ class SignInScreen extends GetItHook<AuthController> {
                 Get.toNamed(AppRoutes.signup);
               },
             style: Get.textTheme.bodySmall?.copyWith(
-              color: Get.theme.customColors.darkGreyBorder,
-            ),
+                color: Get.theme.customColors.secondaryColor,
+                fontSize: 16.0.sp,
+                fontWeight: FontWeight.w500),
           ),
         ],
       ),

@@ -34,7 +34,7 @@ class AuthenticationScreen extends GetItHook<AuthController> {
       padding:
           EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.0.w, vertical: 8.0.h),
+        padding: EdgeInsets.symmetric(horizontal: 20.0.w, vertical: 20.0.h),
         child: Column(
           children: [
             _buildHeader(),
@@ -42,9 +42,9 @@ class AuthenticationScreen extends GetItHook<AuthController> {
             _buildImageSection(),
             Gap(28.h),
             _buildOtpTextField(),
-            Gap(28.h),
+            Gap(30.h),
             _buildCodeSentMessage(),
-            Gap(28.h),
+            Gap(30.h),
             _buildButtons(resetPasswordFormKey),
           ],
         ),
@@ -60,13 +60,17 @@ class AuthenticationScreen extends GetItHook<AuthController> {
           style: Get.theme.textTheme.headlineLarge!
               .copyWith(color: Get.theme.customColors.white),
         ),
-        Gap(5.h),
+        Gap(10.h),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
           child: CenterText(
             AppStrings.T.lbl_authentication_subtitle,
-            style: Get.theme.textTheme.labelMedium!
-                .copyWith(color: Get.theme.customColors.greyTextColor),
+            style: Get.theme.textTheme.labelMedium!.copyWith(
+              color: Get.theme.customColors.grey,
+              letterSpacing: 0.1,
+              fontSize: 16.0.sp,
+              fontWeight: FontWeight.w400,
+            ),
           ),
         ),
       ],
@@ -75,7 +79,8 @@ class AuthenticationScreen extends GetItHook<AuthController> {
 
   Widget _buildImageSection() {
     return CustomImageView(
-      imagePath: AssetConstants.svgAuthCircle,
+      imagePath: AssetConstants.pngAuthCircle,
+      height: 200.h,
     );
   }
 
@@ -86,11 +91,6 @@ class AuthenticationScreen extends GetItHook<AuthController> {
         pinAnimationType: PinAnimationType.slide,
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         hapticFeedbackType: HapticFeedbackType.lightImpact,
-        preFilledWidget: Text(
-          '-',
-          style: Get.theme.textTheme.bodyLarge!
-              .copyWith(color: Get.theme.customColors.white),
-        ),
         validator: AppValidations.verificationCodeValidation,
         focusedPinTheme: _buildPinTheme(border: Get.theme.primaryColor),
         defaultPinTheme: _buildPinTheme(),
@@ -121,17 +121,22 @@ class AuthenticationScreen extends GetItHook<AuthController> {
       children: [
         CenterText(
           AppStrings.T.lbl_code_was_sent,
-          style: Get.theme.textTheme.labelMedium!
-              .copyWith(color: Get.theme.customColors.greyTextColor),
+          style: Get.theme.textTheme.labelMedium!.copyWith(
+            color: Get.theme.customColors.grey,
+            letterSpacing: 0.1,
+            fontSize: 16.0.sp,
+            fontWeight: FontWeight.w400,
+          ),
         ),
-        Gap(8.h),
+        Gap(10.h),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: CenterText(
-            'johndory007@gmail.com',
+            controller.forgotEmailController.text,
             style: Get.theme.textTheme.labelMedium!.copyWith(
               color: Get.theme.customColors.white,
               fontWeight: FontWeight.w500,
+              fontSize: 16.0.sp,
             ),
           ),
         ),
@@ -173,7 +178,7 @@ class AuthenticationScreen extends GetItHook<AuthController> {
                 Get.toNamed(AppRoutes.signup);
               },
             style: Get.textTheme.bodySmall?.copyWith(
-              color: Get.theme.customColors.darkGreyBorder,
+              color: Get.theme.customColors.secondaryColor,
             ),
           ),
         ],
@@ -182,7 +187,7 @@ class AuthenticationScreen extends GetItHook<AuthController> {
   }
 
   @override
-  bool get canDisposeController => true;
+  bool get canDisposeController => false;
 
   @override
   void onDispose() {}

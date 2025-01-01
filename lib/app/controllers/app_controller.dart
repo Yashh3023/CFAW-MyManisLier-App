@@ -13,8 +13,8 @@ class AppController extends GetxController {
       const Duration(seconds: 3),
       () async {
         if (await _completer.future) {
-          // Get.offAllNamed(AppRoutes.getStarted)?.ignore();
-          Get.offAllNamed(AppRoutes.welcomeHomeScreen)?.ignore();
+          Get.offAllNamed(AppRoutes.getStarted)?.ignore();
+
         }
       },
     );

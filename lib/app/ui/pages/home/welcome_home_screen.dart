@@ -24,8 +24,8 @@ class WelcomeHomeScreen extends GetItHook<HomeController> {
         AppStrings.T.lbl_welcome,
         style: Get.theme.textTheme.bodyLarge!.copyWith(
           color: Get.theme.customColors.white,
-          fontSize: 22.sp,
-          fontWeight: FontWeight.w500,
+          fontSize: 24.sp,
+          fontWeight: FontWeight.w600,
         ),
       ),
       actions: [
@@ -34,11 +34,12 @@ class WelcomeHomeScreen extends GetItHook<HomeController> {
             Get.toNamed(AppRoutes.settingScreen);
           },
           child: CircleAvatar(
-            radius: 23,
+           radius: 23.r,
             backgroundColor: Get.theme.customColors.appBarIcBg,
             child: CustomImageView(
               imagePath: AssetConstants.icSetting,
             ),
+
           ),
         )
       ],
@@ -48,12 +49,8 @@ class WelcomeHomeScreen extends GetItHook<HomeController> {
   Widget _buildBody() {
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.only(
-          top: 30.h,
-          bottom: 28.h,
-          right: 20.w,
-          left: 20.w,
-        ),
+        padding:
+            EdgeInsets.only(top: 30.h, bottom: 28.h, right: 20.w, left: 20.w),
         child: Column(
           children: [
             _buildHeader(),
@@ -104,6 +101,7 @@ class WelcomeHomeScreen extends GetItHook<HomeController> {
     return TextInputField(
       type: InputType.text,
       keyboardType: TextInputType.text,
+      textInputAction: TextInputAction.done,
       prefixIcon: CustomImageView(
         imagePath: AssetConstants.icProfileTwoUser,
         margin: const EdgeInsets.all(16),
@@ -120,8 +118,8 @@ class WelcomeHomeScreen extends GetItHook<HomeController> {
       children: [
         TextInputField(
           type: InputType.text,
-          textInputAction: TextInputAction.done,
           keyboardType: TextInputType.multiline,
+          readOnly: true,
           maxLines: 3,
           borderRadius: 16.h,
           prefixIcon: Padding(
@@ -135,12 +133,12 @@ class WelcomeHomeScreen extends GetItHook<HomeController> {
                 children: [
                   CustomImageView(
                     imagePath: AssetConstants.icMessageMinus,
-                    margin: const EdgeInsets.symmetric(horizontal: 16),
+                    margin: EdgeInsets.symmetric(horizontal: 16.w),
                   ),
                   Container(
                     height: 24.h,
                     width: 2.w,
-                    color: const Color(0XFF2D2E30),
+                    color: Get.theme.customColors.pastetext,
                   )
                 ],
               ),
@@ -149,23 +147,63 @@ class WelcomeHomeScreen extends GetItHook<HomeController> {
           controller: controller.pasteTextConversaionController,
           hintLabel: AppStrings.T.lbl_paste_text_conversaion_here,
         ),
-        Positioned(
-          bottom: 10,
-          right: 10,
-          child: Container(
-            decoration: BoxDecoration(
-              color: Get.theme.customColors.black,
-              borderRadius: BorderRadius.circular(8.r),
-            ),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 6.h),
-              child: CenterText(
-                AppStrings.T.lbl_paste,
-                style:
-                    Get.theme.textTheme.labelSmall!.copyWith(fontSize: 12.sp),
+        // Wrap the Visibility widget with ValueListenableBuilder
+        ValueListenableBuilder<TextEditingValue>(
+          valueListenable: controller.pasteTextConversaionController,
+          builder: (context, text, child) {
+            return Visibility(
+              visible: text.text.isEmpty,
+              child: Positioned(
+                bottom: 10.h,
+                right: 10.h,
+                child: InkWell(
+                  onTap: () async {
+                    ClipboardData? clipboardData =
+                        await Clipboard.getData('text/plain');
+                    if (clipboardData != null && clipboardData.text != null) {
+                      controller.pasteTextConversaionController.text =
+                          clipboardData.text!;
+                    }
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Get.theme.customColors.black,
+                      borderRadius: BorderRadius.circular(8.r),
+                    ),
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 14.w, vertical: 6.h),
+                      child: CenterText(
+                        AppStrings.T.lbl_paste,
+                        style: Get.theme.textTheme.labelSmall!.copyWith(
+                            fontSize: 12.sp, fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ),
+            );
+          },
+        ),
+        ValueListenableBuilder<TextEditingValue>(
+          valueListenable: controller.pasteTextConversaionController,
+          builder: (context, text, child) {
+            return Visibility(
+              visible: text.text.isNotEmpty,
+              child: InkWell(
+                onTap: () {
+                  controller.pasteTextConversaionController.clear();
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(13),
+                  child: Align(
+                      alignment: Alignment.centerRight,
+                      child:
+                          CustomImageView(imagePath: AssetConstants.icClose)),
+                ),
+              ),
+            );
+          },
         ),
       ],
     );

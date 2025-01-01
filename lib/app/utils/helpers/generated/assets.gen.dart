@@ -59,6 +59,9 @@ class $AssetsImagesIconGen {
   SvgGenImage get icCardSlider =>
       const SvgGenImage('assets/images/icon/ic_card_slider.svg');
 
+  /// File path: assets/images/icon/ic_close.svg
+  SvgGenImage get icClose =>
+      const SvgGenImage('assets/images/icon/ic_close.svg');
   /// File path: assets/images/icon/ic_change_password.svg
   SvgGenImage get icChangePassword =>
       const SvgGenImage('assets/images/icon/ic_change_password.svg');
@@ -204,6 +207,7 @@ class $AssetsImagesIconGen {
         icCall,
         icCamera,
         icCardSlider,
+        icClose,
         icChangePassword,
         icDelete,
         icDiscoverCard,
@@ -245,6 +249,10 @@ class $AssetsImagesIconGen {
 class $AssetsImagesPngGen {
   const $AssetsImagesPngGen();
 
+  /// Directory path: assets/images/png/authentication
+  $AssetsImagesPngAuthenticationGen get authentication =>
+      const $AssetsImagesPngAuthenticationGen();
+
   /// Directory path: assets/images/png/home
   $AssetsImagesPngHomeGen get home => const $AssetsImagesPngHomeGen();
 
@@ -264,6 +272,26 @@ class $AssetsImagesSvgGen {
 
   /// Directory path: assets/images/svg/splash
   $AssetsImagesSvgSplashGen get splash => const $AssetsImagesSvgSplashGen();
+}
+
+class $AssetsImagesPngAuthenticationGen {
+  const $AssetsImagesPngAuthenticationGen();
+
+  /// File path: assets/images/png/authentication/png_auth_circle.png
+  AssetGenImage get pngAuthCircle => const AssetGenImage(
+      'assets/images/png/authentication/png_auth_circle.png');
+
+  /// File path: assets/images/png/authentication/png_forgot_password.png
+  AssetGenImage get pngForgotPassword => const AssetGenImage(
+      'assets/images/png/authentication/png_forgot_password.png');
+
+  /// File path: assets/images/png/authentication/png_reset_password.png
+  AssetGenImage get pngResetPassword => const AssetGenImage(
+      'assets/images/png/authentication/png_reset_password.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values =>
+      [pngAuthCircle, pngForgotPassword, pngResetPassword];
 }
 
 class $AssetsImagesPngHomeGen {

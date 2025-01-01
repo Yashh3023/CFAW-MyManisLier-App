@@ -292,7 +292,7 @@ class PaymentBottomSheet extends GetItHook<HomeController> {
 
   Widget _buildButtons() {
     return CustomElevatedButton(
-      text: AppStrings.T.lbl_pay_now,
+      text: "${AppStrings.T.lbl_pay_now} \$20",
       onPressed: () {
         Get.back();
         _showAlertSuccessfulDialog(Get.context!);
@@ -336,6 +336,7 @@ class PaymentBottomSheet extends GetItHook<HomeController> {
                     CustomElevatedButton(
                       text: AppStrings.T.lbl_close,
                       onPressed: () {
+                        Get.back();
                         Get.toNamed(AppRoutes.chatBasedQuestionsScreen);
                       },
                     )

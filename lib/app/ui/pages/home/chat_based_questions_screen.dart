@@ -406,6 +406,7 @@ class ChatBasedQuestionsScreen extends GetItHook<HomeController> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
+            flex: 2,
             child: CustomElevatedButton(
               buttonStyle: ElevatedButton.styleFrom(
                 backgroundColor: Get.theme.customColors.bgColor,
@@ -429,28 +430,29 @@ class ChatBasedQuestionsScreen extends GetItHook<HomeController> {
           ),
           Expanded(child: Gap(20.w)),
           Expanded(
+              flex: 2,
               child: Obx(
-            () => CustomElevatedButton(
-              isLoading: controller.questionState.isLoading,
-              isDisabled: controller.questionState.isLoading,
-              rightIcon: CustomImageView(
-                imagePath: AssetConstants.icArrowRight,
-              ),
-              iconSpacing: 10.w,
-              text: controller.chatCurrentIndex.value ==
-                      controller.chatTotalPages - 1
-                  ? AppStrings.T.lbl_analysis
-                  : AppStrings.T.lbl_next,
-              onPressed: () {
-                if (controller.chatCurrentIndex.value < pages.length - 1) {
-                  controller
-                      .chatChangePage(controller.chatCurrentIndex.value + 1);
-                } else {
-                  Get.toNamed(AppRoutes.analysisScreen);
-                }
-              },
-            ),
-          )),
+                () => CustomElevatedButton(
+                  isLoading: controller.questionState.isLoading,
+                  isDisabled: controller.questionState.isLoading,
+                  rightIcon: CustomImageView(
+                    imagePath: AssetConstants.icArrowRight,
+                  ),
+                  iconSpacing: 10.w,
+                  text: controller.chatCurrentIndex.value ==
+                          controller.chatTotalPages - 1
+                      ? AppStrings.T.lbl_analyze
+                      : AppStrings.T.lbl_next,
+                  onPressed: () {
+                    if (controller.chatCurrentIndex.value < pages.length - 1) {
+                      controller.chatChangePage(
+                          controller.chatCurrentIndex.value + 1);
+                    } else {
+                      Get.toNamed(AppRoutes.analysisScreen);
+                    }
+                  },
+                ),
+              )),
         ],
       ),
     );
