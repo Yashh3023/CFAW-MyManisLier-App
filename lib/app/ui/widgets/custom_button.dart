@@ -18,6 +18,7 @@ class CustomElevatedButton extends StatelessWidget {
     this.iconSpacing,
     this.isLoading = false,
     required this.text,
+    this.secondary = false,
   });
 
   final BoxDecoration? decoration;
@@ -34,6 +35,7 @@ class CustomElevatedButton extends StatelessWidget {
   final double? iconSpacing;
   final bool isLoading;
   final String text;
+  final bool secondary;
 
   @override
   Widget build(BuildContext context) {
@@ -71,14 +73,19 @@ class CustomElevatedButton extends StatelessWidget {
             else
               Text(
                 text,
-                style: buttonTextStyle ??
-                    Theme.of(context).textTheme.labelMedium?.copyWith(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                          color: isDisabled
-                              ? Theme.of(context).disabledColor
-                              : Theme.of(context).colorScheme.onPrimary,
-                        ),
+                style: secondary
+                    ? Theme.of(context).textTheme.labelLarge?.copyWith(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 18.sp,
+                        color: Get.theme.customColors.greyTextColor)
+                    : buttonTextStyle ??
+                        Theme.of(context).textTheme.labelMedium?.copyWith(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 18.sp,
+                              color: isDisabled
+                                  ? Theme.of(context).disabledColor
+                                  : Theme.of(context).colorScheme.onPrimary,
+                            ),
               ),
             if (rightIcon != null && iconSpacing != null)
               SizedBox(width: iconSpacing),

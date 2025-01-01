@@ -29,11 +29,16 @@ class WelcomeHomeScreen extends GetItHook<HomeController> {
         ),
       ),
       actions: [
-        CircleAvatar(
-          radius: 23,
-          backgroundColor: Get.theme.customColors.appBarIcBg,
-          child: CustomImageView(
-            imagePath: AssetConstants.icSetting,
+        GestureDetector(
+          onTap: () {
+            Get.toNamed(AppRoutes.settingScreen);
+          },
+          child: CircleAvatar(
+            radius: 23,
+            backgroundColor: Get.theme.customColors.appBarIcBg,
+            child: CustomImageView(
+              imagePath: AssetConstants.icSetting,
+            ),
           ),
         )
       ],

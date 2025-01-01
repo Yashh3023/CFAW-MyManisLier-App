@@ -9,7 +9,7 @@ class CustomIconTextCardRow extends StatelessWidget {
     this.height = 56,
     this.width = double.infinity,
     this.isCard = true,
-    super.key,
+    super.key, required Border border,
   });
 
   final String? imagePath;

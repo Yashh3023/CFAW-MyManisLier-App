@@ -32,6 +32,8 @@ export 'package:mymanislier/app/ui/widgets/dashed_border_painter.dart';
 export 'package:mymanislier/app/utils/themes/custom_color_extension.dart';
 export 'package:mymanislier/app/ui/widgets/custom_divider.dart';
 export 'package:syncfusion_flutter_charts/charts.dart';
+export 'package:mymanislier/app/controllers/setting_controller.dart';
+export 'package:mymanislier/app/utils/themes/button_theme.dart';
 export 'package:readmore/readmore.dart';
 export 'package:flutter/gestures.dart';
 export 'package:flutter_ripple/flutter_ripple.dart';
