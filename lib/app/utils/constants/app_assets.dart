@@ -8,6 +8,9 @@ class AssetConstants {
   static String pngGetStartedBg = Assets.images.png.other.pngGetStartedBg.path;
 
   //images/pngs/homne/
+  static String pngEsp = Assets.images.png.home.pngEsp.path;
+  static String pngP24 = Assets.images.png.home.pngP24.path;
+  static String pngGp = Assets.images.png.home.pngGp.path;
 
   //images/icon/
   static String icAppbarBack = Assets.images.icon.icAppbarBack.path;
@@ -30,6 +33,18 @@ class AssetConstants {
   static String icPieChart = Assets.images.icon.icPieChart.path;
   static String icSearch = Assets.images.icon.icSearch.path;
   static String icWarning = Assets.images.icon.icWarning.path;
+  static String icAmexCard = Assets.images.icon.icAmexCard.path;
+  static String icBasicCard = Assets.images.icon.icBasicCard.path;
+  static String icDiscoverCard = Assets.images.icon.icDiscoverCard.path;
+  static String icEps = Assets.images.icon.icEsp.path;
+  static String icMasterCard = Assets.images.icon.icMasterCard.path;
+  static String icVisaCard = Assets.images.icon.icVisaCard.path;
+  static String icCardSlider = Assets.images.icon.icCardSlider.path;
+  static String icLockGreen = Assets.images.icon.icLockGreen.path;
+  static String icPaypal = Assets.images.icon.icPaypal.path;
+  static String icDropdown = Assets.images.icon.icDropdown.path;
+  static String icShare = Assets.images.icon.icShare.path;
+  static String icDownload = Assets.images.icon.icDownload.path;
 
   //images/svg/authentication/
   static String svgGetStartedBg =
@@ -47,6 +62,7 @@ class AssetConstants {
 
   //assets/images/svg/other/
   static String svgSuccessful = Assets.images.svg.other.svgSuccessful.path;
-  static String svgCongratulation = Assets.images.svg.other.svgCongratulation.path;
+  static String svgCongratulation =
+      Assets.images.svg.other.svgCongratulation.path;
   static String svgUnlock = Assets.images.svg.other.svgUnlock.path;
 }

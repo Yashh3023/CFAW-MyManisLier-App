@@ -77,6 +77,7 @@ class ForgotPasswordScreen extends GetItHook<AuthController> {
   Widget _buildEmailField() {
     return TextInputField(
       type: InputType.email,
+      keyboardType: TextInputType.emailAddress,
       prefixIcon: CustomImageView(
         imagePath: AssetConstants.icEmail,
         margin:  EdgeInsets.symmetric(horizontal: 16.w),

@@ -1,3 +1,4 @@
+import 'package:mymanislier/app/ui/pages/home/payment_bottomsheet.dart';
 import 'package:mymanislier/app/utils/helpers/exporter.dart';
 
 class UnlockAnalysisScreen extends GetItHook<HomeController> {
@@ -21,8 +22,8 @@ class UnlockAnalysisScreen extends GetItHook<HomeController> {
         AppStrings.T.lbl_unlock_your_analysis,
         style: Get.theme.textTheme.bodyLarge!.copyWith(
           color: Get.theme.customColors.white,
-          fontSize: 24.sp,
-          fontWeight: FontWeight.w600,
+          fontSize: 22.sp,
+          fontWeight: FontWeight.w500,
         ),
       ),
     );
@@ -59,42 +60,7 @@ class UnlockAnalysisScreen extends GetItHook<HomeController> {
   }
 
   Widget _buildDivider() {
-    return Row(
-      children: [
-        Expanded(
-          child: Container(
-            height: 2.h,
-            width: double.infinity,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.centerRight,
-                end: Alignment.centerLeft,
-                colors: [
-                  Color.fromRGBO(134, 135, 137, 0.2),
-                  Color.fromRGBO(36, 37, 44, 0.2),
-                ],
-              ),
-            ),
-          ),
-        ),
-        Expanded(
-          child: Container(
-            height: 2.h,
-            width: double.infinity,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: [
-                  Color.fromRGBO(134, 135, 137, 0.2),
-                  Color.fromRGBO(36, 37, 44, 0.2),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
+    return const CustomDivider();
   }
 
   Widget _buildDetailColumn() {
@@ -280,7 +246,19 @@ class UnlockAnalysisScreen extends GetItHook<HomeController> {
       padding: const EdgeInsets.all(20.0),
       child: CustomElevatedButton(
         text: AppStrings.T.lbl_pay_and_get_results,
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+            context: Get.context!,
+            isScrollControlled: true,
+            backgroundColor: Colors.transparent,
+            builder: (context) => Padding(
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+              ),
+              child: const PaymentBottomSheet(),
+            ),
+          );
+        },
       ),
     );
   }
