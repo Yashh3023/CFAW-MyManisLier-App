@@ -22,11 +22,13 @@ class AuthController extends GetxController {
   final signupEmailController = TextEditingController();
   final signupPasswordController = TextEditingController();
   final signupConfirmPasswordController = TextEditingController();
+  final signupconfirmPassfocusnode = FocusNode();
 
   final forgotEmailController = TextEditingController();
 
   final newPasswordController = TextEditingController();
   final confirmNewPasswordController = TextEditingController();
+  final confirmPassfocusnode = FocusNode();
 
   final verificationCode = TextEditingController();
   final signupRerificationCode = TextEditingController();

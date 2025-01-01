@@ -7,11 +7,18 @@ class AssetConstants {
   //images/pngs/other
   static String pngGetStartedBg = Assets.images.png.other.pngGetStartedBg.path;
 
-  //images/pngs/homne/
+  //images/pngs/home/
   static String pngEsp = Assets.images.png.home.pngEsp.path;
   static String pngP24 = Assets.images.png.home.pngP24.path;
   static String pngGp = Assets.images.png.home.pngGp.path;
 
+  //images/pngs/authentication/
+  static String pngAuthCircle =
+      Assets.images.png.authentication.pngAuthCircle.path;
+  static String pngForgotPassword =
+      Assets.images.png.authentication.pngForgotPassword.path;
+  static String pngResetPassword =
+      Assets.images.png.authentication.pngResetPassword.path;
   //images/icon/
   static String icAppbarBack = Assets.images.icon.icAppbarBack.path;
   static String icEmail = Assets.images.icon.icEmail.path;
@@ -45,6 +52,7 @@ class AssetConstants {
   static String icDropdown = Assets.images.icon.icDropdown.path;
   static String icShare = Assets.images.icon.icShare.path;
   static String icDownload = Assets.images.icon.icDownload.path;
+  static String icClose = Assets.images.icon.icClose.path;
 
   //images/svg/authentication/
   static String svgGetStartedBg =

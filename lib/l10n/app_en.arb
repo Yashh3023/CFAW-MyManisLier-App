@@ -163,7 +163,10 @@
     "lbl_positive": "Positive",
     "lbl_casual": "Casual",
     "lbl_neutral": "Neutral",
-    "lbl_formal": "Formal"
+    "lbl_formal": "Formal",
+    "lbl_resend_code": "Resend Code",
+    "lbl_analyze": "Analyze"
+
 
 
     

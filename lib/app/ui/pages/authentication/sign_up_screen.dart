@@ -35,13 +35,13 @@ class SignUpScreen extends GetItHook<AuthController> {
       padding:
           EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
         child: Column(
           children: [
             _buildHeader(),
-            Gap(24.h),
+            Gap(30.h),
             _buildSelectPhotoForm(context),
-            Gap(24.h),
+            Gap(40.h),
             _buildUserNameField(),
             Gap(16.h),
             _buildEmailField(),
@@ -51,7 +51,7 @@ class SignUpScreen extends GetItHook<AuthController> {
             _buildConfirmPasswordField(),
             Gap(16.h),
             _buildUserAgreementForm(),
-            Gap(32.h),
+            Gap(38.h),
             _buildButtons(),
             Gap(16.h),
             _buildLoginRedirect(),
@@ -69,11 +69,15 @@ class SignUpScreen extends GetItHook<AuthController> {
           style: Get.theme.textTheme.headlineLarge!
               .copyWith(color: Get.theme.customColors.white),
         ),
-        Gap(8.h),
+        Gap(10.h),
         CenterText(
           AppStrings.T.lbl_please_enter_your_detsil,
-          style: Get.theme.textTheme.labelMedium!
-              .copyWith(color: Get.theme.customColors.greyTextColor),
+          style: Get.theme.textTheme.labelMedium!.copyWith(
+            color: Get.theme.customColors.grey,
+            letterSpacing: 0.1,
+            fontSize: 16.0.sp,
+            fontWeight: FontWeight.w400,
+          ),
         ),
       ],
     );
@@ -85,7 +89,7 @@ class SignUpScreen extends GetItHook<AuthController> {
       children: [
         Obx(
           () => CircleAvatar(
-            radius: 60.r,
+            radius: 70.r,
             backgroundColor: Get.theme.customColors.greyBg,
             backgroundImage: controller.selectedImage.value != null
                 ? FileImage(controller.selectedImage.value!)
@@ -286,8 +290,11 @@ class SignUpScreen extends GetItHook<AuthController> {
         controller: controller.signupPasswordController,
         hintLabel: AppStrings.T.password,
         obscureText: passObscure.value.obs,
-        textInputAction: TextInputAction.done,
         validator: AppValidations.passwordValidation,
+        onFieldSubmitted: (_) {
+          FocusScope.of(Get.context!)
+              .requestFocus(controller.signupconfirmPassfocusnode);
+        },
       ),
     );
   }
@@ -296,6 +303,7 @@ class SignUpScreen extends GetItHook<AuthController> {
     return Obx(
       () => TextInputField(
         type: InputType.password,
+        focusNode: controller.signupconfirmPassfocusnode,
         keyboardType: TextInputType.visiblePassword,
         prefixIcon: CustomImageView(
           imagePath: AssetConstants.icLock,
@@ -316,7 +324,12 @@ class SignUpScreen extends GetItHook<AuthController> {
         hintLabel: AppStrings.T.lbl_confirm_password,
         obscureText: confirmPassObscure.value.obs,
         textInputAction: TextInputAction.done,
-        validator: AppValidations.passwordValidation,
+        validator: (value) {
+          return AppValidations.confirmPasswordValidation(
+            value,
+            controller.signupPasswordController.text,
+          );
+        },
       ),
     );
   }
@@ -355,8 +368,9 @@ class SignUpScreen extends GetItHook<AuthController> {
                     Get.focusScope!.unfocus();
                   },
                 style: Get.textTheme.bodySmall?.copyWith(
-                  color: Get.theme.customColors.darkGreyBorder,
-                ),
+                    color: Get.theme.customColors.secondaryColor,
+                    decorationColor: Get.theme.customColors.secondaryColor,
+                    decoration: TextDecoration.underline),
               ),
               AppSpan(
                 text: AppStrings.T.lbl_and,
@@ -371,8 +385,9 @@ class SignUpScreen extends GetItHook<AuthController> {
                     Get.focusScope!.unfocus();
                   },
                 style: Get.textTheme.bodySmall?.copyWith(
-                  color: Get.theme.customColors.darkGreyBorder,
-                ),
+                    color: Get.theme.customColors.secondaryColor,
+                    decorationColor: Get.theme.customColors.secondaryColor,
+                    decoration: TextDecoration.underline),
               ),
             ],
           ),
@@ -388,17 +403,6 @@ class SignUpScreen extends GetItHook<AuthController> {
         isDisabled: controller.signinState.isLoading,
         text: AppStrings.T.signup,
         onPressed: () {
-          if (controller.selectedImage.value == null) {
-            Get.snackbar(
-              AppStrings.T.lbl_image_required,
-              AppStrings.T.lbl_please_select_image,
-              snackPosition: SnackPosition.BOTTOM,
-              backgroundColor: Get.theme.customColors.red?.withOpacity(0.5),
-              colorText: Get.theme.customColors.white,
-            );
-            return;
-          }
-
           if (_formKey.currentState?.validate() ?? false) {
             Get.focusScope!.unfocus();
             controller.signUp(_formKey.currentState);
@@ -424,10 +428,11 @@ class SignUpScreen extends GetItHook<AuthController> {
             recognizer: TapGestureRecognizer()
               ..onTap = () {
                 Get.focusScope!.unfocus();
-                Get.toNamed(AppRoutes.sigin);
+                Get.offAllNamed(AppRoutes.sigin);
               },
             style: Get.textTheme.bodySmall?.copyWith(
-              color: Get.theme.customColors.darkGreyBorder,
+              color: Get.theme.customColors.secondaryColor,
+              fontSize: 16.0.sp,
             ),
           ),
         ],

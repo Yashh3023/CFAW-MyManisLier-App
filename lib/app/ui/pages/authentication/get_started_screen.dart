@@ -33,11 +33,14 @@ class GetStartedScreen extends GetItHook<AuthController> {
           style: Get.theme.textTheme.headlineLarge!
               .copyWith(color: Get.theme.customColors.white),
         ),
-         Gap(5.h),
+        Gap(15.h),
         CenterText(
           AppStrings.T.lbl_get_started_subtitle,
-          style: Get.theme.textTheme.labelMedium!
-              .copyWith(color: Get.theme.customColors.greyTextColor),
+          style: Get.theme.textTheme.labelMedium!.copyWith(
+              color: Get.theme.customColors.grey,
+              fontSize: 16.0.sp,
+              letterSpacing: 0.1,
+              fontWeight: FontWeight.w400),
         ),
       ],
     );
@@ -64,7 +67,7 @@ class GetStartedScreen extends GetItHook<AuthController> {
             },
             text: AppStrings.T.signin,
           ),
-          const Gap(8),
+          Gap(15.h),
           CustomElevatedButton(
             onPressed: () {
               Get.toNamed(AppRoutes.signup);
@@ -80,6 +83,7 @@ class GetStartedScreen extends GetItHook<AuthController> {
             ),
             text: AppStrings.T.signup,
           ),
+          Gap(15.h),
         ],
       ),
     );

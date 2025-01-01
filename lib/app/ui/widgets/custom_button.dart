@@ -73,8 +73,8 @@ class CustomElevatedButton extends StatelessWidget {
                 text,
                 style: buttonTextStyle ??
                     Theme.of(context).textTheme.labelMedium?.copyWith(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18.0.sp,
                           color: isDisabled
                               ? Theme.of(context).disabledColor
                               : Theme.of(context).colorScheme.onPrimary,

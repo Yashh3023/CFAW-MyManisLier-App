@@ -12,7 +12,7 @@ class ForgotPasswordScreen extends GetItHook<AuthController> {
       key: _formKey,
       child: Scaffold(
         resizeToAvoidBottomInset: true,
-      backgroundColor: Get.theme.customColors.black,
+        backgroundColor: Get.theme.customColors.black,
         appBar: _buildAppBar(),
         body: _buildBody(context),
       ),
@@ -21,7 +21,7 @@ class ForgotPasswordScreen extends GetItHook<AuthController> {
 
   PreferredSizeWidget _buildAppBar() {
     return CustomAppbar(
-      appbarBgColor :Get.theme.customColors.black,
+      appbarBgColor: Get.theme.customColors.black,
       onLeadingTap: Get.back,
     );
   }
@@ -31,15 +31,15 @@ class ForgotPasswordScreen extends GetItHook<AuthController> {
       padding:
           EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: Padding(
-        padding:  EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
         child: Column(
           children: [
             _buildHeader(),
-             Gap(50.h),
+            Gap(50.h),
             _buildImageSection(),
-             Gap(50.h),
+            Gap(50.h),
             _buildEmailField(),
-             Gap(30.h),
+            Gap(30.h),
             _buildButtons(),
           ],
         ),
@@ -55,13 +55,17 @@ class ForgotPasswordScreen extends GetItHook<AuthController> {
           style: Get.theme.textTheme.headlineLarge!
               .copyWith(color: Get.theme.customColors.white),
         ),
-         Gap(5.h),
+        Gap(10.h),
         Padding(
-          padding:  EdgeInsets.symmetric(horizontal: 16.w),
+          padding: EdgeInsets.symmetric(horizontal: 70.w),
           child: CenterText(
             AppStrings.T.lbl_forgor_password_subtitle,
-            style: Get.theme.textTheme.labelMedium!
-                .copyWith(color: Get.theme.customColors.greyTextColor),
+            style: Get.theme.textTheme.labelMedium!.copyWith(
+              color: Get.theme.customColors.grey,
+              letterSpacing: 0.1,
+              fontSize: 16.0.sp,
+              fontWeight: FontWeight.w400,
+            ),
           ),
         ),
       ],
@@ -70,7 +74,8 @@ class ForgotPasswordScreen extends GetItHook<AuthController> {
 
   Widget _buildImageSection() {
     return CustomImageView(
-      imagePath: AssetConstants.svgLockCircle,
+      imagePath: AssetConstants.pngForgotPassword,
+      height: 200.h,
     );
   }
 
@@ -78,9 +83,10 @@ class ForgotPasswordScreen extends GetItHook<AuthController> {
     return TextInputField(
       type: InputType.email,
       keyboardType: TextInputType.emailAddress,
+      textInputAction: TextInputAction.done,
       prefixIcon: CustomImageView(
         imagePath: AssetConstants.icEmail,
-        margin:  EdgeInsets.symmetric(horizontal: 16.w),
+        margin: EdgeInsets.symmetric(horizontal: 16.w),
         height: 28.h,
       ),
       controller: controller.forgotEmailController,
@@ -108,7 +114,7 @@ class ForgotPasswordScreen extends GetItHook<AuthController> {
   }
 
   @override
-  bool get canDisposeController => true;
+  bool get canDisposeController => false;
 
   @override
   void onDispose() {}

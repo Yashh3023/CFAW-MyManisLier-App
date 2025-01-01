@@ -16,7 +16,7 @@ class ResetPasswordScreen extends GetItHook<AuthController> {
       key: _formKey,
       child: Scaffold(
         resizeToAvoidBottomInset: true,
-        backgroundColor: Get.theme.customColors.bgColor,
+        backgroundColor: Get.theme.customColors.black,
         appBar: _buildAppBar(),
         body: _buildBody(context),
       ),
@@ -61,13 +61,17 @@ class ResetPasswordScreen extends GetItHook<AuthController> {
           style: Get.theme.textTheme.headlineLarge!
               .copyWith(color: Get.theme.customColors.white),
         ),
-        Gap(8.h),
+        Gap(10.h),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          padding: EdgeInsets.symmetric(horizontal: 30.w),
           child: CenterText(
             AppStrings.T.lbl_new_password_suggetion,
-            style: Get.theme.textTheme.labelMedium!
-                .copyWith(color: Get.theme.customColors.greyTextColor),
+            style: Get.theme.textTheme.labelMedium!.copyWith(
+              color: Get.theme.customColors.grey,
+              letterSpacing: 0.1,
+              fontSize: 16.0.sp,
+              fontWeight: FontWeight.w400,
+            ),
           ),
         ),
       ],
@@ -76,7 +80,8 @@ class ResetPasswordScreen extends GetItHook<AuthController> {
 
   Widget _buildImageSection() {
     return CustomImageView(
-      imagePath: AssetConstants.svgSecurityCircle,
+      imagePath: AssetConstants.pngResetPassword,
+      height: 200.h,
     );
   }
 
@@ -103,8 +108,12 @@ class ResetPasswordScreen extends GetItHook<AuthController> {
         controller: controller.newPasswordController,
         hintLabel: AppStrings.T.lbl_new_password,
         obscureText: newPasswordObscure.value.obs,
-        textInputAction: TextInputAction.done,
+        textInputAction: TextInputAction.next,
         validator: AppValidations.passwordValidation,
+        onFieldSubmitted: (_) {
+          FocusScope.of(Get.context!)
+              .requestFocus(controller.confirmPassfocusnode);
+        },
       ),
     );
   }
@@ -112,6 +121,7 @@ class ResetPasswordScreen extends GetItHook<AuthController> {
   Widget _buildConformNewPasswordField() {
     return Obx(
       () => TextInputField(
+        focusNode: controller.confirmPassfocusnode,
         type: InputType.password,
         prefixIcon: CustomImageView(
           imagePath: AssetConstants.icLock,
@@ -132,7 +142,12 @@ class ResetPasswordScreen extends GetItHook<AuthController> {
         hintLabel: AppStrings.T.lbl_confirm_new_password,
         obscureText: confirmNewPasswordObscure.value.obs,
         textInputAction: TextInputAction.done,
-        validator: AppValidations.passwordValidation,
+        validator: (value) {
+          return AppValidations.confirmPasswordValidation(
+            value,
+            controller.newPasswordController.text,
+          );
+        },
       ),
     );
   }
@@ -181,11 +196,15 @@ class ResetPasswordScreen extends GetItHook<AuthController> {
                       style: Get.theme.textTheme.headlineLarge!
                           .copyWith(color: Get.theme.customColors.white),
                     ),
-                    Gap(14.h),
-                    CenterText(
-                      AppStrings.T.lbl_congratilation_message_for_success,
-                      style: Get.theme.textTheme.bodySmall!.copyWith(
-                          color: Get.theme.customColors.greyTextColor),
+                    Gap(15.h),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 25.0.w),
+                      child: CenterText(
+                        AppStrings.T.lbl_congratilation_message_for_success,
+                        style: Get.theme.textTheme.bodySmall!.copyWith(
+                            color: Get.theme.customColors.grey,
+                            fontSize: 16.0.sp),
+                      ),
                     ),
                     Gap(30.h),
                     CustomElevatedButton(
