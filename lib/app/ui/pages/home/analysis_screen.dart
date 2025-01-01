@@ -266,10 +266,11 @@ class AnalysisSection extends StatelessWidget {
                 imagePath: imagePath,
               ),
               Gap(12.w),
-              Text(
-                title,
-                style: const TextStyle(color: Colors.white),
-              ),
+              Text(title,
+                  style: Get.theme.textTheme.labelSmall!.copyWith(
+                      color: Get.theme.customColors.white,
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w500)),
             ],
           ),
           children: [
