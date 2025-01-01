@@ -1,14 +1,42 @@
 import 'package:mymanislier/app/utils/helpers/exporter.dart';
 
-class FaqScreen extends GetItHook<SettingController> {
+class FaqScreen extends StatelessWidget {
   const FaqScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Example dynamic FAQ data
+    final List<FaqItem> faqItems = [
+      FaqItem(
+        question:
+            'Could you please assist me in setting up this text? Lorem Ipsum is simply dummy text?',
+        answer:
+            'Could you please assist me in setting up this text? Lorem Ipsum is simply dummy text?',
+      ),
+      FaqItem(
+        question:
+            'Could you please assist me in setting up this text? Lorem Ipsum is simply dummy text?',
+        answer:
+            'Could you please assist me in setting up this text? Lorem Ipsum is simply dummy text?',
+      ),
+      FaqItem(
+        question:
+            'Could you please assist me in setting up this text? Lorem Ipsum is simply dummy text?',
+        answer:
+            'Could you please assist me in setting up this text? Lorem Ipsum is simply dummy text?',
+      ),
+      FaqItem(
+        question:
+            'Could you please assist me in setting up this text? Lorem Ipsum is simply dummy text?',
+        answer:
+            'Could you please assist me in setting up this text? Lorem Ipsum is simply dummy text?',
+      ),
+    ];
+
     return Scaffold(
       backgroundColor: Get.theme.customColors.black,
       appBar: _buildAppBar(),
-      body: _buildBody(),
+      body: _buildBody(faqItems),
     );
   }
 
@@ -27,59 +55,58 @@ class FaqScreen extends GetItHook<SettingController> {
     );
   }
 
-  Widget _buildBody() {
+  Widget _buildBody(List<FaqItem> faqItems) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            _expansionTile(),
-            Gap(16.h),
-            _expansionTile(),
-            Gap(16.h),
-            _expansionTile(),
-          ],
+          children: faqItems.map((item) => FaqTile(item: item)).toList(),
         ),
       ),
     );
   }
+}
 
-  Widget _expansionTile() {
+class FaqTile extends StatelessWidget {
+  final FaqItem item;
+
+  const FaqTile({required this.item, super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8.h),
       decoration: BoxDecoration(
         color: Get.theme.customColors.textfieldFillColor,
         borderRadius: BorderRadius.circular(12.r),
-        border: Border.all(
-          color: Get.theme.customColors.darkGreyBorder!,
-          width: 1.w,
+        border: Border(
+          left: BorderSide(
+              color: Get.theme.customColors.secondaryColor!, width: 4.0.w),
         ),
       ),
       child: Theme(
-        data: Theme.of(Get.context!).copyWith(
-          dividerColor: Colors.transparent,
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-        ),
+        data: Theme.of(Get.context!).copyWith(dividerColor: Colors.transparent),
         child: ExpansionTile(
           iconColor: Get.theme.customColors.greyTextColor,
           title: Text(
-            AppStrings.T.lbl_assist_text_question,
+            item.question,
             style: Get.theme.textTheme.labelSmall!.copyWith(
-                color: Get.theme.customColors.white,
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w500),
+              color: Get.theme.customColors.white,
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w500,
+            ),
           ),
           children: [
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Text(
-                AppStrings.T.lbl_assist_text_question,
+                item.answer,
                 style: Get.theme.textTheme.labelSmall!.copyWith(
-                    color: Get.theme.customColors.greyTextColor,
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w500),
+                  color: Get.theme.customColors.greyTextColor,
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
             ),
           ],
@@ -87,13 +114,11 @@ class FaqScreen extends GetItHook<SettingController> {
       ),
     );
   }
+}
 
-  @override
-  bool get canDisposeController => true;
+class FaqItem {
+  final String question;
+  final String answer;
 
-  @override
-  void onDispose() {}
-
-  @override
-  void onInit() {}
+  FaqItem({required this.question, required this.answer});
 }

@@ -29,6 +29,10 @@ class AppTheme {
     dividerTheme:
         const DividerThemeData(color: Color(0xffF5F5F8), thickness: 1),
     scaffoldBackgroundColor: Get.theme.customColors.white,
+    splashColor: Colors.transparent,
+    highlightColor: Colors.transparent,
+    splashFactory: NoSplash.splashFactory,
+
     datePickerTheme: DatePickerThemeData(
       cancelButtonStyle: ButtonStyle(
           textStyle: WidgetStatePropertyAll(
@@ -184,6 +188,7 @@ class AppTheme {
       ),
     ),
     dividerColor: Get.theme.customColors.bgOneColor,
+
     progressIndicatorTheme: ProgressIndicatorThemeData(
       color: Get.theme.customColors.primaryColor,
     ),
@@ -268,7 +273,10 @@ class AppTheme {
     extensions: const <ThemeExtension<dynamic>>[
       CustomColors.dark,
     ],
+    splashFactory: NoSplash.splashFactory,
     scaffoldBackgroundColor: Get.theme.customColors.black,
+    splashColor: Colors.transparent,
+    highlightColor: Colors.transparent,
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         disabledBackgroundColor: const Color(0xff902368).withOpacity(0.5),

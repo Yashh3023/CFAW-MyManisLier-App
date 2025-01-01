@@ -53,9 +53,6 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
                 Align(alignment: Alignment.center, child: title),
               ],
             ),
-
-                ],
-              ),
             if (actions != null)
               Positioned(
                 right: 0,

@@ -43,14 +43,13 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.singleton<_i361.Dio>(() => registerModule.dio());
     gh.lazySingleton<_i105.HomeController>(() => _i105.HomeController());
+    gh.lazySingleton<_i1047.SettingController>(
+        () => _i1047.SettingController());
     gh.lazySingleton<_i181.AppController>(() => _i181.AppController());
     gh.lazySingleton<_i92.AuthController>(
       () => _i92.AuthController(),
       dispose: (i) => i.dispose(),
     );
-    gh.lazySingleton<_i105.HomeController>(() => _i105.HomeController());
-    gh.lazySingleton<_i1047.SettingController>(
-        () => _i1047.SettingController());
     gh.lazySingleton<_i484.SocketService>(() => _i484.SocketService());
     gh.lazySingleton<_i977.AuthService>(
         () => _i977.AuthService(gh<_i361.Dio>()));

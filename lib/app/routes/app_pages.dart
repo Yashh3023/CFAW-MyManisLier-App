@@ -20,7 +20,7 @@ import 'package:mymanislier/app/ui/pages/setting/faq_screen.dart';
 import 'package:mymanislier/app/ui/pages/setting/my_profile_screen.dart';
 import 'package:mymanislier/app/ui/pages/setting/privacy_policy_screen.dart';
 import 'package:mymanislier/app/ui/pages/setting/setting_screen.dart';
-import 'package:mymanislier/app/ui/pages/setting/terms_n_conditions_screen.dart';
+import 'package:mymanislier/app/ui/pages/setting/terms_and_conditions_screen.dart';
 import 'package:mymanislier/app/ui/pages/splash/splash_page.dart';
 import 'package:get/get.dart';
 
@@ -105,7 +105,7 @@ class AppPages {
       name: AppRoutes.editProfileScreen,
       page: EditProfileScreen.new,
     ),
-    //Change Password Screen  
+    //Change Password Screen
     GetPage(
       name: AppRoutes.changePasswordScreen,
       page: ChangePasswordScreen.new,

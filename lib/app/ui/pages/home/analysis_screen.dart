@@ -347,32 +347,29 @@ class SentimentPieChart extends StatelessWidget {
                   SizedBox(
                     height: 170.h,
                     width: 170.w,
-                    child: Expanded(
-                      child: SfCircularChart(
-                        legend: const Legend(
-                          isVisible: false,
-                          position: LegendPosition.bottom,
-                        ),
-                        series: <PieSeries<_ChartData, String>>[
-                          PieSeries<_ChartData, String>(
-                            dataSource: <_ChartData>[
-                              _ChartData('Positive', 75,
-                                  Get.theme.customColors.green!),
-                              _ChartData('Neutral', 20,
-                                  Get.theme.customColors.yellow!),
-                              _ChartData('Negative', 5,
-                                  Get.theme.customColors.orange!),
-                            ],
-                            xValueMapper: (_ChartData data, _) => data.label,
-                            yValueMapper: (_ChartData data, _) => data.value,
-                            pointColorMapper: (_ChartData data, _) =>
-                                data.color,
-                            dataLabelSettings: const DataLabelSettings(
-                              isVisible: false,
-                            ),
-                          ),
-                        ],
+                    child: SfCircularChart(
+                      legend: const Legend(
+                        isVisible: false,
+                        position: LegendPosition.bottom,
                       ),
+                      series: <PieSeries<_ChartData, String>>[
+                        PieSeries<_ChartData, String>(
+                          dataSource: <_ChartData>[
+                            _ChartData(
+                                'Positive', 75, Get.theme.customColors.green!),
+                            _ChartData(
+                                'Neutral', 20, Get.theme.customColors.yellow!),
+                            _ChartData(
+                                'Negative', 5, Get.theme.customColors.orange!),
+                          ],
+                          xValueMapper: (_ChartData data, _) => data.label,
+                          yValueMapper: (_ChartData data, _) => data.value,
+                          pointColorMapper: (_ChartData data, _) => data.color,
+                          dataLabelSettings: const DataLabelSettings(
+                            isVisible: false,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   Gap(20.w),

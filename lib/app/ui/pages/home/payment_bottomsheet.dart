@@ -426,7 +426,7 @@ class _PaymentOption extends GetItHook<HomeController> {
   }
 
   @override
-  bool get canDisposeController => throw UnimplementedError();
+  bool get canDisposeController => false;
 
   @override
   void onDispose() {}

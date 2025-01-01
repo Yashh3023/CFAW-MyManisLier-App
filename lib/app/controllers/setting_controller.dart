@@ -30,6 +30,10 @@ class SettingController extends GetxController {
   final newPassObscure = true.obs;
   final confirmNewPassObscure = true.obs;
 
+  final currentPassfocusnode = FocusNode();
+  final newPassfocusnode = FocusNode();
+  final confirmNewPassfocusnode = FocusNode();
+
   final Rx<int> selectedReasonIndex = (-1).obs;
 
   final deleteAccountState = ApiState.initial().obs;

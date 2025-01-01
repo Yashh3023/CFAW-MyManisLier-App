@@ -11,7 +11,7 @@ class ButtonThemeHelper {
       textStyle: Theme.of(context)
           .textTheme
           .labelLarge
-          ?.copyWith(fontWeight: FontWeight.w700),
+          ?.copyWith(fontWeight: FontWeight.w600, fontSize: 18.0.sp),
     );
   }
 
@@ -20,6 +20,10 @@ class ButtonThemeHelper {
     return ElevatedButton.styleFrom(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(100.r),
+        side: BorderSide(
+          color: Get.theme.customColors.secondarybtn!,
+          width: 1.0,
+        ),
       ),
       padding: EdgeInsets.zero,
       elevation: 0,

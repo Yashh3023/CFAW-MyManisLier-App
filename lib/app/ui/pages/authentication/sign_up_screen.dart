@@ -366,6 +366,7 @@ class SignUpScreen extends GetItHook<AuthController> {
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
                     Get.focusScope!.unfocus();
+                    Get.toNamed(AppRoutes.privacyPolicyScreen);
                   },
                 style: Get.textTheme.bodySmall?.copyWith(
                     color: Get.theme.customColors.secondaryColor,
@@ -383,6 +384,7 @@ class SignUpScreen extends GetItHook<AuthController> {
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
                     Get.focusScope!.unfocus();
+                    Get.toNamed(AppRoutes.termsNConditionsScreen);
                   },
                 style: Get.textTheme.bodySmall?.copyWith(
                     color: Get.theme.customColors.secondaryColor,
