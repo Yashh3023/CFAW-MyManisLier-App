@@ -6,6 +6,9 @@ class AssetConstants {
 
   //images/pngs/other
   static String pngGetStartedBg = Assets.images.png.other.pngGetStartedBg.path;
+  static String pngProfilePhoto = Assets.images.png.other.pngProfilePhoto.path;
+  static String pngTrash = Assets.images.png.other.pngTrash.path;
+  static String pngSignout = Assets.images.png.other.pngSignout.path;
 
   //images/pngs/home/
   static String pngEsp = Assets.images.png.home.pngEsp.path;
@@ -53,6 +56,18 @@ class AssetConstants {
   static String icShare = Assets.images.icon.icShare.path;
   static String icDownload = Assets.images.icon.icDownload.path;
   static String icClose = Assets.images.icon.icClose.path;
+  static String icArrow = Assets.images.icon.icArrow.path;
+  static String icTrash = Assets.images.icon.icTrash.path;
+  static String icSignout = Assets.images.icon.icSignout.path;
+
+  static String icCall = Assets.images.icon.icCall.path;
+  static String icChangePassword = Assets.images.icon.icChangePassword.path;
+  static String icDelete = Assets.images.icon.icDelete.path;
+  static String icLogout = Assets.images.icon.icLogout.path;
+  static String icMessageQuestion = Assets.images.icon.icMessageQuestion.path;
+  static String icInformation = Assets.images.icon.icInformation.path;
+  static String icShieldTick = Assets.images.icon.icShieldTick.path;
+  static String icTermsNCondition = Assets.images.icon.icTermsNCondition.path;
 
   //images/svg/authentication/
   static String svgGetStartedBg =
@@ -73,4 +88,5 @@ class AssetConstants {
   static String svgCongratulation =
       Assets.images.svg.other.svgCongratulation.path;
   static String svgUnlock = Assets.images.svg.other.svgUnlock.path;
+  static String svgProfilePhoto = Assets.images.svg.other.svgProfilePhoto.path;
 }

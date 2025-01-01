@@ -36,6 +36,10 @@ class $AssetsImagesIconGen {
   SvgGenImage get icAppbarBack =>
       const SvgGenImage('assets/images/icon/ic_appbar_back.svg');
 
+  /// File path: assets/images/icon/ic_arrow.svg
+  SvgGenImage get icArrow =>
+      const SvgGenImage('assets/images/icon/ic_arrow.svg');
+
   /// File path: assets/images/icon/ic_arrow_right.svg
   SvgGenImage get icArrowRight =>
       const SvgGenImage('assets/images/icon/ic_arrow_right.svg');
@@ -43,6 +47,9 @@ class $AssetsImagesIconGen {
   /// File path: assets/images/icon/ic_basic_card.svg
   SvgGenImage get icBasicCard =>
       const SvgGenImage('assets/images/icon/ic_basic_card.svg');
+
+  /// File path: assets/images/icon/ic_call.svg
+  SvgGenImage get icCall => const SvgGenImage('assets/images/icon/ic_call.svg');
 
   /// File path: assets/images/icon/ic_camera.svg
   SvgGenImage get icCamera =>
@@ -55,6 +62,13 @@ class $AssetsImagesIconGen {
   /// File path: assets/images/icon/ic_close.svg
   SvgGenImage get icClose =>
       const SvgGenImage('assets/images/icon/ic_close.svg');
+  /// File path: assets/images/icon/ic_change_password.svg
+  SvgGenImage get icChangePassword =>
+      const SvgGenImage('assets/images/icon/ic_change_password.svg');
+
+  /// File path: assets/images/icon/ic_delete.svg
+  SvgGenImage get icDelete =>
+      const SvgGenImage('assets/images/icon/ic_delete.svg');
 
   /// File path: assets/images/icon/ic_discover_card.svg
   SvgGenImage get icDiscoverCard =>
@@ -82,12 +96,20 @@ class $AssetsImagesIconGen {
   SvgGenImage get icGallery =>
       const SvgGenImage('assets/images/icon/ic_gallery.svg');
 
+  /// File path: assets/images/icon/ic_information.svg
+  SvgGenImage get icInformation =>
+      const SvgGenImage('assets/images/icon/ic_information.svg');
+
   /// File path: assets/images/icon/ic_lock.svg
   SvgGenImage get icLock => const SvgGenImage('assets/images/icon/ic_lock.svg');
 
   /// File path: assets/images/icon/ic_lock_green.svg
   SvgGenImage get icLockGreen =>
       const SvgGenImage('assets/images/icon/ic_lock_green.svg');
+
+  /// File path: assets/images/icon/ic_logout.svg
+  SvgGenImage get icLogout =>
+      const SvgGenImage('assets/images/icon/ic_logout.svg');
 
   /// File path: assets/images/icon/ic_master_card.svg
   SvgGenImage get icMasterCard =>
@@ -96,6 +118,10 @@ class $AssetsImagesIconGen {
   /// File path: assets/images/icon/ic_message_minus.svg
   SvgGenImage get icMessageMinus =>
       const SvgGenImage('assets/images/icon/ic_message_minus.svg');
+
+  /// File path: assets/images/icon/ic_message_question.svg
+  SvgGenImage get icMessageQuestion =>
+      const SvgGenImage('assets/images/icon/ic_message_question.svg');
 
   /// File path: assets/images/icon/ic_password_check.svg
   SvgGenImage get icPasswordCheck =>
@@ -140,6 +166,22 @@ class $AssetsImagesIconGen {
   SvgGenImage get icShare =>
       const SvgGenImage('assets/images/icon/ic_share.svg');
 
+  /// File path: assets/images/icon/ic_shield_tick.svg
+  SvgGenImage get icShieldTick =>
+      const SvgGenImage('assets/images/icon/ic_shield_tick.svg');
+
+  /// File path: assets/images/icon/ic_signout.svg
+  SvgGenImage get icSignout =>
+      const SvgGenImage('assets/images/icon/ic_signout.svg');
+
+  /// File path: assets/images/icon/ic_terms_n_condition.svg
+  SvgGenImage get icTermsNCondition =>
+      const SvgGenImage('assets/images/icon/ic_terms_n_condition.svg');
+
+  /// File path: assets/images/icon/ic_trash.svg
+  SvgGenImage get icTrash =>
+      const SvgGenImage('assets/images/icon/ic_trash.svg');
+
   /// File path: assets/images/icon/ic_upload.svg
   SvgGenImage get icUpload =>
       const SvgGenImage('assets/images/icon/ic_upload.svg');
@@ -159,11 +201,15 @@ class $AssetsImagesIconGen {
   List<SvgGenImage> get values => [
         icAmexCard,
         icAppbarBack,
+        icArrow,
         icArrowRight,
         icBasicCard,
+        icCall,
         icCamera,
         icCardSlider,
         icClose,
+        icChangePassword,
+        icDelete,
         icDiscoverCard,
         icDownload,
         icDropdown,
@@ -171,10 +217,13 @@ class $AssetsImagesIconGen {
         icEmail,
         icEsp,
         icGallery,
+        icInformation,
         icLock,
         icLockGreen,
+        icLogout,
         icMasterCard,
         icMessageMinus,
+        icMessageQuestion,
         icPasswordCheck,
         icPaypal,
         icPieChart,
@@ -186,6 +235,10 @@ class $AssetsImagesIconGen {
         icSeenOff,
         icSetting,
         icShare,
+        icShieldTick,
+        icSignout,
+        icTermsNCondition,
+        icTrash,
         icUpload,
         icUser,
         icVisaCard,
@@ -267,8 +320,21 @@ class $AssetsImagesPngOtherGen {
   AssetGenImage get pngGetStartedBg =>
       const AssetGenImage('assets/images/png/other/png_get_started_bg.png');
 
+  /// File path: assets/images/png/other/png_profile_photo.png
+  AssetGenImage get pngProfilePhoto =>
+      const AssetGenImage('assets/images/png/other/png_profile_photo.png');
+
+  /// File path: assets/images/png/other/png_signout.png
+  AssetGenImage get pngSignout =>
+      const AssetGenImage('assets/images/png/other/png_signout.png');
+
+  /// File path: assets/images/png/other/png_trash.png
+  AssetGenImage get pngTrash =>
+      const AssetGenImage('assets/images/png/other/png_trash.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [pngGetStartedBg];
+  List<AssetGenImage> get values =>
+      [pngGetStartedBg, pngProfilePhoto, pngSignout, pngTrash];
 }
 
 class $AssetsImagesSvgAuthenticationGen {
@@ -316,6 +382,10 @@ class $AssetsImagesSvgOtherGen {
   SvgGenImage get svgCongratulation =>
       const SvgGenImage('assets/images/svg/other/svg_congratulation.svg');
 
+  /// File path: assets/images/svg/other/svg_profile_photo.svg
+  SvgGenImage get svgProfilePhoto =>
+      const SvgGenImage('assets/images/svg/other/svg_profile_photo.svg');
+
   /// File path: assets/images/svg/other/svg_successful.svg
   SvgGenImage get svgSuccessful =>
       const SvgGenImage('assets/images/svg/other/svg_successful.svg');
@@ -325,7 +395,8 @@ class $AssetsImagesSvgOtherGen {
       const SvgGenImage('assets/images/svg/other/svg_unlock.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [svgCongratulation, svgSuccessful, svgUnlock];
+  List<SvgGenImage> get values =>
+      [svgCongratulation, svgProfilePhoto, svgSuccessful, svgUnlock];
 }
 
 class $AssetsImagesSvgSplashGen {

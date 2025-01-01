@@ -33,6 +33,7 @@ class AuthController extends GetxController {
   final verificationCode = TextEditingController();
   final signupRerificationCode = TextEditingController();
 
+
   final RxBool userAgreementCheck = false.obs;
 
   final signinState = ApiState.initial().obs;

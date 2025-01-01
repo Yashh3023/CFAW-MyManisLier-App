@@ -14,8 +14,7 @@ class AppController extends GetxController {
       () async {
         if (await _completer.future) {
           Get.offAllNamed(AppRoutes.getStarted)?.ignore();
-          // Get.offAllNamed(AppRoutes.welcomeHomeScreen)?.ignore();
-          // Get.offAllNamed(AppRoutes.unlockAnalysisScreen)?.ignore();
+
         }
       },
     );
