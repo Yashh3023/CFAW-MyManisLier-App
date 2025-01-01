@@ -28,6 +28,7 @@ class CustomColors extends ThemeExtension<CustomColors> {
     required this.blue,
     required this.grey,
     required this.pastetext,
+    required this.secondarybtn,
   });
 
   final Color? bgColor;
@@ -55,6 +56,7 @@ class CustomColors extends ThemeExtension<CustomColors> {
   final Color? blue;
   final Color? grey;
   final Color? pastetext;
+  final Color? secondarybtn;
 
   // Default light theme colors
   static const light = CustomColors(
@@ -82,7 +84,8 @@ class CustomColors extends ThemeExtension<CustomColors> {
       yellow: Color(0xffFFB700),
       blue: Color(0xff0570DE),
       grey: Color(0xff7D7E80),
-      pastetext: Color(0XFF2D2E30));
+      pastetext: Color(0XFF2D2E30),
+      secondarybtn: Color(0xff202020));
 
   // Default dark theme colors
   static const dark = CustomColors(
@@ -110,7 +113,8 @@ class CustomColors extends ThemeExtension<CustomColors> {
       yellow: Color(0xffFFB700),
       blue: Color(0xff0570DE),
       grey: Color(0xff7D7E80),
-      pastetext: Color(0XFF2D2E30));
+      pastetext: Color(0XFF2D2E30),
+      secondarybtn: Color(0xff202020));
 
   @override
   CustomColors copyWith({
@@ -139,6 +143,7 @@ class CustomColors extends ThemeExtension<CustomColors> {
     Color? blue,
     Color? grey,
     Color? pastetext,
+    Color? secondarybtn,
   }) {
     return CustomColors(
       greyTextColor: greyTextColor ?? this.greyTextColor,
@@ -166,6 +171,7 @@ class CustomColors extends ThemeExtension<CustomColors> {
       blue: blue ?? this.blue,
       grey: grey ?? this.grey,
       pastetext: pastetext ?? this.pastetext,
+      secondarybtn: secondarybtn ?? this.secondarybtn,
     );
   }
 
@@ -198,7 +204,8 @@ class CustomColors extends ThemeExtension<CustomColors> {
         yellow: Color.lerp(yellow, other.yellow, t),
         blue: Color.lerp(blue, other.blue, t),
         grey: Color.lerp(grey, other.grey, t),
-        pastetext: Color.lerp(pastetext, other.pastetext, t));
+        pastetext: Color.lerp(pastetext, other.pastetext, t),
+        secondarybtn: Color.lerp(secondarybtn, other.secondarybtn, t));
   }
 }
 

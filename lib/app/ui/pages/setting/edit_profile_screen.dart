@@ -290,6 +290,7 @@ class EditProfileScreen extends GetItHook<SettingController> {
                       text: AppStrings.T.lbl_ok,
                       onPressed: () {
                         Get.back();
+                        Get.back();
                       },
                     )
                   ],

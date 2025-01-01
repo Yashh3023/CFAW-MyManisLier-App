@@ -88,13 +88,13 @@ class ContactUsScreen extends GetItHook<SettingController> {
       type: InputType.text,
       keyboardType: TextInputType.text,
       prefixIcon: CustomImageView(
-        imagePath: AssetConstants.icEmail,
+        imagePath: AssetConstants.icDiscover,
         margin: const EdgeInsets.all(16),
         height: 28.h,
       ),
       controller: controller.cantactUsSubjectController,
-      hintLabel: AppStrings.T.email,
-      validator: AppValidations.emailValidation,
+      hintLabel: AppStrings.T.lbl_subject,
+      validator: AppValidations.validateRequired,
     );
   }
 

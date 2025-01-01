@@ -78,8 +78,10 @@ class ChangePasswordScreen extends GetItHook<SettingController> {
         controller: controller.changePasswordController,
         hintLabel: AppStrings.T.lbl_current_password,
         obscureText: controller.currentPassObscure.value.obs,
-        textInputAction: TextInputAction.done,
         validator: AppValidations.passwordValidation,
+        onFieldSubmitted: (_) {
+          FocusScope.of(Get.context!).requestFocus(controller.newPassfocusnode);
+        },
       ),
     );
   }
@@ -87,6 +89,7 @@ class ChangePasswordScreen extends GetItHook<SettingController> {
   Widget _buildNewPasswordField() {
     return Obx(
       () => TextInputField(
+        focusNode: controller.newPassfocusnode,
         type: InputType.password,
         keyboardType: TextInputType.visiblePassword,
         prefixIcon: CustomImageView(
@@ -107,8 +110,11 @@ class ChangePasswordScreen extends GetItHook<SettingController> {
         controller: controller.changeNewPasswordController,
         hintLabel: AppStrings.T.lbl_new_password,
         obscureText: controller.newPassObscure.value.obs,
-        textInputAction: TextInputAction.done,
         validator: AppValidations.passwordValidation,
+        onFieldSubmitted: (_) {
+          FocusScope.of(Get.context!)
+              .requestFocus(controller.confirmNewPassfocusnode);
+        },
       ),
     );
   }
@@ -116,6 +122,7 @@ class ChangePasswordScreen extends GetItHook<SettingController> {
   Widget _buildConfirmNewPasswordField() {
     return Obx(
       () => TextInputField(
+        focusNode: controller.confirmNewPassfocusnode,
         type: InputType.password,
         keyboardType: TextInputType.visiblePassword,
         prefixIcon: CustomImageView(
@@ -138,7 +145,12 @@ class ChangePasswordScreen extends GetItHook<SettingController> {
         hintLabel: AppStrings.T.lbl_confirm_new_password,
         obscureText: controller.confirmNewPassObscure.value.obs,
         textInputAction: TextInputAction.done,
-        validator: AppValidations.passwordValidation,
+        validator: (value) {
+          return AppValidations.confirmPasswordValidation(
+            value,
+            controller.changeNewPasswordController.text,
+          );
+        },
       ),
     );
   }
