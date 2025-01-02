@@ -40,9 +40,17 @@ class $AssetsImagesIconGen {
   SvgGenImage get icArrow =>
       const SvgGenImage('assets/images/icon/ic_arrow.svg');
 
+  /// File path: assets/images/icon/ic_arrow_down.svg
+  SvgGenImage get icArrowDown =>
+      const SvgGenImage('assets/images/icon/ic_arrow_down.svg');
+
   /// File path: assets/images/icon/ic_arrow_right.svg
   SvgGenImage get icArrowRight =>
       const SvgGenImage('assets/images/icon/ic_arrow_right.svg');
+
+  /// File path: assets/images/icon/ic_arrow_up.svg
+  SvgGenImage get icArrowUp =>
+      const SvgGenImage('assets/images/icon/ic_arrow_up.svg');
 
   /// File path: assets/images/icon/ic_basic_card.svg
   SvgGenImage get icBasicCard =>
@@ -59,16 +67,21 @@ class $AssetsImagesIconGen {
   SvgGenImage get icCardSlider =>
       const SvgGenImage('assets/images/icon/ic_card_slider.svg');
 
-  /// File path: assets/images/icon/ic_close.svg
-  SvgGenImage get icClose =>
-      const SvgGenImage('assets/images/icon/ic_close.svg');
   /// File path: assets/images/icon/ic_change_password.svg
   SvgGenImage get icChangePassword =>
       const SvgGenImage('assets/images/icon/ic_change_password.svg');
 
+  /// File path: assets/images/icon/ic_close.svg
+  SvgGenImage get icClose =>
+      const SvgGenImage('assets/images/icon/ic_close.svg');
+
   /// File path: assets/images/icon/ic_delete.svg
   SvgGenImage get icDelete =>
       const SvgGenImage('assets/images/icon/ic_delete.svg');
+
+  /// File path: assets/images/icon/ic_discover.svg
+  SvgGenImage get icDiscover =>
+      const SvgGenImage('assets/images/icon/ic_discover.svg');
 
   /// File path: assets/images/icon/ic_discover_card.svg
   SvgGenImage get icDiscoverCard =>
@@ -202,14 +215,17 @@ class $AssetsImagesIconGen {
         icAmexCard,
         icAppbarBack,
         icArrow,
+        icArrowDown,
         icArrowRight,
+        icArrowUp,
         icBasicCard,
         icCall,
         icCamera,
         icCardSlider,
-        icClose,
         icChangePassword,
+        icClose,
         icDelete,
+        icDiscover,
         icDiscoverCard,
         icDownload,
         icDropdown,
