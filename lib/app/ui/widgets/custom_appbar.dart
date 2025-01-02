@@ -23,7 +23,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
       color: appbarBgColor ?? Get.theme.customColors.primaryColor,
       child: Padding(
         padding: EdgeInsets.only(
-          top: Platform.isIOS ? 55.0 : 55.0,
+          top: Platform.isIOS ? 55.0 : 45.0,
           right: 20,
           left: 20,
           bottom: 8,
@@ -65,5 +65,5 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 40);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 25);
 }

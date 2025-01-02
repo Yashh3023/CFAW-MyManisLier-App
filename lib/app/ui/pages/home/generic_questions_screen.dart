@@ -144,7 +144,9 @@ class GenericQuestionsScreen extends GetItHook<HomeController> {
         CenterText(
           'How long have you been in this relationship?',
           style: Theme.of(Get.context!).textTheme.bodyLarge?.copyWith(
-              fontWeight: FontWeight.w600, color: Get.theme.customColors.white),
+                fontWeight: FontWeight.w600,
+                color: Get.theme.customColors.white,
+              ),
         ),
         Gap(20.h),
         ...['1 Year', '2 Years', '3 Years', '4+'].map(
@@ -152,31 +154,43 @@ class GenericQuestionsScreen extends GetItHook<HomeController> {
             () => Container(
               height: 60.h,
               margin: EdgeInsets.symmetric(vertical: 8.h),
-              child: RadioListTile<String>(
-                value: duration,
-                visualDensity:
-                    const VisualDensity(vertical: VisualDensity.maximumDensity),
-                groupValue: controller.selectedDuration.value,
-                tileColor: controller.selectedDuration.value == duration
+              decoration: BoxDecoration(
+                color: controller.selectedDuration.value == duration
                     ? Get.theme.customColors.white
                     : Get.theme.customColors.bgColor,
-                selectedTileColor: Get.theme.customColors.white,
-                activeColor: Get.theme.customColors.black,
-                onChanged: (value) {
-                  controller.selectedDuration.value = value!;
-                },
-                contentPadding: EdgeInsets.symmetric(horizontal: 12.w),
-                title: Text(
-                  duration,
-                  style: Theme.of(Get.context!).textTheme.bodySmall?.copyWith(
-                        color: controller.selectedDuration.value == duration
-                            ? Get.theme.customColors.bgColor
-                            : Get.theme.customColors.white,
+                borderRadius: BorderRadius.circular(12.r),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Radio<String>(
+                    value: duration,
+                    groupValue: controller.selectedDuration.value,
+                    activeColor: Get.theme.customColors.black,
+                    onChanged: (value) {
+                      controller.selectedDuration.value = value!;
+                    },
+                  ),
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        controller.selectedDuration.value = duration;
+                      },
+                      child: Text(
+                        duration,
+                        style: Theme.of(Get.context!)
+                            .textTheme
+                            .bodySmall
+                            ?.copyWith(
+                              color:
+                                  controller.selectedDuration.value == duration
+                                      ? Get.theme.customColors.bgColor
+                                      : Get.theme.customColors.white,
+                            ),
                       ),
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12.r),
-                ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -192,11 +206,22 @@ class GenericQuestionsScreen extends GetItHook<HomeController> {
         CenterText(
           'What concerns do you have about this conversation?',
           style: Theme.of(Get.context!).textTheme.bodyLarge?.copyWith(
-              fontWeight: FontWeight.w600, color: Get.theme.customColors.white),
+                fontWeight: FontWeight.w600,
+                color: Get.theme.customColors.white,
+              ),
         ),
         Gap(20.h),
         ...['Cheating', 'Lying', 'Inconsistency', 'Loss of Interest'].map(
-          (concern) => Obx(() => Container(
+          (concern) => Obx(
+            () => GestureDetector(
+              onTap: () {
+                if (controller.concerns.contains(concern)) {
+                  controller.concerns.remove(concern);
+                } else {
+                  controller.concerns.add(concern);
+                }
+              },
+              child: Container(
                 height: 60.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12.r),
@@ -213,7 +238,8 @@ class GenericQuestionsScreen extends GetItHook<HomeController> {
                         scale: 1.2,
                         child: Checkbox(
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(100.r)),
+                            borderRadius: BorderRadius.circular(100.r),
+                          ),
                           value: controller.concerns.contains(concern),
                           onChanged: (checked) {
                             if (checked!) {
@@ -230,7 +256,7 @@ class GenericQuestionsScreen extends GetItHook<HomeController> {
                       Expanded(
                         child: Text(
                           concern,
-                          style: TextStyle(
+                          style: Get.textTheme.bodySmall?.copyWith(
                             color: controller.concerns.contains(concern)
                                 ? Get.theme.customColors.bgColor
                                 : Get.theme.customColors.white,
@@ -240,7 +266,9 @@ class GenericQuestionsScreen extends GetItHook<HomeController> {
                     ],
                   ),
                 ),
-              )),
+              ),
+            ),
+          ),
         ),
       ],
     );
@@ -253,39 +281,49 @@ class GenericQuestionsScreen extends GetItHook<HomeController> {
         CenterText(
           'What is the tone of the conversation?',
           style: Theme.of(Get.context!).textTheme.bodyLarge?.copyWith(
-              fontWeight: FontWeight.w600, color: Get.theme.customColors.white),
+                fontWeight: FontWeight.w600,
+                color: Get.theme.customColors.white,
+              ),
         ),
         Gap(20.h),
         ...['Casual', 'Argumentative', 'Serious', 'Angry'].map(
-          (tone) => Obx(
+          (duration) => Obx(
             () => Container(
               height: 60.h,
               margin: EdgeInsets.symmetric(vertical: 8.h),
-              child: RadioListTile<String>(
-                value: tone,
-                visualDensity:
-                    const VisualDensity(vertical: VisualDensity.maximumDensity),
-                groupValue: controller.selectedDuration.value,
-                tileColor: controller.selectedDuration.value == tone
+              decoration: BoxDecoration(
+                color: controller.selectedDuration.value == duration
                     ? Get.theme.customColors.white
                     : Get.theme.customColors.bgColor,
-                selectedTileColor: Get.theme.customColors.white,
-                activeColor: Get.theme.customColors.black,
-                onChanged: (value) {
-                  controller.selectedDuration.value = value!;
-                },
-                contentPadding: EdgeInsets.symmetric(horizontal: 12.w),
-                title: Text(
-                  tone,
-                  style: Theme.of(Get.context!).textTheme.bodySmall?.copyWith(
-                        color: controller.selectedDuration.value == tone
-                            ? Get.theme.customColors.bgColor
-                            : Get.theme.customColors.white,
+                borderRadius: BorderRadius.circular(12.r),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Radio<String>(
+                    value: duration,
+                    groupValue: controller.selectedDuration.value,
+                    activeColor: Get.theme.customColors.black,
+                    onChanged: (value) {
+                      controller.selectedDuration.value = value!;
+                    },
+                  ),
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        controller.selectedDuration.value = duration;
+                      },
+                      child: Text(
+                        duration,
+                        style: Get.textTheme.bodySmall?.copyWith(
+                          color: controller.selectedDuration.value == duration
+                              ? Get.theme.customColors.bgColor
+                              : Get.theme.customColors.white,
+                        ),
                       ),
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12.r),
-                ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -360,7 +398,7 @@ class GenericQuestionsScreen extends GetItHook<HomeController> {
                 ),
               ],
             )),
-        Gap(80.h),
+        Gap(40.h),
         Text(
           'Have you noticed any changes in his communication style?',
           style: Theme.of(Get.context!).textTheme.bodyLarge?.copyWith(
@@ -423,6 +461,7 @@ class GenericQuestionsScreen extends GetItHook<HomeController> {
                 ),
               ],
             )),
+        Gap(40.h),
       ],
     );
   }

@@ -29,7 +29,7 @@ class ForgotPasswordScreen extends GetItHook<AuthController> {
   Widget _buildBody(BuildContext context) {
     return SingleChildScrollView(
       padding:
-          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom / 4),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
         child: Column(
