@@ -5,7 +5,6 @@ class FaqScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Example dynamic FAQ data
     final List<FaqItem> faqItems = [
       FaqItem(
         question:
@@ -87,30 +86,7 @@ class FaqTile extends StatelessWidget {
       ),
       child: Theme(
         data: Theme.of(Get.context!).copyWith(dividerColor: Colors.transparent),
-        child: ExpansionTile(
-          iconColor: Get.theme.customColors.greyTextColor,
-          title: Text(
-            item.question,
-            style: Get.theme.textTheme.labelSmall!.copyWith(
-              color: Get.theme.customColors.white,
-              fontSize: 16.sp,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Text(
-                item.answer,
-                style: Get.theme.textTheme.labelSmall!.copyWith(
-                  color: Get.theme.customColors.greyTextColor,
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ),
-          ],
-        ),
+        child: CustomExpansionTile(title: item.question, content: item.answer),
       ),
     );
   }

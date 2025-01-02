@@ -60,6 +60,8 @@ class AssetConstants {
   static String icTrash = Assets.images.icon.icTrash.path;
   static String icSignout = Assets.images.icon.icSignout.path;
   static String icDiscover = Assets.images.icon.icDiscover.path;
+  static String icArrowUp = Assets.images.icon.icArrowUp.path;
+  static String icArrowDown = Assets.images.icon.icArrowDown.path;
 
   static String icCall = Assets.images.icon.icCall.path;
   static String icChangePassword = Assets.images.icon.icChangePassword.path;

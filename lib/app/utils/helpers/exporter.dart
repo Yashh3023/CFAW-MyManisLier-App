@@ -1,6 +1,7 @@
 export 'package:flutter/material.dart';
 export 'package:flutter/services.dart';
 export 'package:flutter_easyloading/flutter_easyloading.dart';
+export 'package:mymanislier/app/ui/widgets/custom_expansion_tile.dart';
 export 'package:flutter_native_splash/flutter_native_splash.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
 export 'package:get/get.dart';

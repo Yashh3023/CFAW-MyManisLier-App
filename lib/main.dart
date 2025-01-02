@@ -26,9 +26,9 @@ class _MyAppState extends State<MyApp> {
       minTextAdapt: true,
       splitScreenMode: true,
       child: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: const SystemUiOverlayStyle(
+        value: SystemUiOverlayStyle(
             statusBarColor: Colors.transparent,
-            systemNavigationBarColor: Colors.black,
+            systemNavigationBarColor: Get.theme.customColors.black,
             statusBarIconBrightness: Brightness.light),
         child: GetMaterialApp(
           debugShowCheckedModeBanner: false,
