@@ -57,7 +57,7 @@ class GetStartedScreen extends GetItHook<AuthController> {
 
   Widget _buildButtons() {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: EdgeInsets.symmetric(horizontal: 20.0.w),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

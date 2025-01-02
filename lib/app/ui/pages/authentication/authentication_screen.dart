@@ -32,7 +32,7 @@ class AuthenticationScreen extends GetItHook<AuthController> {
 
     return SingleChildScrollView(
       padding:
-          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom / 4),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.0.w, vertical: 20.0.h),
         child: Column(

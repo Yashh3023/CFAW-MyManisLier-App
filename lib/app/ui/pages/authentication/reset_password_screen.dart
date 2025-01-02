@@ -33,7 +33,7 @@ class ResetPasswordScreen extends GetItHook<AuthController> {
   Widget _buildBody(BuildContext context) {
     return SingleChildScrollView(
       padding:
-          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom / 4),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
         child: Column(
