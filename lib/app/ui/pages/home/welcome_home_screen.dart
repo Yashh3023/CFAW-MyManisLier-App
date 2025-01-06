@@ -34,12 +34,11 @@ class WelcomeHomeScreen extends GetItHook<HomeController> {
             Get.toNamed(AppRoutes.settingScreen);
           },
           child: CircleAvatar(
-           radius: 23.r,
+            radius: 23.r,
             backgroundColor: Get.theme.customColors.appBarIcBg,
             child: CustomImageView(
               imagePath: AssetConstants.icSetting,
             ),
-
           ),
         )
       ],
@@ -93,7 +92,8 @@ class WelcomeHomeScreen extends GetItHook<HomeController> {
       ),
       controller: controller.nameController,
       hintLabel: AppStrings.T.lbl_your_name,
-      validator: AppValidations.nameValidation,
+      validator: (value) => AppValidations.validateRequired(value,
+          fieldName: AppStrings.T.lbl_your_name_samll),
     );
   }
 
@@ -109,7 +109,8 @@ class WelcomeHomeScreen extends GetItHook<HomeController> {
       ),
       controller: controller.partnerNameController,
       hintLabel: AppStrings.T.lbl_partner_name,
-      validator: AppValidations.nameValidation,
+      validator: (value) => AppValidations.validateRequired(value,
+          fieldName: AppStrings.T.lbl_partner_name_small),
     );
   }
 

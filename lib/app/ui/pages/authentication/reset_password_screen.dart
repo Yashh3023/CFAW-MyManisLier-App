@@ -109,7 +109,8 @@ class ResetPasswordScreen extends GetItHook<AuthController> {
         hintLabel: AppStrings.T.lbl_new_password,
         obscureText: newPasswordObscure.value.obs,
         textInputAction: TextInputAction.next,
-        validator: AppValidations.passwordValidation,
+        validator: (value) => AppValidations.validateRequired(value,
+            fieldName: AppStrings.T.lbl_new_password_small),
         onFieldSubmitted: (_) {
           FocusScope.of(Get.context!)
               .requestFocus(controller.confirmPassfocusnode);

@@ -337,7 +337,7 @@ class PaymentBottomSheet extends GetItHook<HomeController> {
                       text: AppStrings.T.lbl_close,
                       onPressed: () {
                         Get.back();
-                        Get.toNamed(AppRoutes.chatBasedQuestionsScreen);
+                        Get.toNamed(AppRoutes.welcomeHomeScreen);
                       },
                     )
                   ],

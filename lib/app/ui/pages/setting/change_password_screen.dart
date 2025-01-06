@@ -78,7 +78,8 @@ class ChangePasswordScreen extends GetItHook<SettingController> {
         controller: controller.changePasswordController,
         hintLabel: AppStrings.T.lbl_current_password,
         obscureText: controller.currentPassObscure.value.obs,
-        validator: AppValidations.passwordValidation,
+        validator: (value) => AppValidations.validateRequired(value,
+            fieldName: AppStrings.T.lbl_current_password_small),
         onFieldSubmitted: (_) {
           FocusScope.of(Get.context!).requestFocus(controller.newPassfocusnode);
         },
@@ -110,7 +111,8 @@ class ChangePasswordScreen extends GetItHook<SettingController> {
         controller: controller.changeNewPasswordController,
         hintLabel: AppStrings.T.lbl_new_password,
         obscureText: controller.newPassObscure.value.obs,
-        validator: AppValidations.passwordValidation,
+        validator: (value) => AppValidations.validateRequired(value,
+            fieldName: AppStrings.T.lbl_new_password_small),
         onFieldSubmitted: (_) {
           FocusScope.of(Get.context!)
               .requestFocus(controller.confirmNewPassfocusnode);

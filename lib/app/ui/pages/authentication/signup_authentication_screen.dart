@@ -108,7 +108,7 @@ class SignUpAuthenticationScreen extends GetItHook<AuthController> {
       margin: EdgeInsets.symmetric(horizontal: 4.w),
       textStyle: Get.textTheme.bodyMedium?.copyWith(
           fontSize: 24.sp,
-          fontWeight: FontWeight.w800,
+          fontWeight: FontWeight.w600,
           color: Get.theme.customColors.white),
       decoration: BoxDecoration(
         color: Get.theme.customColors.textfieldFillColor,
@@ -224,7 +224,7 @@ class SignUpAuthenticationScreen extends GetItHook<AuthController> {
                     CustomElevatedButton(
                       text: AppStrings.T.lbl_ok,
                       onPressed: () {
-                        Get.offAllNamed(AppRoutes.sigin);
+                        Get.offAllNamed(AppRoutes.welcomeHomeScreen);
                       },
                     )
                   ],

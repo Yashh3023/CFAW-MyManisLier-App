@@ -7,6 +7,8 @@ class ContactUsScreen extends GetItHook<SettingController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.cantactUsEmailController.text = "devinci@gmail.com";
+
     return Form(
       key: _formKey,
       child: Scaffold(
@@ -64,13 +66,14 @@ class ContactUsScreen extends GetItHook<SettingController> {
       ),
       controller: controller.cantactUsNameController,
       hintLabel: AppStrings.T.nameLabel,
-      validator: AppValidations.emailValidation,
+      validator: AppValidations.nameValidation,
     );
   }
 
   Widget _buildEmailField() {
     return TextInputField(
       type: InputType.email,
+      readOnly: true,
       keyboardType: TextInputType.emailAddress,
       prefixIcon: CustomImageView(
         imagePath: AssetConstants.icEmail,
@@ -94,7 +97,8 @@ class ContactUsScreen extends GetItHook<SettingController> {
       ),
       controller: controller.cantactUsSubjectController,
       hintLabel: AppStrings.T.lbl_subject,
-      validator: AppValidations.validateRequired,
+      validator: (value) => AppValidations.validateRequired(value,
+          fieldName: AppStrings.T.lbl_subject_small),
     );
   }
 
@@ -109,17 +113,28 @@ class ContactUsScreen extends GetItHook<SettingController> {
         padding: EdgeInsets.only(top: 20.h),
         child: Align(
           alignment: Alignment.topCenter,
-          widthFactor: 1,
-          heightFactor: 4,
-          child: CustomImageView(
-            imagePath: AssetConstants.icMessageMinus,
-            margin: EdgeInsets.symmetric(horizontal: 16.w),
+          widthFactor: 1.11.w,
+          heightFactor: 5.h,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CustomImageView(
+                imagePath: AssetConstants.icMessageMinus,
+                margin: EdgeInsets.symmetric(horizontal: 16.w),
+              ),
+              Container(
+                height: 24.h,
+                width: 2.w,
+                color: Get.theme.customColors.pastetext,
+              )
+            ],
           ),
         ),
       ),
       controller: controller.cantactUsMessageController,
       hintLabel: AppStrings.T.lbl_your_message,
-      validator: AppValidations.validateRequired,
+      validator: (value) => AppValidations.validateRequired(value,
+          fieldName: AppStrings.T.lbl_your_message_small),
     );
   }
 
@@ -129,6 +144,7 @@ class ContactUsScreen extends GetItHook<SettingController> {
       onPressed: () {
         if (_formKey.currentState?.validate() ?? false) {
           Get.focusScope!.unfocus();
+          Get.toNamed(AppRoutes.settingScreen);
         }
       },
     );

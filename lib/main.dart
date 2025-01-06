@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
             statusBarIconBrightness: Brightness.light),
         child: GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'MyManIsLier',
+          title: 'My Man Is A Lier',
           getPages: AppPages.routes,
           initialRoute: AppRoutes.splash,
           localizationsDelegates: AppLocalizations.localizationsDelegates,

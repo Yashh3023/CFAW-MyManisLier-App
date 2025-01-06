@@ -97,103 +97,118 @@ class EditProfileScreen extends GetItHook<SettingController> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: Get.theme.customColors.greyBg,
-          title: Column(
-            children: [
-              CenterText(
-                AppStrings.T.lbl_choose_an_action,
-                style: Get.theme.textTheme.headlineLarge!
-                    .copyWith(color: Get.theme.customColors.white),
+        return Stack(
+          children: [
+            BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+              child: Container(
+                color: Colors.black.withOpacity(0.5),
               ),
-              Gap(4.h),
-              CenterText(
-                AppStrings.T.lbl_capture_or_select_image,
-                style: Get.theme.textTheme.bodySmall!
-                    .copyWith(color: Get.theme.customColors.greyTextColor),
-              ),
-              Gap(30.h),
-              Container(
-                decoration: BoxDecoration(
-                  color: Get.theme.customColors.black,
-                  borderRadius: BorderRadius.circular(20.r),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                            _pickImage(ImageSource.camera);
-                          },
-                          child: Container(
-                            height: 120.h,
-                            decoration: BoxDecoration(
-                              color: Get.theme.customColors.greyBg,
-                              borderRadius: BorderRadius.circular(14.44.r),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                CustomImageView(
-                                  imagePath: AssetConstants.icCamera,
+            ),
+            Center(
+              child: AlertDialog(
+                backgroundColor: Get.theme.customColors.greyBg,
+                title: Column(
+                  children: [
+                    CenterText(
+                      AppStrings.T.lbl_choose_an_action,
+                      style: Get.theme.textTheme.headlineLarge!
+                          .copyWith(color: Get.theme.customColors.white),
+                    ),
+                    Gap(4.h),
+                    CenterText(
+                      AppStrings.T.lbl_capture_or_select_image,
+                      style: Get.theme.textTheme.bodySmall!.copyWith(
+                          color: Get.theme.customColors.greyTextColor),
+                    ),
+                    Gap(30.h),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Get.theme.customColors.black,
+                        borderRadius: BorderRadius.circular(20.r),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                  _pickImage(ImageSource.camera);
+                                },
+                                child: Container(
+                                  height: 120.h,
+                                  decoration: BoxDecoration(
+                                    color: Get.theme.customColors.greyBg,
+                                    borderRadius:
+                                        BorderRadius.circular(14.44.r),
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      CustomImageView(
+                                        imagePath: AssetConstants.icCamera,
+                                      ),
+                                      Gap(10.w),
+                                      CenterText(
+                                        AppStrings.T.lbl_camera,
+                                        style: Get.theme.textTheme.bodySmall!
+                                            .copyWith(
+                                                color: Get
+                                                    .theme.customColors.white),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                Gap(10.w),
-                                CenterText(
-                                  AppStrings.T.lbl_camera,
-                                  style: Get.theme.textTheme.bodySmall!
-                                      .copyWith(
-                                          color: Get.theme.customColors.white),
-                                ),
-                              ],
+                              ),
                             ),
-                          ),
+                            Gap(10.w),
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                  _pickImage(ImageSource.gallery);
+                                },
+                                child: Container(
+                                  height: 120,
+                                  decoration: BoxDecoration(
+                                    color: Get.theme.customColors.greyBg,
+                                    borderRadius: BorderRadius.circular(14.44),
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      CustomImageView(
+                                        imagePath: AssetConstants.icGallery,
+                                      ),
+                                      Gap(10.h),
+                                      CenterText(
+                                        AppStrings.T.lbl_gallery,
+                                        style: Get.theme.textTheme.bodySmall!
+                                            .copyWith(
+                                                color: Get
+                                                    .theme.customColors.white),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      Gap(10.w),
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                            _pickImage(ImageSource.gallery);
-                          },
-                          child: Container(
-                            height: 120,
-                            decoration: BoxDecoration(
-                              color: Get.theme.customColors.greyBg,
-                              borderRadius: BorderRadius.circular(14.44),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                CustomImageView(
-                                  imagePath: AssetConstants.icGallery,
-                                ),
-                                Gap(10.h),
-                                CenterText(
-                                  AppStrings.T.lbl_gallery,
-                                  style: Get.theme.textTheme.bodySmall!
-                                      .copyWith(
-                                          color: Get.theme.customColors.white),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                    Gap(40.h),
+                    CustomElevatedButton(
+                      text: AppStrings.T.lbl_ok,
+                      onPressed: () {},
+                    )
+                  ],
                 ),
               ),
-              Gap(40.h),
-              CustomElevatedButton(
-                text: AppStrings.T.lbl_ok,
-                onPressed: () {},
-              )
-            ],
-          ),
+            ),
+          ],
         );
       },
     );
@@ -229,6 +244,7 @@ class EditProfileScreen extends GetItHook<SettingController> {
   Widget _buildEmailField() {
     return TextInputField(
       type: InputType.email,
+      readOnly: true,
       keyboardType: TextInputType.emailAddress,
       prefixIcon: CustomImageView(
         imagePath: AssetConstants.icEmail,

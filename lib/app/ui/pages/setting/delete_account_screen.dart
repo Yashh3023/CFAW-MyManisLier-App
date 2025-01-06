@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:mymanislier/app/utils/helpers/exporter.dart';
 
 class DeleteAccountScreen extends GetItHook<SettingController> {
@@ -112,11 +114,21 @@ class DeleteAccountScreen extends GetItHook<SettingController> {
         padding: EdgeInsets.only(top: 20.h),
         child: Align(
           alignment: Alignment.topCenter,
-          widthFactor: 1,
-          heightFactor: 4,
-          child: CustomImageView(
-            imagePath: AssetConstants.icMessageMinus,
-            margin: EdgeInsets.symmetric(horizontal: 16.w),
+          widthFactor: 1.11.w,
+          heightFactor: 5.h,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CustomImageView(
+                imagePath: AssetConstants.icMessageMinus,
+                margin: EdgeInsets.symmetric(horizontal: 16.w),
+              ),
+              Container(
+                height: 24.h,
+                width: 2.w,
+                color: Get.theme.customColors.pastetext,
+              )
+            ],
           ),
         ),
       ),
@@ -144,64 +156,76 @@ class DeleteAccountScreen extends GetItHook<SettingController> {
 
   void _showDeleteAccountDialog() {
     Get.dialog(
-      AlertDialog(
-        backgroundColor: Get.theme.customColors.greyBg,
-        content: Padding(
-          padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 30.h),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              CircleAvatar(
-                radius: 47.r,
-                backgroundColor: Get.theme.customColors.primaryColor,
-                child: CustomImageView(
-                  width: 50.w,
-                  height: 50.h,
-                  imagePath: AssetConstants.pngTrash,
-                ),
-              ),
-              Gap(20.h),
-              CenterText(
-                AppStrings.T.lbl_delete_account,
-                style: Get.textTheme.bodyMedium?.copyWith(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 26.sp,
-                    color: Get.theme.customColors.white),
-              ),
-              Gap(20.h),
-              CenterText(
-                AppStrings.T.lbl_conformation_delete_account,
-                style: Get.textTheme.bodyMedium?.copyWith(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w500,
-                    color: Get.theme.customColors.greyTextColor),
-              ),
-            ],
+      Stack(
+        children: [
+          BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+            child: Container(
+              color: Colors.black.withOpacity(0.5),
+            ),
           ),
-        ),
-        actions: [
-          Padding(
-            padding:  EdgeInsets.symmetric(horizontal: 16.w),
-            child: Row(
-              children: [
-                Expanded(
-                  child: CustomElevatedButton(
-                    text: AppStrings.T.lbl_yes,
-                    secondary: true,
-                    buttonStyle:
-                        ButtonThemeHelper.secondaryButtonStyle(Get.context!),
-                    onPressed: () {
-                      Get.focusScope!.unfocus();
-                      Get.back;
-                      controller.deleteAccount(Get.context!);
-                    },
-                  ),
+          Center(
+            child: AlertDialog(
+              backgroundColor: Get.theme.customColors.greyBg,
+              content: Padding(
+                padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 30.h),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    CircleAvatar(
+                      radius: 47.r,
+                      backgroundColor: Get.theme.customColors.primaryColor,
+                      child: CustomImageView(
+                        width: 50.w,
+                        height: 50.h,
+                        imagePath: AssetConstants.pngTrash,
+                      ),
+                    ),
+                    Gap(20.h),
+                    CenterText(
+                      AppStrings.T.lbl_delete_account,
+                      style: Get.textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 26.sp,
+                          color: Get.theme.customColors.white),
+                    ),
+                    Gap(20.h),
+                    CenterText(
+                      AppStrings.T.lbl_conformation_delete_account,
+                      style: Get.textTheme.bodyMedium?.copyWith(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w500,
+                          color: Get.theme.customColors.greyTextColor),
+                    ),
+                  ],
                 ),
-                Gap(16.w),
-                Expanded(
-                  child: CustomElevatedButton(
-                    text: AppStrings.T.lbl_no,
-                    onPressed: Get.back,
+              ),
+              actions: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: CustomElevatedButton(
+                          text: AppStrings.T.lbl_yes,
+                          secondary: true,
+                          buttonStyle: ButtonThemeHelper.secondaryButtonStyle(
+                              Get.context!),
+                          onPressed: () {
+                            Get.focusScope!.unfocus();
+                            Get.offAllNamed(AppRoutes.sigin);
+                            controller.deleteAccount(Get.context!);
+                          },
+                        ),
+                      ),
+                      Gap(16.w),
+                      Expanded(
+                        child: CustomElevatedButton(
+                          text: AppStrings.T.lbl_no,
+                          onPressed: Get.back,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],

@@ -196,7 +196,7 @@ class AnalysisScreen extends GetItHook<HomeController> {
           type: PatternType.neutral,
         ),
         AnalysisPattern(
-          title: 'End: "Strong tone detected"',
+          title: 'End: "Formal tone detected"',
           description:
               'Line 30: Shift from casual emojis to a formal, direct style.',
           description2:
@@ -209,7 +209,10 @@ class AnalysisScreen extends GetItHook<HomeController> {
 
   Widget _buildButtons() {
     return CustomElevatedButton(
-        text: AppStrings.T.lbl_go_to_new_analysis, onPressed: () {});
+        text: AppStrings.T.lbl_go_to_new_analysis,
+        onPressed: () {
+          Get.offAllNamed(AppRoutes.welcomeHomeScreen);
+        });
   }
 
   @override
@@ -425,7 +428,7 @@ class SentimentPieChart extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                AppStrings.T.lbl_casual,
+                                AppStrings.T.lbl_neutral,
                                 style: Get.theme.textTheme.labelSmall!.copyWith(
                                     color: Get.theme.customColors.white,
                                     fontSize: 10.sp,
@@ -459,7 +462,7 @@ class SentimentPieChart extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                AppStrings.T.lbl_casual,
+                                AppStrings.T.lbl_formal,
                                 style: Get.theme.textTheme.labelSmall!.copyWith(
                                     color: Get.theme.customColors.white,
                                     fontSize: 10.sp,

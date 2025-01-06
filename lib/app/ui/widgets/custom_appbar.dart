@@ -34,22 +34,26 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
             Row(
               children: [
                 if (hasLeadingIcon)
-                  InkWell(
-                    onTap: onLeadingTap ??
-                        () {
-                          Get.back();
-                          FocusScope.of(context).unfocus();
-                        },
-                    child: CircleAvatar(
-                      radius: 23,
-                      backgroundColor:
-                          backArroBgColor ?? Get.theme.customColors.greyBg,
-                      child: CustomImageView(
-                        imagePath: AssetConstants.icAppbarBack,
+                  Row(
+                    children: [
+                      InkWell(
+                        onTap: onLeadingTap ??
+                            () {
+                              Get.back();
+                              FocusScope.of(context).unfocus();
+                            },
+                        child: CircleAvatar(
+                          radius: 23,
+                          backgroundColor:
+                              backArroBgColor ?? Get.theme.customColors.greyBg,
+                          child: CustomImageView(
+                            imagePath: AssetConstants.icAppbarBack,
+                          ),
+                        ),
                       ),
-                    ),
+                      Gap(16.w),
+                    ],
                   ),
-                Gap(16.w),
                 Align(alignment: Alignment.center, child: title),
               ],
             ),

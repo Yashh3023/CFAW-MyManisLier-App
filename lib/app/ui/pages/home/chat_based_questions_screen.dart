@@ -1,3 +1,7 @@
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:mymanislier/app/utils/helpers/exporter.dart';
 
 class ChatBasedQuestionsScreen extends GetItHook<HomeController> {
@@ -405,56 +409,118 @@ class ChatBasedQuestionsScreen extends GetItHook<HomeController> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Expanded(
-            flex: 2,
-            child: CustomElevatedButton(
-              buttonStyle: ElevatedButton.styleFrom(
-                backgroundColor: Get.theme.customColors.bgColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(100.r),
-                ),
-                padding: EdgeInsets.zero,
-                textStyle: Theme.of(Get.context!)
-                    .textTheme
-                    .labelLarge
-                    ?.copyWith(fontWeight: FontWeight.w700),
-              ),
-              text: AppStrings.T.lbl_previous,
-              onPressed: () {
-                if (controller.chatCurrentIndex.value > 0) {
-                  controller
-                      .chatChangePage(controller.chatCurrentIndex.value - 1);
-                }
-              },
-            ),
+          Obx(
+            () {
+              if (controller.chatCurrentIndex.value != 0) {
+                return Expanded(
+                  flex: 2,
+                  child: CustomElevatedButton(
+                    buttonStyle: ElevatedButton.styleFrom(
+                      backgroundColor: Get.theme.customColors.bgColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(100.r),
+                      ),
+                      padding: EdgeInsets.zero,
+                      textStyle: Theme.of(Get.context!)
+                          .textTheme
+                          .labelLarge
+                          ?.copyWith(fontWeight: FontWeight.w700),
+                    ),
+                    text: AppStrings.T.lbl_previous,
+                    onPressed: () {
+                      if (controller.chatCurrentIndex.value > 0) {
+                        controller.chatChangePage(
+                            controller.chatCurrentIndex.value - 1);
+                      }
+                    },
+                  ),
+                );
+              } else {
+                return const Expanded(flex: 2, child: SizedBox());
+              }
+            },
           ),
           Expanded(child: Gap(20.w)),
           Expanded(
-              flex: 2,
-              child: Obx(
-                () => CustomElevatedButton(
-                  isLoading: controller.questionState.isLoading,
-                  isDisabled: controller.questionState.isLoading,
-                  rightIcon: CustomImageView(
-                    imagePath: AssetConstants.icArrowRight,
-                  ),
-                  iconSpacing: 10.w,
-                  text: controller.chatCurrentIndex.value ==
-                          controller.chatTotalPages - 1
-                      ? AppStrings.T.lbl_analyze
-                      : AppStrings.T.lbl_next,
-                  onPressed: () {
-                    if (controller.chatCurrentIndex.value < pages.length - 1) {
-                      controller.chatChangePage(
-                          controller.chatCurrentIndex.value + 1);
-                    } else {
-                      Get.toNamed(AppRoutes.analysisScreen);
-                    }
-                  },
+            flex: 2,
+            child: Obx(
+              () => CustomElevatedButton(
+                isLoading: controller.questionState.isLoading,
+                isDisabled: controller.questionState.isLoading,
+                rightIcon: CustomImageView(
+                  imagePath: AssetConstants.icArrowRight,
                 ),
-              )),
+                iconSpacing: 10.w,
+                text: controller.chatCurrentIndex.value ==
+                        controller.chatTotalPages - 1
+                    ? AppStrings.T.lbl_analyze
+                    : AppStrings.T.lbl_next,
+                onPressed: () {
+                  if (controller.chatCurrentIndex.value < pages.length - 1) {
+                    controller
+                        .chatChangePage(controller.chatCurrentIndex.value + 1);
+                  } else {
+                    _showanalyzingDialog();
+
+                    Future.delayed(const Duration(seconds: 5), () {
+                      Get.back();
+                      Get.toNamed(AppRoutes.analysisScreen);
+                    });
+                  }
+                },
+              ),
+            ),
+          ),
         ],
       ),
+    );
+  }
+
+  Future _showanalyzingDialog() {
+    return Get.dialog(
+      Stack(
+        children: [
+          BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+            child: Container(
+              color: Colors.black.withOpacity(0.5),
+            ),
+          ),
+          AlertDialog(
+            backgroundColor: Get.theme.customColors.greyBg,
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CircleAvatar(
+                  radius: 52.r,
+                  backgroundColor: Get.theme.customColors.greyContainerBg,
+                  child: SpinKitFadingCircle(
+                    color: Get.theme.customColors.white,
+                    size: 67.28.h,
+                  ),
+                ),
+                Gap(20.h),
+                CenterText(
+                  AppStrings.T.lbl_analyzing,
+                  style: Get.textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 26.sp,
+                      color: Get.theme.customColors.white),
+                ),
+                Gap(14.h),
+                CenterText(
+                  AppStrings.T.lbl_analyzing_subtitle,
+                  style: Get.textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16.sp,
+                      color: Get.theme.customColors.greyTextColor),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+      barrierDismissible: false,
     );
   }
 
