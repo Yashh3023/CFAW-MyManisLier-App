@@ -109,7 +109,7 @@ class AuthenticationScreen extends GetItHook<AuthController> {
           fontWeight: FontWeight.w600,
           color: Get.theme.customColors.greyTextColor),
       decoration: BoxDecoration(
-        color: Get.theme.customColors.white,
+        color: Get.theme.customColors.textfieldFillColor,
         borderRadius: BorderRadius.circular(80.r),
         border: border != null ? Border.all(color: border, width: 2.w) : null,
       ),
@@ -175,6 +175,7 @@ class AuthenticationScreen extends GetItHook<AuthController> {
             recognizer: TapGestureRecognizer()
               ..onTap = () {
                 Get.focusScope!.unfocus();
+                Get.offAllNamed(AppRoutes.signup);
               },
             style: Get.textTheme.bodySmall?.copyWith(
               color: Get.theme.customColors.secondaryColor,

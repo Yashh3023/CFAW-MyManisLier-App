@@ -109,7 +109,7 @@ class SignUpAuthenticationScreen extends GetItHook<AuthController> {
       textStyle: Get.textTheme.bodyMedium?.copyWith(
           fontSize: 24.sp,
           fontWeight: FontWeight.w600,
-          color: Get.theme.customColors.white),
+          color: Get.theme.customColors.greyTextColor),
       decoration: BoxDecoration(
         color: Get.theme.customColors.textfieldFillColor,
         borderRadius: BorderRadius.circular(80.r),
@@ -157,7 +157,6 @@ class SignUpAuthenticationScreen extends GetItHook<AuthController> {
             Get.focusScope!.unfocus();
             controller.signupCurrentStep.value = 3;
           }
-          // Get.toNamed(AppRoutes.resetPasswordScreen);
           if (_formKey.currentState?.validate() ?? false) {
             Get.focusScope!.unfocus();
             _showAlertSuccessfulDialog(Get.context!);
@@ -177,6 +176,7 @@ class SignUpAuthenticationScreen extends GetItHook<AuthController> {
             recognizer: TapGestureRecognizer()
               ..onTap = () {
                 Get.focusScope!.unfocus();
+                Get.offAllNamed(AppRoutes.signup);
               },
             style: Get.textTheme.bodySmall?.copyWith(
                 color: Get.theme.customColors.secondaryColor,
