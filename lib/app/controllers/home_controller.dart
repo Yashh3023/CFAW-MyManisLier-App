@@ -53,7 +53,6 @@ class HomeController extends GetxController {
     );
   }
 
-  // Reset all values to default
   void resetValues() {
     currentIndex.value = 0;
     selectedDuration.value = '';
@@ -66,7 +65,6 @@ class HomeController extends GetxController {
     partnerNameController.clear();
     pasteTextConversaionController.clear();
 
-    // Reset page to first position
     if (chatPageController.hasClients) {
       chatPageController.jumpToPage(0);
     }
@@ -81,14 +79,12 @@ class HomeController extends GetxController {
     );
   }
 
-  // Reset all values to default
   void chatResetValues() {
     chatCurrentIndex.value = 0;
     trustMe.value = false;
     avoidAnswer.value = false;
     youOverThinking.value = false;
 
-    // Reset page to first position
     if (chatPageController.hasClients) {
       chatPageController.jumpToPage(0);
     }

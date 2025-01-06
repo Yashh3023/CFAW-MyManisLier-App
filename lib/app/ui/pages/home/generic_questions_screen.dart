@@ -354,7 +354,7 @@ class GenericQuestionsScreen extends GetItHook<HomeController> {
                     onChanged: (value) =>
                         controller.hasTrustIssues.value = value!,
                     title: Text(
-                      'Yes',
+                      AppStrings.T.lbl_yes,
                       style: Get.theme.textTheme.bodySmall!.copyWith(
                         color: controller.hasTrustIssues.value
                             ? Get.theme.customColors.black
@@ -380,7 +380,7 @@ class GenericQuestionsScreen extends GetItHook<HomeController> {
                     onChanged: (value) =>
                         controller.hasTrustIssues.value = value!,
                     title: Text(
-                      'No',
+                      AppStrings.T.lbl_no,
                       style: Get.theme.textTheme.bodySmall!.copyWith(
                         color: controller.hasTrustIssues.value
                             ? Get.theme.customColors.white
@@ -417,7 +417,7 @@ class GenericQuestionsScreen extends GetItHook<HomeController> {
                     onChanged: (value) =>
                         controller.hasChangedStyle.value = value!,
                     title: Text(
-                      'Yes',
+                      AppStrings.T.lbl_yes,
                       style: Get.theme.textTheme.bodySmall!.copyWith(
                         color: controller.hasChangedStyle.value
                             ? Get.theme.customColors.black
@@ -443,7 +443,7 @@ class GenericQuestionsScreen extends GetItHook<HomeController> {
                     onChanged: (value) =>
                         controller.hasChangedStyle.value = value!,
                     title: Text(
-                      'No',
+                      AppStrings.T.lbl_no,
                       style: Get.theme.textTheme.bodySmall!.copyWith(
                         color: controller.hasChangedStyle.value
                             ? Get.theme.customColors.white
@@ -488,7 +488,7 @@ class GenericQuestionsScreen extends GetItHook<HomeController> {
                     onChanged: (value) =>
                         controller.hasHappenedBefore.value = value!,
                     title: Text(
-                      'Yes',
+                      AppStrings.T.lbl_yes,
                       style: Get.theme.textTheme.bodySmall!.copyWith(
                         color: controller.hasHappenedBefore.value
                             ? Get.theme.customColors.black
@@ -514,7 +514,7 @@ class GenericQuestionsScreen extends GetItHook<HomeController> {
                     onChanged: (value) =>
                         controller.hasHappenedBefore.value = value!,
                     title: Text(
-                      'No',
+                      AppStrings.T.lbl_no,
                       style: Get.theme.textTheme.bodySmall!.copyWith(
                         color: controller.hasHappenedBefore.value
                             ? Get.theme.customColors.white
@@ -542,27 +542,36 @@ class GenericQuestionsScreen extends GetItHook<HomeController> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Expanded(
-            flex: 2,
-            child: CustomElevatedButton(
-              buttonStyle: ElevatedButton.styleFrom(
-                backgroundColor: Get.theme.customColors.bgColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(100.r),
-                ),
-                padding: EdgeInsets.zero,
-                textStyle: Theme.of(Get.context!)
-                    .textTheme
-                    .labelLarge
-                    ?.copyWith(fontWeight: FontWeight.w700),
-              ),
-              text: AppStrings.T.lbl_previous,
-              onPressed: () {
-                if (controller.currentIndex.value > 0) {
-                  controller.changePage(controller.currentIndex.value - 1);
-                }
-              },
-            ),
+          Obx(
+            () {
+              if (controller.currentIndex.value != 0) {
+                return Expanded(
+                  flex: 2,
+                  child: CustomElevatedButton(
+                    buttonStyle: ElevatedButton.styleFrom(
+                      backgroundColor: Get.theme.customColors.bgColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(100.r),
+                      ),
+                      padding: EdgeInsets.zero,
+                      textStyle: Theme.of(Get.context!)
+                          .textTheme
+                          .labelLarge
+                          ?.copyWith(fontWeight: FontWeight.w700),
+                    ),
+                    text: AppStrings.T.lbl_previous,
+                    onPressed: () {
+                      if (controller.currentIndex.value > 0) {
+                        controller
+                            .changePage(controller.currentIndex.value - 1);
+                      }
+                    },
+                  ),
+                );
+              } else {
+                return const Expanded(flex: 2, child: SizedBox());
+              }
+            },
           ),
           Expanded(child: Gap(20.w)),
           Expanded(

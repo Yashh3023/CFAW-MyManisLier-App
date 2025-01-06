@@ -1,43 +1,39 @@
 import 'package:mymanislier/app/utils/helpers/exporter.dart';
 
-class CustomExpansionTile extends StatefulWidget {
+class CustomExpansionTile extends StatelessWidget {
   final String title;
   final String content;
+  final bool isExpanded; 
+  final ValueChanged<bool>? onExpansionChanged;
 
   const CustomExpansionTile({
     required this.title,
     required this.content,
+    this.isExpanded = false, 
+    this.onExpansionChanged,
     super.key,
   });
 
   @override
-  State<CustomExpansionTile> createState() => _CustomExpansionTileState();
-}
-
-class _CustomExpansionTileState extends State<CustomExpansionTile> {
-  bool isExpanded = false;
-
-  @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-          EdgeInsets.only(left: 20.w, top: 15.h, bottom: 15.h, right: 12.w),
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 15.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           InkWell(
             onTap: () {
-              setState(() {
-                isExpanded = !isExpanded;
-              });
+              if (onExpansionChanged != null) {
+                onExpansionChanged!(!isExpanded);
+              }
             },
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
                   child: Text(
-                    widget.title,
+                    title,
                     style: Get.theme.textTheme.labelSmall!.copyWith(
                       color: Get.theme.customColors.white,
                       fontSize: 16.sp,
@@ -45,24 +41,32 @@ class _CustomExpansionTileState extends State<CustomExpansionTile> {
                     ),
                   ),
                 ),
-                CustomImageView(
+                RotationTransition(
+                  turns: AlwaysStoppedAnimation(isExpanded ? 0.5 : 0.0),
+                  child: CustomImageView(
                     height: 18.0.h,
-                    imagePath: isExpanded
-                        ? AssetConstants.icArrowUp
-                        : AssetConstants.icArrowDown)
+                    imagePath: AssetConstants.icArrowDown,
+                  ),
+                ),
               ],
             ),
           ),
           Gap(8.h),
-          if (isExpanded)
-            Text(
-              widget.content,
+          AnimatedCrossFade(
+            duration: const Duration(milliseconds: 200),
+            firstChild: const SizedBox.shrink(),
+            secondChild: Text(
+              content,
               style: Get.theme.textTheme.labelSmall!.copyWith(
                 color: Get.theme.customColors.greyTextColor,
                 fontSize: 16.sp,
                 fontWeight: FontWeight.w400,
               ),
             ),
+            crossFadeState: isExpanded
+                ? CrossFadeState.showSecond
+                : CrossFadeState.showFirst,
+          ),
         ],
       ),
     );

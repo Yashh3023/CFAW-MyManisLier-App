@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:ui';
 import 'package:mymanislier/app/utils/helpers/exporter.dart';
 
 class SignUpScreen extends GetItHook<AuthController> {
@@ -84,11 +85,11 @@ class SignUpScreen extends GetItHook<AuthController> {
   }
 
   Widget _buildSelectPhotoForm(BuildContext context) {
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        Obx(
-          () => CircleAvatar(
+    return Obx(
+      () => Stack(
+        clipBehavior: Clip.none,
+        children: [
+          CircleAvatar(
             radius: 70.r,
             backgroundColor: Get.theme.customColors.greyBg,
             backgroundImage: controller.selectedImage.value != null
@@ -98,24 +99,27 @@ class SignUpScreen extends GetItHook<AuthController> {
                 ? CustomImageView(imagePath: AssetConstants.svgProfile)
                 : null,
           ),
-        ),
-        Positioned(
-          bottom: 0.h,
-          right: 0.w,
-          child: GestureDetector(
-            onTap: () {
-              _chooseActionDialog(context);
-            },
-            child: CircleAvatar(
-              radius: 17.r,
-              backgroundColor: Get.theme.customColors.primaryColor,
-              child: CustomImageView(
-                imagePath: AssetConstants.icEdit,
+          Positioned(
+            bottom: 0.h,
+            right: 0.w,
+            child: GestureDetector(
+              onTap: () {
+                _chooseActionDialog(context);
+              },
+              child: CircleAvatar(
+                radius: 17.r,
+                backgroundColor: Get.theme.customColors.primaryColor,
+                child: CustomImageView(
+                  height: 17.h,
+                  imagePath: controller.selectedImage.value == null
+                      ? AssetConstants.icCamera
+                      : AssetConstants.icEdit,
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -123,103 +127,118 @@ class SignUpScreen extends GetItHook<AuthController> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: Get.theme.customColors.greyBg,
-          title: Column(
-            children: [
-              CenterText(
-                AppStrings.T.lbl_choose_an_action,
-                style: Get.theme.textTheme.headlineLarge!
-                    .copyWith(color: Get.theme.customColors.white),
+        return Stack(
+          children: [
+            BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+              child: Container(
+                color: Colors.black.withOpacity(0.5),
               ),
-              Gap(4.h),
-              CenterText(
-                AppStrings.T.lbl_capture_or_select_image,
-                style: Get.theme.textTheme.bodySmall!
-                    .copyWith(color: Get.theme.customColors.greyTextColor),
-              ),
-              Gap(30.h),
-              Container(
-                decoration: BoxDecoration(
-                  color: Get.theme.customColors.black,
-                  borderRadius: BorderRadius.circular(20.r),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                            _pickImage(ImageSource.camera);
-                          },
-                          child: Container(
-                            height: 120.h,
-                            decoration: BoxDecoration(
-                              color: Get.theme.customColors.greyBg,
-                              borderRadius: BorderRadius.circular(14.44.r),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                CustomImageView(
-                                  imagePath: AssetConstants.icCamera,
+            ),
+            Center(
+              child: AlertDialog(
+                backgroundColor: Get.theme.customColors.greyBg,
+                title: Column(
+                  children: [
+                    CenterText(
+                      AppStrings.T.lbl_choose_an_action,
+                      style: Get.theme.textTheme.headlineLarge!
+                          .copyWith(color: Get.theme.customColors.white),
+                    ),
+                    Gap(4.h),
+                    CenterText(
+                      AppStrings.T.lbl_capture_or_select_image,
+                      style: Get.theme.textTheme.bodySmall!.copyWith(
+                          color: Get.theme.customColors.greyTextColor),
+                    ),
+                    Gap(30.h),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Get.theme.customColors.black,
+                        borderRadius: BorderRadius.circular(20.r),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                  _pickImage(ImageSource.camera);
+                                },
+                                child: Container(
+                                  height: 120.h,
+                                  decoration: BoxDecoration(
+                                    color: Get.theme.customColors.greyBg,
+                                    borderRadius:
+                                        BorderRadius.circular(14.44.r),
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      CustomImageView(
+                                        imagePath: AssetConstants.icCamera,
+                                      ),
+                                      Gap(10.w),
+                                      CenterText(
+                                        AppStrings.T.lbl_camera,
+                                        style: Get.theme.textTheme.bodySmall!
+                                            .copyWith(
+                                                color: Get
+                                                    .theme.customColors.white),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                Gap(10.w),
-                                CenterText(
-                                  AppStrings.T.lbl_camera,
-                                  style: Get.theme.textTheme.bodySmall!
-                                      .copyWith(
-                                          color: Get.theme.customColors.white),
-                                ),
-                              ],
+                              ),
                             ),
-                          ),
+                            Gap(10.w),
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                  _pickImage(ImageSource.gallery);
+                                },
+                                child: Container(
+                                  height: 120,
+                                  decoration: BoxDecoration(
+                                    color: Get.theme.customColors.greyBg,
+                                    borderRadius: BorderRadius.circular(14.44),
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      CustomImageView(
+                                        imagePath: AssetConstants.icGallery,
+                                      ),
+                                      Gap(10.h),
+                                      CenterText(
+                                        AppStrings.T.lbl_gallery,
+                                        style: Get.theme.textTheme.bodySmall!
+                                            .copyWith(
+                                                color: Get
+                                                    .theme.customColors.white),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      Gap(10.w),
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                            _pickImage(ImageSource.gallery);
-                          },
-                          child: Container(
-                            height: 120,
-                            decoration: BoxDecoration(
-                              color: Get.theme.customColors.greyBg,
-                              borderRadius: BorderRadius.circular(14.44),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                CustomImageView(
-                                  imagePath: AssetConstants.icGallery,
-                                ),
-                                Gap(10.h),
-                                CenterText(
-                                  AppStrings.T.lbl_gallery,
-                                  style: Get.theme.textTheme.bodySmall!
-                                      .copyWith(
-                                          color: Get.theme.customColors.white),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                    Gap(40.h),
+                    CustomElevatedButton(
+                      text: AppStrings.T.lbl_ok,
+                      onPressed: () {},
+                    )
+                  ],
                 ),
               ),
-              Gap(40.h),
-              CustomElevatedButton(
-                text: AppStrings.T.lbl_ok,
-                onPressed: () {},
-              )
-            ],
-          ),
+            ),
+          ],
         );
       },
     );
@@ -248,7 +267,8 @@ class SignUpScreen extends GetItHook<AuthController> {
       ),
       controller: controller.signupUsernameController,
       hintLabel: AppStrings.T.lbl_username,
-      validator: AppValidations.nameValidation,
+      validator: (value) => AppValidations.validateRequired(value,
+          fieldName: AppStrings.T.lbl_username_small),
     );
   }
 

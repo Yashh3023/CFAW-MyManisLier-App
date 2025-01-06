@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:mymanislier/app/utils/helpers/exporter.dart';
 
 class SettingScreen extends GetItHook<SettingController> {
@@ -105,63 +107,75 @@ class SettingScreen extends GetItHook<SettingController> {
 
   void _showSignoutDialog() {
     Get.dialog(
-      AlertDialog(
-        backgroundColor: Get.theme.customColors.greyBg,
-        content: Padding(
-          padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 30.h),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              CircleAvatar(
-                radius: 47.r,
-                backgroundColor: Get.theme.customColors.primaryColor,
-                child: CustomImageView(
-                  width: 50.w,
-                  height: 50..h,
-                  imagePath: AssetConstants.pngSignout,
-                ),
-              ),
-              Gap(20.h),
-              CenterText(
-                AppStrings.T.lbl_sign_out,
-                style: Get.textTheme.bodyMedium?.copyWith(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 26.sp,
-                    color: Get.theme.customColors.white),
-              ),
-              Gap(20.h),
-              CenterText(
-                AppStrings.T.lbl_sign_out_q,
-                style: Get.textTheme.bodyMedium?.copyWith(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w500,
-                    color: Get.theme.customColors.greyTextColor),
-              ),
-            ],
+      Stack(
+        children: [
+          BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+            child: Container(
+              color: Colors.black.withOpacity(0.5),
+            ),
           ),
-        ),
-        actions: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
-            child: Row(
-              children: [
-                Expanded(
-                  child: CustomElevatedButton(
-                    text: AppStrings.T.lbl_yes,
-                    secondary: true,
-                    buttonStyle:
-                        ButtonThemeHelper.secondaryButtonStyle(Get.context!),
-                    onPressed: () {
-                      Get.focusScope!.unfocus();
-                      Get.toNamed(AppRoutes.sigin);
-                    },
-                  ),
+          Center(
+            child: AlertDialog(
+              backgroundColor: Get.theme.customColors.greyBg,
+              content: Padding(
+                padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 30.h),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    CircleAvatar(
+                      radius: 47.r,
+                      backgroundColor: Get.theme.customColors.primaryColor,
+                      child: CustomImageView(
+                        width: 50.w,
+                        height: 50..h,
+                        imagePath: AssetConstants.pngSignout,
+                      ),
+                    ),
+                    Gap(20.h),
+                    CenterText(
+                      AppStrings.T.lbl_sign_out,
+                      style: Get.textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 26.sp,
+                          color: Get.theme.customColors.white),
+                    ),
+                    Gap(20.h),
+                    CenterText(
+                      AppStrings.T.lbl_sign_out_q,
+                      style: Get.textTheme.bodyMedium?.copyWith(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w500,
+                          color: Get.theme.customColors.greyTextColor),
+                    ),
+                  ],
                 ),
-                Gap(16.w),
-                Expanded(
-                  child: CustomElevatedButton(
-                    text: AppStrings.T.lbl_no,
-                    onPressed: Get.back,
+              ),
+              actions: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: CustomElevatedButton(
+                          text: AppStrings.T.lbl_yes,
+                          secondary: true,
+                          buttonStyle: ButtonThemeHelper.secondaryButtonStyle(
+                              Get.context!),
+                          onPressed: () {
+                            Get.focusScope!.unfocus();
+                            Get.toNamed(AppRoutes.sigin);
+                          },
+                        ),
+                      ),
+                      Gap(16.w),
+                      Expanded(
+                        child: CustomElevatedButton(
+                          text: AppStrings.T.lbl_no,
+                          onPressed: Get.back,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
