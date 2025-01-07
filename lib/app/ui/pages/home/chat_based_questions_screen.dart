@@ -1,6 +1,4 @@
 import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:mymanislier/app/utils/helpers/exporter.dart';
 
@@ -461,7 +459,6 @@ class ChatBasedQuestionsScreen extends GetItHook<HomeController> {
                         .chatChangePage(controller.chatCurrentIndex.value + 1);
                   } else {
                     _showanalyzingDialog();
-
                     Future.delayed(const Duration(seconds: 5), () {
                       Get.back();
                       Get.toNamed(AppRoutes.analysisScreen);
@@ -488,34 +485,37 @@ class ChatBasedQuestionsScreen extends GetItHook<HomeController> {
           ),
           AlertDialog(
             backgroundColor: Get.theme.customColors.greyBg,
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                CircleAvatar(
-                  radius: 52.r,
-                  backgroundColor: Get.theme.customColors.greyContainerBg,
-                  child: SpinKitFadingCircle(
-                    color: Get.theme.customColors.white,
-                    size: 67.28.h,
+            content: Padding(
+              padding: EdgeInsets.only(top: 30.h),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  CircleAvatar(
+                    radius: 52.r,
+                    backgroundColor: Get.theme.customColors.greyContainerBg,
+                    child: SpinKitFadingCircle(
+                      color: Get.theme.customColors.white,
+                      size: 67.28.h,
+                    ),
                   ),
-                ),
-                Gap(20.h),
-                CenterText(
-                  AppStrings.T.lbl_analyzing,
-                  style: Get.textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 26.sp,
-                      color: Get.theme.customColors.white),
-                ),
-                Gap(14.h),
-                CenterText(
-                  AppStrings.T.lbl_analyzing_subtitle,
-                  style: Get.textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16.sp,
-                      color: Get.theme.customColors.greyTextColor),
-                ),
-              ],
+                  Gap(20.h),
+                  CenterText(
+                    AppStrings.T.lbl_analyzing,
+                    style: Get.textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 26.sp,
+                        color: Get.theme.customColors.white),
+                  ),
+                  Gap(14.h),
+                  CenterText(
+                    AppStrings.T.lbl_analyzing_subtitle,
+                    style: Get.textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16.sp,
+                        color: Get.theme.customColors.greyTextColor),
+                  ),
+                ],
+              ),
             ),
           ),
         ],

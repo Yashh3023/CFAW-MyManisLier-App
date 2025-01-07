@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:ui';
+import 'package:flutter/cupertino.dart';
 import 'package:mymanislier/app/utils/helpers/exporter.dart';
 
 class SignUpScreen extends GetItHook<AuthController> {
@@ -41,7 +42,7 @@ class SignUpScreen extends GetItHook<AuthController> {
           children: [
             _buildHeader(),
             Gap(30.h),
-            _buildSelectPhotoForm(context),
+            _buildSelectPhotoForm(),
             Gap(40.h),
             _buildUserNameField(),
             Gap(16.h),
@@ -84,7 +85,7 @@ class SignUpScreen extends GetItHook<AuthController> {
     );
   }
 
-  Widget _buildSelectPhotoForm(BuildContext context) {
+  Widget _buildSelectPhotoForm() {
     return Obx(
       () => Stack(
         clipBehavior: Clip.none,
@@ -92,10 +93,10 @@ class SignUpScreen extends GetItHook<AuthController> {
           CircleAvatar(
             radius: 70.r,
             backgroundColor: Get.theme.customColors.greyBg,
-            backgroundImage: controller.selectedImage.value != null
-                ? FileImage(controller.selectedImage.value!)
+            backgroundImage: controller.tempSelectedImage.value != null
+                ? FileImage(controller.tempSelectedImage.value!)
                 : null,
-            child: controller.selectedImage.value == null
+            child: controller.tempSelectedImage.value == null
                 ? CustomImageView(imagePath: AssetConstants.svgProfile)
                 : null,
           ),
@@ -104,14 +105,14 @@ class SignUpScreen extends GetItHook<AuthController> {
             right: 0.w,
             child: GestureDetector(
               onTap: () {
-                _chooseActionDialog(context);
+                _chooseActionDialog(Get.context!);
               },
               child: CircleAvatar(
                 radius: 17.r,
                 backgroundColor: Get.theme.customColors.primaryColor,
                 child: CustomImageView(
                   height: 17.h,
-                  imagePath: controller.selectedImage.value == null
+                  imagePath: controller.tempSelectedImage.value == null
                       ? AssetConstants.icCamera
                       : AssetConstants.icEdit,
                 ),
@@ -153,6 +154,7 @@ class SignUpScreen extends GetItHook<AuthController> {
                     ),
                     Gap(30.h),
                     Container(
+                      width: double.infinity,
                       decoration: BoxDecoration(
                         color: Get.theme.customColors.black,
                         borderRadius: BorderRadius.circular(20.r),
@@ -164,7 +166,6 @@ class SignUpScreen extends GetItHook<AuthController> {
                             Expanded(
                               child: GestureDetector(
                                 onTap: () {
-                                  Navigator.pop(context);
                                   _pickImage(ImageSource.camera);
                                 },
                                 child: Container(
@@ -185,8 +186,8 @@ class SignUpScreen extends GetItHook<AuthController> {
                                         AppStrings.T.lbl_camera,
                                         style: Get.theme.textTheme.bodySmall!
                                             .copyWith(
-                                                color: Get
-                                                    .theme.customColors.white),
+                                          color: Get.theme.customColors.white,
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -197,14 +198,14 @@ class SignUpScreen extends GetItHook<AuthController> {
                             Expanded(
                               child: GestureDetector(
                                 onTap: () {
-                                  Navigator.pop(context);
                                   _pickImage(ImageSource.gallery);
                                 },
                                 child: Container(
-                                  height: 120,
+                                  height: 120.h,
                                   decoration: BoxDecoration(
                                     color: Get.theme.customColors.greyBg,
-                                    borderRadius: BorderRadius.circular(14.44),
+                                    borderRadius:
+                                        BorderRadius.circular(14.44.r),
                                   ),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -217,8 +218,8 @@ class SignUpScreen extends GetItHook<AuthController> {
                                         AppStrings.T.lbl_gallery,
                                         style: Get.theme.textTheme.bodySmall!
                                             .copyWith(
-                                                color: Get
-                                                    .theme.customColors.white),
+                                          color: Get.theme.customColors.white,
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -232,7 +233,11 @@ class SignUpScreen extends GetItHook<AuthController> {
                     Gap(40.h),
                     CustomElevatedButton(
                       text: AppStrings.T.lbl_ok,
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.tempSelectedImage.value =
+                            controller.selectedImage.value;
+                        Get.back();
+                      },
                     )
                   ],
                 ),

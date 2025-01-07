@@ -163,6 +163,7 @@ class ChangePasswordScreen extends GetItHook<SettingController> {
       onPressed: () {
         if (_formKey.currentState?.validate() ?? false) {
           Get.focusScope!.unfocus();
+          Get.offAllNamed(AppRoutes.welcomeHomeScreen);
         }
       },
     );

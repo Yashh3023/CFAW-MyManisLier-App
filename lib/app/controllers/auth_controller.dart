@@ -33,7 +33,6 @@ class AuthController extends GetxController {
   final verificationCode = TextEditingController();
   final signupRerificationCode = TextEditingController();
 
-
   final RxBool userAgreementCheck = false.obs;
 
   final signinState = ApiState.initial().obs;
@@ -52,6 +51,7 @@ class AuthController extends GetxController {
   RxBool isConfirmpassword = true.obs;
   RxBool isAgree = true.obs;
 
+  final tempSelectedImage = Rxn<File>();
   final selectedImage = Rxn<File>();
 
   // State variables for loading and model

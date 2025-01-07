@@ -164,7 +164,7 @@ class SettingScreen extends GetItHook<SettingController> {
                               Get.context!),
                           onPressed: () {
                             Get.focusScope!.unfocus();
-                            Get.toNamed(AppRoutes.sigin);
+                            Get.offAllNamed(AppRoutes.sigin);
                           },
                         ),
                       ),
