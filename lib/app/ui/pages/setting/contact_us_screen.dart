@@ -144,7 +144,7 @@ class ContactUsScreen extends GetItHook<SettingController> {
       onPressed: () {
         if (_formKey.currentState?.validate() ?? false) {
           Get.focusScope!.unfocus();
-          Get.toNamed(AppRoutes.settingScreen);
+          Get.offAndToNamed(AppRoutes.settingScreen);
         }
       },
     );

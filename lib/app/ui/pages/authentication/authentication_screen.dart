@@ -152,7 +152,7 @@ class AuthenticationScreen extends GetItHook<AuthController> {
         onPressed: () {
           if (_formKey.currentState?.validate() ?? false) {
             Get.focusScope!.unfocus();
-            Get.toNamed(AppRoutes.resetPasswordScreen);
+            Get.offAndToNamed(AppRoutes.resetPasswordScreen);
           }
         },
       ),

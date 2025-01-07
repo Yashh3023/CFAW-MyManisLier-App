@@ -57,43 +57,47 @@ class EditProfileScreen extends GetItHook<SettingController> {
     );
   }
 
-  Widget _buildSelectPhotoForm() {
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        Obx(
-          () => CircleAvatar(
-            radius: 60.r,
+    Widget _buildSelectPhotoForm() {
+    return Obx(
+      () => Stack(
+        clipBehavior: Clip.none,
+        children: [
+          CircleAvatar(
+            radius: 70.r,
             backgroundColor: Get.theme.customColors.greyBg,
-            backgroundImage: controller.selectedImage.value != null
-                ? FileImage(controller.selectedImage.value!)
+            backgroundImage: controller.tempSelectedImage.value != null
+                ? FileImage(controller.tempSelectedImage.value!)
                 : null,
-            child: controller.selectedImage.value == null
-                ? CustomImageView(imagePath: AssetConstants.pngProfilePhoto)
+            child: controller.tempSelectedImage.value == null
+                ? CustomImageView(imagePath: AssetConstants.svgProfile)
                 : null,
           ),
-        ),
-        Positioned(
-          bottom: 0.h,
-          right: 0.w,
-          child: GestureDetector(
-            onTap: () {
-              _chooseActionDialog(Get.context!);
-            },
-            child: CircleAvatar(
-              radius: 17.r,
-              backgroundColor: Get.theme.customColors.primaryColor,
-              child: CustomImageView(
-                imagePath: AssetConstants.icEdit,
+          Positioned(
+            bottom: 0.h,
+            right: 0.w,
+            child: GestureDetector(
+              onTap: () {
+                _chooseActionDialog(Get.context!);
+              },
+              child: CircleAvatar(
+                radius: 17.r,
+                backgroundColor: Get.theme.customColors.primaryColor,
+                child: CustomImageView(
+                  height: 17.h,
+                  imagePath: controller.tempSelectedImage.value == null
+                      ? AssetConstants.icCamera
+                      : AssetConstants.icEdit,
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
-  void _chooseActionDialog(BuildContext context) {
+
+   void _chooseActionDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -123,6 +127,7 @@ class EditProfileScreen extends GetItHook<SettingController> {
                     ),
                     Gap(30.h),
                     Container(
+                      width: double.infinity,
                       decoration: BoxDecoration(
                         color: Get.theme.customColors.black,
                         borderRadius: BorderRadius.circular(20.r),
@@ -134,7 +139,6 @@ class EditProfileScreen extends GetItHook<SettingController> {
                             Expanded(
                               child: GestureDetector(
                                 onTap: () {
-                                  Navigator.pop(context);
                                   _pickImage(ImageSource.camera);
                                 },
                                 child: Container(
@@ -155,8 +159,8 @@ class EditProfileScreen extends GetItHook<SettingController> {
                                         AppStrings.T.lbl_camera,
                                         style: Get.theme.textTheme.bodySmall!
                                             .copyWith(
-                                                color: Get
-                                                    .theme.customColors.white),
+                                          color: Get.theme.customColors.white,
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -167,14 +171,14 @@ class EditProfileScreen extends GetItHook<SettingController> {
                             Expanded(
                               child: GestureDetector(
                                 onTap: () {
-                                  Navigator.pop(context);
                                   _pickImage(ImageSource.gallery);
                                 },
                                 child: Container(
-                                  height: 120,
+                                  height: 120.h,
                                   decoration: BoxDecoration(
                                     color: Get.theme.customColors.greyBg,
-                                    borderRadius: BorderRadius.circular(14.44),
+                                    borderRadius:
+                                        BorderRadius.circular(14.44.r),
                                   ),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -187,8 +191,8 @@ class EditProfileScreen extends GetItHook<SettingController> {
                                         AppStrings.T.lbl_gallery,
                                         style: Get.theme.textTheme.bodySmall!
                                             .copyWith(
-                                                color: Get
-                                                    .theme.customColors.white),
+                                          color: Get.theme.customColors.white,
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -202,7 +206,11 @@ class EditProfileScreen extends GetItHook<SettingController> {
                     Gap(40.h),
                     CustomElevatedButton(
                       text: AppStrings.T.lbl_ok,
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.tempSelectedImage.value =
+                            controller.selectedImage.value;
+                        Get.back();
+                      },
                     )
                   ],
                 ),
@@ -213,7 +221,6 @@ class EditProfileScreen extends GetItHook<SettingController> {
       },
     );
   }
-
   Future<void> _pickImage(ImageSource source) async {
     try {
       final pickedFile = await _picker.pickImage(source: source);

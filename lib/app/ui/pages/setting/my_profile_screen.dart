@@ -61,12 +61,17 @@ class MyProfileScreen extends GetItHook<SettingController> {
   }
 
   Widget _buildProfilePhoto() {
-    return Center(
-      child: CircleAvatar(
-        radius: 60.r,
-        backgroundColor: Get.theme.customColors.bgColor,
-        child: CustomImageView(
-          imagePath: AssetConstants.pngProfilePhoto,
+    return Obx(
+      () => Center(
+        child: CircleAvatar(
+          radius: 70.r,
+          backgroundColor: Get.theme.customColors.greyBg,
+          backgroundImage: controller.tempSelectedImage.value != null
+              ? FileImage(controller.tempSelectedImage.value!)
+              : null,
+          child: controller.tempSelectedImage.value == null
+              ? CustomImageView(imagePath: AssetConstants.pngProfilePhoto)
+              : null,
         ),
       ),
     );

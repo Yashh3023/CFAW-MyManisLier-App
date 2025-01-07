@@ -24,6 +24,7 @@ class SettingController extends GetxController {
 
   final reasonController = TextEditingController();
 
+  final tempSelectedImage = Rxn<File>();
   final selectedImage = Rxn<File>();
 
   final currentPassObscure = true.obs;
