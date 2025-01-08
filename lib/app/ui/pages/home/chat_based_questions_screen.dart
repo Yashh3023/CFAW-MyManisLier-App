@@ -1,8 +1,9 @@
 import 'dart:ui';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:mymanislier/app/controllers/chat_based_question_controller.dart';
 import 'package:mymanislier/app/utils/helpers/exporter.dart';
 
-class ChatBasedQuestionsScreen extends GetItHook<HomeController> {
+class ChatBasedQuestionsScreen extends GetItHook<ChatbasedController> {
   ChatBasedQuestionsScreen({super.key});
 
   late final List<Widget> pages;
@@ -18,11 +19,7 @@ class ChatBasedQuestionsScreen extends GetItHook<HomeController> {
 
   PreferredSizeWidget _buildAppBar() {
     return CustomAppbar(
-      hasLeadingIcon: true,
-      onLeadingTap: () {
-        Get.back();
-        controller.chatResetValues();
-      },
+      hasLeadingIcon: false,
       backArroBgColor: Get.theme.customColors.appBarIcBg,
       title: Text(
         AppStrings.T.lbl_chat_based_questions,
@@ -454,6 +451,7 @@ class ChatBasedQuestionsScreen extends GetItHook<HomeController> {
                     ? AppStrings.T.lbl_analyze
                     : AppStrings.T.lbl_next,
                 onPressed: () {
+                  Get.focusScope!.unfocus();
                   if (controller.chatCurrentIndex.value < pages.length - 1) {
                     controller
                         .chatChangePage(controller.chatCurrentIndex.value + 1);
@@ -485,6 +483,7 @@ class ChatBasedQuestionsScreen extends GetItHook<HomeController> {
           ),
           AlertDialog(
             backgroundColor: Get.theme.customColors.greyBg,
+            insetPadding: EdgeInsets.symmetric(horizontal: 20.0.w),
             content: Padding(
               padding: EdgeInsets.only(top: 30.h),
               child: Column(

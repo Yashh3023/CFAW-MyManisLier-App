@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:ui';
-import 'package:flutter/cupertino.dart';
 import 'package:mymanislier/app/utils/helpers/exporter.dart';
 
 class SignUpScreen extends GetItHook<AuthController> {
@@ -93,11 +92,11 @@ class SignUpScreen extends GetItHook<AuthController> {
           CircleAvatar(
             radius: 70.r,
             backgroundColor: Get.theme.customColors.greyBg,
-            backgroundImage: controller.tempSelectedImage.value != null
-                ? FileImage(controller.tempSelectedImage.value!)
+            backgroundImage: controller.selectedImage.value != null
+                ? FileImage(controller.selectedImage.value!)
                 : null,
-            child: controller.tempSelectedImage.value == null
-                ? CustomImageView(imagePath: AssetConstants.svgProfile)
+            child: controller.selectedImage.value == null
+                ? CustomImageView(imagePath: AssetConstants.pngProfilePhoto)
                 : null,
           ),
           Positioned(
@@ -112,7 +111,7 @@ class SignUpScreen extends GetItHook<AuthController> {
                 backgroundColor: Get.theme.customColors.primaryColor,
                 child: CustomImageView(
                   height: 17.h,
-                  imagePath: controller.tempSelectedImage.value == null
+                  imagePath: controller.selectedImage.value == null
                       ? AssetConstants.icCamera
                       : AssetConstants.icEdit,
                 ),
@@ -138,6 +137,7 @@ class SignUpScreen extends GetItHook<AuthController> {
             ),
             Center(
               child: AlertDialog(
+                insetPadding: EdgeInsets.symmetric(horizontal: 20.0.w),
                 backgroundColor: Get.theme.customColors.greyBg,
                 title: Column(
                   children: [
@@ -232,10 +232,8 @@ class SignUpScreen extends GetItHook<AuthController> {
                     ),
                     Gap(40.h),
                     CustomElevatedButton(
-                      text: AppStrings.T.lbl_ok,
+                      text: AppStrings.T.lbl_cancel,
                       onPressed: () {
-                        controller.tempSelectedImage.value =
-                            controller.selectedImage.value;
                         Get.back();
                       },
                     )
@@ -254,6 +252,7 @@ class SignUpScreen extends GetItHook<AuthController> {
       final pickedFile = await _picker.pickImage(source: source);
       if (pickedFile != null) {
         controller.selectedImage.value = File(pickedFile.path);
+        Get.back();
       }
     } catch (e) {
       Get.snackbar(
@@ -468,7 +467,7 @@ class SignUpScreen extends GetItHook<AuthController> {
   }
 
   @override
-  bool get canDisposeController => true;
+  bool get canDisposeController => false;
 
   @override
   void onDispose() {}

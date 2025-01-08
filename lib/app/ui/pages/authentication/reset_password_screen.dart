@@ -186,6 +186,7 @@ class ResetPasswordScreen extends GetItHook<AuthController> {
             Center(
               child: AlertDialog(
                 backgroundColor: Get.theme.customColors.greyBg,
+                insetPadding: EdgeInsets.symmetric(horizontal: 20.0.w),
                 title: Column(
                   children: [
                     CustomImageView(

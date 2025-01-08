@@ -209,7 +209,8 @@
     "lbl_sign_out_q": "Are you sure you want to sign out from the app?",
     "lbl_enter_your_reason": "Enter your reason",
     "lbl_delete_my_account": "Delete My Account",
-    "lbl_conformation_delete_account": "Are you sure you want to delete your account? You will lose all your data and your account will not be recovered."
+    "lbl_conformation_delete_account": "Are you sure you want to delete your account? You will lose all your data and your account will not be recovered.",
+    "lbl_cancel":"Cancel"
 
     
 

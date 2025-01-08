@@ -279,12 +279,10 @@ class WelcomeHomeScreen extends GetItHook<HomeController> {
   }
 
   @override
-  bool get canDisposeController => true;
+  bool get canDisposeController => false;
 
   @override
-  void onDispose() {
-    controller.resetValues();
-  }
+  void onDispose() {}
 
   @override
   void onInit() {}

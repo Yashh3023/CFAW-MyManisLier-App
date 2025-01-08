@@ -107,7 +107,7 @@ class MyProfileScreen extends GetItHook<SettingController> {
   }
 
   @override
-  bool get canDisposeController => true;
+  bool get canDisposeController => false;
 
   @override
   void onDispose() {}

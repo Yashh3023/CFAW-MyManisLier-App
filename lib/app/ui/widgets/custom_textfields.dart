@@ -98,7 +98,7 @@ class TextInputField extends TextFormField {
           style: Get.textTheme.bodyMedium?.copyWith(
             fontWeight: FontWeight.w500,
             fontSize: 18,
-            color: Get.theme.customColors.greyTextColor,
+            color: Get.theme.customColors.white,
           ),
           decoration: InputDecoration(
             hintStyle: hintStyle ??

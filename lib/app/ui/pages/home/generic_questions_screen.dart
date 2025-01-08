@@ -1,6 +1,7 @@
+import 'package:mymanislier/app/controllers/generic_question_controller.dart';
 import 'package:mymanislier/app/utils/helpers/exporter.dart';
 
-class GenericQuestionsScreen extends GetItHook<HomeController> {
+class GenericQuestionsScreen extends GetItHook<GenericQuestionController> {
   GenericQuestionsScreen({super.key});
 
   late final List<Widget> pages;
@@ -17,10 +18,6 @@ class GenericQuestionsScreen extends GetItHook<HomeController> {
   PreferredSizeWidget _buildAppBar() {
     return CustomAppbar(
       hasLeadingIcon: true,
-      onLeadingTap: () {
-        Get.back();
-        controller.resetValues();
-      },
       backArroBgColor: Get.theme.customColors.appBarIcBg,
       title: Text(
         AppStrings.T.lbl_generic_questions,
