@@ -51,7 +51,6 @@ class AuthController extends GetxController {
   RxBool isConfirmpassword = true.obs;
   RxBool isAgree = true.obs;
 
-  final tempSelectedImage = Rxn<File>();
   final selectedImage = Rxn<File>();
 
   // State variables for loading and model

@@ -57,7 +57,7 @@ class EditProfileScreen extends GetItHook<SettingController> {
     );
   }
 
-    Widget _buildSelectPhotoForm() {
+  Widget _buildSelectPhotoForm() {
     return Obx(
       () => Stack(
         clipBehavior: Clip.none,
@@ -65,11 +65,11 @@ class EditProfileScreen extends GetItHook<SettingController> {
           CircleAvatar(
             radius: 70.r,
             backgroundColor: Get.theme.customColors.greyBg,
-            backgroundImage: controller.tempSelectedImage.value != null
-                ? FileImage(controller.tempSelectedImage.value!)
+            backgroundImage: controller.selectedImage.value != null
+                ? FileImage(controller.selectedImage.value!)
                 : null,
-            child: controller.tempSelectedImage.value == null
-                ? CustomImageView(imagePath: AssetConstants.svgProfile)
+            child: controller.selectedImage.value == null
+                ? CustomImageView(imagePath: AssetConstants.pngProfilePhoto)
                 : null,
           ),
           Positioned(
@@ -96,8 +96,7 @@ class EditProfileScreen extends GetItHook<SettingController> {
     );
   }
 
-
-   void _chooseActionDialog(BuildContext context) {
+  void _chooseActionDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -112,6 +111,7 @@ class EditProfileScreen extends GetItHook<SettingController> {
             Center(
               child: AlertDialog(
                 backgroundColor: Get.theme.customColors.greyBg,
+                insetPadding: EdgeInsets.symmetric(horizontal: 20.0.w),
                 title: Column(
                   children: [
                     CenterText(
@@ -205,10 +205,8 @@ class EditProfileScreen extends GetItHook<SettingController> {
                     ),
                     Gap(40.h),
                     CustomElevatedButton(
-                      text: AppStrings.T.lbl_ok,
+                      text: AppStrings.T.lbl_cancel,
                       onPressed: () {
-                        controller.tempSelectedImage.value =
-                            controller.selectedImage.value;
                         Get.back();
                       },
                     )
@@ -221,11 +219,13 @@ class EditProfileScreen extends GetItHook<SettingController> {
       },
     );
   }
+
   Future<void> _pickImage(ImageSource source) async {
     try {
       final pickedFile = await _picker.pickImage(source: source);
       if (pickedFile != null) {
         controller.selectedImage.value = File(pickedFile.path);
+        Get.back();
       }
     } catch (e) {
       Get.snackbar(
@@ -290,6 +290,7 @@ class EditProfileScreen extends GetItHook<SettingController> {
             ),
             Center(
               child: AlertDialog(
+                insetPadding: EdgeInsets.symmetric(horizontal: 20.0.w),
                 backgroundColor: Get.theme.customColors.greyBg,
                 title: Column(
                   children: [
@@ -312,6 +313,9 @@ class EditProfileScreen extends GetItHook<SettingController> {
                     CustomElevatedButton(
                       text: AppStrings.T.lbl_ok,
                       onPressed: () {
+                        controller.tempSelectedImage.value =
+                            controller.selectedImage.value;
+
                         Get.back();
                         Get.back();
                       },
@@ -327,7 +331,7 @@ class EditProfileScreen extends GetItHook<SettingController> {
   }
 
   @override
-  bool get canDisposeController => true;
+  bool get canDisposeController => false;
 
   @override
   void onDispose() {}

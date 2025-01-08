@@ -314,6 +314,7 @@ class PaymentBottomSheet extends GetItHook<HomeController> {
             ),
             Center(
               child: AlertDialog(
+                insetPadding: EdgeInsets.symmetric(horizontal: 20.0.w),
                 backgroundColor: Get.theme.customColors.greyBg,
                 title: Column(
                   children: [
@@ -337,7 +338,7 @@ class PaymentBottomSheet extends GetItHook<HomeController> {
                       text: AppStrings.T.lbl_close,
                       onPressed: () {
                         Get.back();
-                        Get.toNamed(AppRoutes.chatBasedQuestionsScreen);
+                        Get.offAllNamed(AppRoutes.chatBasedQuestionsScreen);
                       },
                     )
                   ],

@@ -23,7 +23,7 @@ class SignInScreen extends GetItHook<AuthController> {
   PreferredSizeWidget _buildAppBar() {
     return CustomAppbar(
       appbarBgColor: Get.theme.customColors.black,
-      onLeadingTap: Get.back,
+      hasLeadingIcon: false,
     );
   }
 

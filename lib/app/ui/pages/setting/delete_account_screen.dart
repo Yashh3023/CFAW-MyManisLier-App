@@ -166,6 +166,7 @@ class DeleteAccountScreen extends GetItHook<SettingController> {
           ),
           Center(
             child: AlertDialog(
+              insetPadding: EdgeInsets.symmetric(horizontal: 20.0.w),
               backgroundColor: Get.theme.customColors.greyBg,
               content: Padding(
                 padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 30.h),

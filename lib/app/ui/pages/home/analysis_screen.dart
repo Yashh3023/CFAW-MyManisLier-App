@@ -219,9 +219,7 @@ class AnalysisScreen extends GetItHook<HomeController> {
   bool get canDisposeController => false;
 
   @override
-  void onDispose() {
-    controller.resetValues();
-  }
+  void onDispose() {}
 
   @override
   void onInit() {}
