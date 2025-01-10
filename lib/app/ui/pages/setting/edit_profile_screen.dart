@@ -85,7 +85,7 @@ class EditProfileScreen extends GetItHook<SettingController> {
                 child: CustomImageView(
                   height: 17.h,
                   imagePath: controller.tempSelectedImage.value == null
-                      ? AssetConstants.icCamera
+                      ? AssetConstants.icEdit
                       : AssetConstants.icEdit,
                 ),
               ),
@@ -257,6 +257,11 @@ class EditProfileScreen extends GetItHook<SettingController> {
         imagePath: AssetConstants.icEmail,
         margin: const EdgeInsets.all(16),
         height: 28.h,
+      ),
+      style: Get.textTheme.bodyMedium?.copyWith(
+        fontWeight: FontWeight.w500,
+        fontSize: 18,
+        color: Get.theme.customColors.grey,
       ),
       controller: controller.editProfileEmailController,
       hintLabel: AppStrings.T.email,

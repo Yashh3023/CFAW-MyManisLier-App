@@ -112,7 +112,7 @@ class SignUpScreen extends GetItHook<AuthController> {
                 child: CustomImageView(
                   height: 17.h,
                   imagePath: controller.selectedImage.value == null
-                      ? AssetConstants.icCamera
+                      ? AssetConstants.icEdit
                       : AssetConstants.icEdit,
                 ),
               ),

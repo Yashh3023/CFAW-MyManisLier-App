@@ -80,6 +80,11 @@ class ContactUsScreen extends GetItHook<SettingController> {
         margin: const EdgeInsets.all(16),
         height: 28.h,
       ),
+      style: Get.textTheme.bodyMedium?.copyWith(
+        fontWeight: FontWeight.w500,
+        fontSize: 18,
+        color: Get.theme.customColors.grey,
+      ),
       controller: controller.cantactUsEmailController,
       hintLabel: AppStrings.T.email,
       validator: AppValidations.emailValidation,
