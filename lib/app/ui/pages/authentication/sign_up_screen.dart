@@ -96,7 +96,7 @@ class SignUpScreen extends GetItHook<AuthController> {
                 ? FileImage(controller.selectedImage.value!)
                 : null,
             child: controller.selectedImage.value == null
-                ? CustomImageView(imagePath: AssetConstants.pngProfilePhoto)
+                ? CustomImageView(imagePath: AssetConstants.svgProfile)
                 : null,
           ),
           Positioned(
@@ -112,7 +112,7 @@ class SignUpScreen extends GetItHook<AuthController> {
                 child: CustomImageView(
                   height: 17.h,
                   imagePath: controller.selectedImage.value == null
-                      ? AssetConstants.icEdit
+                      ? AssetConstants.icCamera
                       : AssetConstants.icEdit,
                 ),
               ),
