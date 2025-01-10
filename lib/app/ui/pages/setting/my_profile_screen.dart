@@ -79,7 +79,7 @@ class MyProfileScreen extends GetItHook<SettingController> {
 
   Widget _buildNameField() {
     return TextInputField(
-      type: InputType.email,
+      type: InputType.name,
       readOnly: true,
       prefixIcon: CustomImageView(
         imagePath: AssetConstants.icProfile,
@@ -88,6 +88,11 @@ class MyProfileScreen extends GetItHook<SettingController> {
       ),
       controller: controller.editProfileNameController,
       hintLabel: AppStrings.T.nameLabel,
+      style: Get.textTheme.bodyMedium?.copyWith(
+        fontWeight: FontWeight.w500,
+        fontSize: 18,
+        color: Get.theme.customColors.grey,
+      ),
     );
   }
 
@@ -100,6 +105,11 @@ class MyProfileScreen extends GetItHook<SettingController> {
         imagePath: AssetConstants.icEmail,
         margin: const EdgeInsets.all(16),
         height: 28.h,
+      ),
+      style: Get.textTheme.bodyMedium?.copyWith(
+        fontWeight: FontWeight.w500,
+        fontSize: 18,
+        color: Get.theme.customColors.grey,
       ),
       controller: controller.editProfileEmailController,
       hintLabel: AppStrings.T.email,

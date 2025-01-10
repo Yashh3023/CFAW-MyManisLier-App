@@ -47,7 +47,8 @@ class TextInputField extends TextFormField {
       double? borderRadius,
       super.onTap,
       Function(String)? super.onFieldSubmitted,
-      super.focusNode})
+      super.focusNode,
+      TextStyle? style})
       : assert(
             type != InputType.multiline ||
                 textInputAction == TextInputAction.newline,
@@ -95,11 +96,12 @@ class TextInputField extends TextFormField {
           ],
           obscureText: obscureText?.value ?? false,
           textAlignVertical: TextAlignVertical.top,
-          style: Get.textTheme.bodyMedium?.copyWith(
-            fontWeight: FontWeight.w500,
-            fontSize: 18,
-            color: Get.theme.customColors.white,
-          ),
+          style: style ??
+              Get.textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.w500,
+                fontSize: 18,
+                color: Get.theme.customColors.white,
+              ),
           decoration: InputDecoration(
             hintStyle: hintStyle ??
                 Get.theme.textTheme.bodyMedium?.copyWith(
