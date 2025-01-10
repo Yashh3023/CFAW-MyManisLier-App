@@ -15,7 +15,11 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:mymanislier/app/controllers/app_controller.dart' as _i181;
 import 'package:mymanislier/app/controllers/auth_controller.dart' as _i92;
-import 'package:mymanislier/app/controllers/home_chat_controller.dart' as _i521;
+import 'package:mymanislier/app/controllers/chat_based_question_controller.dart'
+    as _i641;
+import 'package:mymanislier/app/controllers/generic_question_controller.dart'
+    as _i463;
+import 'package:mymanislier/app/controllers/home_controller.dart' as _i105;
 import 'package:mymanislier/app/controllers/setting_controller.dart' as _i1047;
 import 'package:mymanislier/app/data/services/authService/auth_service.dart'
     as _i977;
@@ -42,20 +46,19 @@ extension GetItInjectableX on _i174.GetIt {
       preResolve: true,
     );
     gh.singleton<_i361.Dio>(() => registerModule.dio());
+    gh.lazySingleton<_i105.HomeController>(() => _i105.HomeController());
+    gh.lazySingleton<_i1047.SettingController>(
+        () => _i1047.SettingController());
     gh.lazySingleton<_i181.AppController>(() => _i181.AppController());
     gh.lazySingleton<_i92.AuthController>(
       () => _i92.AuthController(),
       dispose: (i) => i.dispose(),
     );
-    gh.lazySingleton<_i521.HomeChatController>(
-      () => _i521.HomeChatController(),
-      dispose: (i) => i.dispose(),
-    );
-    gh.lazySingleton<_i1047.SettingController>(
-      () => _i1047.SettingController(),
-      dispose: (i) => i.dispose(),
-    );
     gh.lazySingleton<_i484.SocketService>(() => _i484.SocketService());
+    gh.lazySingleton<_i641.ChatbasedController>(
+        () => _i641.ChatbasedController());
+    gh.lazySingleton<_i463.GenericQuestionController>(
+        () => _i463.GenericQuestionController());
     gh.lazySingleton<_i977.AuthService>(
         () => _i977.AuthService(gh<_i361.Dio>()));
     gh.lazySingleton<_i977.RefreshTokenService>(

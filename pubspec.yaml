@@ -1,5 +1,5 @@
 name: mymanislier
-description: "A new Flutter project."
+description: "My Man Is A Lier."
 
 publish_to: 'none' 
 
@@ -16,6 +16,7 @@ dependencies:
   intl: any
 
   get: ^4.6.6
+  flutter_screenutil: ^5.9.3
   cached_network_image: ^3.4.1
   flutter_native_splash: ^2.4.2
   dio: ^5.7.0
@@ -39,6 +40,10 @@ dependencies:
   flutter_ripple:
   siri_wave:
   flutter_sinusoidals_v2: ^0.2.3
+  image_picker: ^1.1.2
+  readmore: ^3.0.0
+  syncfusion_flutter_charts: ^28.1.37
+  flutter_spinkit: ^5.2.1
 
   cupertino_icons: ^1.0.8
 
@@ -73,9 +78,11 @@ flutter:
     - assets/images/icon/
     - assets/images/png/home/
     - assets/images/png/other/
+    - assets/images/png/authentication/
     - assets/images/svg/splash/
     - assets/images/svg/authentication/
     - assets/images/svg/home/
+    - assets/images/svg/other/
 
   fonts:
     - family: Nunito
@@ -100,13 +107,30 @@ flutter:
         
     - family: Montserrat
       fonts:
-        - asset: assets/fonts/montserrat/montserrat.bold.ttf
-        - asset: assets/fonts/montserrat/montserrat.regular.ttf
-
+        - asset: assets/fonts/montserrat/Montserrat-Black.ttf
+        - asset: assets/fonts/montserrat/Montserrat-BlackItalic.ttf
+        - asset: assets/fonts/montserrat/Montserrat-Bold.ttf
+        - asset: assets/fonts/montserrat/Montserrat-BoldItalic.ttf
+        - asset: assets/fonts/montserrat/Montserrat-ExtraBold.ttf
+        - asset: assets/fonts/montserrat/Montserrat-ExtraBoldItalic.ttf
+        - asset: assets/fonts/montserrat/Montserrat-ExtraLight.ttf
+        - asset: assets/fonts/montserrat/Montserrat-ExtraLightItalic.ttf
+        - asset: assets/fonts/montserrat/Montserrat-Italic.ttf
+        - asset: assets/fonts/montserrat/Montserrat-Light.ttf
+        - asset: assets/fonts/montserrat/Montserrat-LightItalic.ttf
+        - asset: assets/fonts/montserrat/Montserrat-Medium.ttf
+        - asset: assets/fonts/montserrat/Montserrat-MediumItalic.ttf
+        - asset: assets/fonts/montserrat/Montserrat-Regular.ttf
+        - asset: assets/fonts/montserrat/Montserrat-SemiBold.ttf
+        - asset: assets/fonts/montserrat/Montserrat-SemiBoldItalic.ttf
+        - asset: assets/fonts/montserrat/Montserrat-Thin.ttf
+        - asset: assets/fonts/montserrat/Montserrat-ThinItalic.ttf
 
 
 flutter_native_splash:
-  color: "#01070A"
-  android_12:
+  color: "#FFFFFF"
+  android: true 
+  ios: true     
+
 
   

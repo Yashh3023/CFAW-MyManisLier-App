@@ -5,8 +5,9 @@ class AppValidations {
   AppValidations._();
 
   static String? verificationCodeValidation(String? value) {
-    if (value == null || value.isEmpty)
+    if (value == null || value.isEmpty) {
       return AppStrings.T.emptyVerificationCode;
+    }
     return null;
   }
 
@@ -27,8 +28,9 @@ class AppValidations {
 
   static String? confirmPasswordValidation(
       String? value, String otherPasswordValue) {
-    if (value == null || value.isEmpty)
+    if (value == null || value.isEmpty) {
       return AppStrings.T.emptyConfirmPassword;
+    }
     if (otherPasswordValue.isEmpty) return null;
     if (otherPasswordValue != value) return AppStrings.T.passwordMismatch;
     return null;
@@ -44,7 +46,7 @@ class AppValidations {
   static String? validateRequired(String? value,
       {String fieldName = 'This field'}) {
     if (value == null || value.trim().isEmpty) {
-      return '$fieldName is required.';
+      return 'Please enter $fieldName';
     }
     return null;
   }

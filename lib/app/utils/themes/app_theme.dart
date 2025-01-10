@@ -20,7 +20,7 @@ class AppTheme {
       error: const Color(0xffFF7B7B),
       onError: const Color(0xffFF7B7B),
       surface: const Color(0xffF8F9FA),
-      onSurface: const Color(0xff7D71EC),
+      onSurface: const Color(0xff2E2F32),
       outline: Get.theme.customColors.primaryColor,
     ),
     extensions: const <ThemeExtension<dynamic>>[
@@ -29,6 +29,10 @@ class AppTheme {
     dividerTheme:
         const DividerThemeData(color: Color(0xffF5F5F8), thickness: 1),
     scaffoldBackgroundColor: Get.theme.customColors.white,
+    splashColor: Colors.transparent,
+    highlightColor: Colors.transparent,
+    splashFactory: NoSplash.splashFactory,
+
     datePickerTheme: DatePickerThemeData(
       cancelButtonStyle: ButtonStyle(
           textStyle: WidgetStatePropertyAll(
@@ -70,7 +74,7 @@ class AppTheme {
 
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        disabledBackgroundColor: const Color(0xff7D71EC).withOpacity(0.5),
+        disabledBackgroundColor: const Color(0xff902368).withOpacity(0.5),
         backgroundColor: Get.theme.customColors.primaryColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
@@ -121,14 +125,14 @@ class AppTheme {
     fontFamily: 'Montserrat',
     checkboxTheme: CheckboxThemeData(
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
       visualDensity: VisualDensity.compact,
       fillColor: WidgetStateProperty.resolveWith(
         (states) {
           if (states.contains(WidgetState.selected)) {
             return Get.theme.customColors.primaryColor;
           }
-          return Get.theme.customColors.white;
+          return Get.theme.customColors.greyBg;
         },
       ),
     ),
@@ -184,70 +188,77 @@ class AppTheme {
       ),
     ),
     dividerColor: Get.theme.customColors.bgOneColor,
+
     progressIndicatorTheme: ProgressIndicatorThemeData(
       color: Get.theme.customColors.primaryColor,
     ),
     textTheme: TextTheme(
-      /// Headline styles: Used for larger text like AppBars and main titles
-      headlineLarge: TextStyle(
-          fontFamily: 'Montserrat',
-          color: Get.theme.customColors.black,
-          fontSize: 26,
-          fontWeight: FontWeight.w600),
-      headlineMedium: TextStyle(
-          fontFamily: 'Montserrat',
-          color: Get.theme.customColors.black,
-          fontSize: 22,
-          fontWeight: FontWeight.w600),
-      headlineSmall: TextStyle(
-          fontFamily: 'Montserrat',
-          color: Get.theme.customColors.black,
-          fontSize: 20,
-          fontWeight: FontWeight.w600),
 
-      /// Title styles: Smaller than headline styles, medium emphasis for shorter text
-      bodyLarge: TextStyle(
-          fontFamily: 'Montserrat',
-          color: Get.theme.customColors.black,
-          fontSize: 20,
-          fontWeight: FontWeight.w500),
-      bodyMedium: TextStyle(
-          fontFamily: 'Montserrat',
-          color: Get.theme.customColors.black,
-          fontSize: 18,
-          fontWeight: FontWeight.w500),
-      bodySmall: TextStyle(
-          fontFamily: 'Montserrat',
-          color: Get.theme.customColors.black,
-          fontSize: 16,
-          fontWeight: FontWeight.w500),
+        /// Headline styles: Used for larger text like AppBars and main titles
+        headlineLarge: TextStyle(
+            fontFamily: 'Montserrat',
+            color: Get.theme.customColors.black,
+            fontSize: 26,
+            fontWeight: FontWeight.w700),
+        headlineMedium: TextStyle(
+            fontFamily: 'Montserrat',
+            color: Get.theme.customColors.black,
+            fontSize: 22,
+            fontWeight: FontWeight.w600),
+        headlineSmall: TextStyle(
+            fontFamily: 'Montserrat',
+            color: Get.theme.customColors.black,
+            fontSize: 20,
+            fontWeight: FontWeight.w600),
 
-      /// Label styles: Used for descriptions and small text with a more subtle appearance
-      labelLarge: TextStyle(
-          fontFamily: 'Montserrat',
-          color: Get.theme.customColors.greyTextColor,
-          fontSize: 18,
-          fontWeight: FontWeight.w400),
-      labelMedium: TextStyle(
-          fontFamily: 'Montserrat',
-          color: Get.theme.customColors.greyTextColor,
-          fontSize: 16,
-          fontWeight: FontWeight.w400),
-      labelSmall: TextStyle(
-          fontFamily: 'Montserrat',
-          color: Get.theme.customColors.greyTextColor,
-          fontSize: 14,
-          fontWeight: FontWeight.w400),
+        /// Title styles: Smaller than headline styles, medium emphasis for shorter text
+        bodyLarge: TextStyle(
+            fontFamily: 'Montserrat',
+            color: Get.theme.customColors.black,
+            fontSize: 20,
+            fontWeight: FontWeight.w500),
+        bodyMedium: TextStyle(
+            fontFamily: 'Montserrat',
+            color: Get.theme.customColors.black,
+            fontSize: 18,
+            fontWeight: FontWeight.w500),
+        bodySmall: TextStyle(
+            fontFamily: 'Montserrat',
+            color: Get.theme.customColors.black,
+            fontSize: 16,
+            fontWeight: FontWeight.w500),
 
-      // You can add more text styles according to your design
-    ),
+        /// Label styles: Used for descriptions and small text with a more subtle appearance
+        labelLarge: TextStyle(
+            fontFamily: 'Montserrat',
+            color: Get.theme.customColors.greyTextColor,
+            fontSize: 18,
+            fontWeight: FontWeight.w400),
+        labelMedium: TextStyle(
+            fontFamily: 'Montserrat',
+            color: Get.theme.customColors.greyTextColor,
+            fontSize: 16,
+            fontWeight: FontWeight.w400),
+        labelSmall: TextStyle(
+            fontFamily: 'Montserrat',
+            color: Get.theme.customColors.greyTextColor,
+            fontSize: 14,
+            fontWeight: FontWeight.w400),
+        titleSmall: TextStyle(
+            fontFamily: 'nunito',
+            color: Get.theme.customColors.greyTextColor,
+            fontSize: 16,
+            fontWeight: FontWeight.w300)
+
+        // You can add more text styles according to your design
+        ),
   );
 
   static ThemeData darkTheme = ThemeData(
     useMaterial3: true,
     colorScheme: ColorScheme(
       brightness: Brightness.dark,
-      primary: const Color(0xff7D71EC),
+      primary: const Color(0xff902368),
       onPrimary: const Color(0xffffffff),
       primaryContainer: Get.theme.customColors.bgOneColor,
       secondary: const Color(0xff0F3D4D),
@@ -256,17 +267,20 @@ class AppTheme {
       error: const Color(0xffFF7B7B),
       onError: const Color(0xffFF7B7B),
       surface: const Color(0xffF8F9FA),
-      onSurface: const Color(0xff7D71EC),
+      onSurface: const Color(0xff902368),
       outline: Get.theme.customColors.primaryColor,
     ),
     extensions: const <ThemeExtension<dynamic>>[
       CustomColors.dark,
     ],
+    splashFactory: NoSplash.splashFactory,
     scaffoldBackgroundColor: Get.theme.customColors.black,
+    splashColor: Colors.transparent,
+    highlightColor: Colors.transparent,
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        disabledBackgroundColor: const Color(0xff7D71EC).withOpacity(0.5),
-        backgroundColor: const Color(0xff7D71EC),
+        disabledBackgroundColor: const Color(0xff902368).withOpacity(0.5),
+        backgroundColor: const Color(0xff902368),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
@@ -311,14 +325,14 @@ class AppTheme {
     fontFamily: 'Montserrat',
     checkboxTheme: CheckboxThemeData(
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
       visualDensity: VisualDensity.compact,
       fillColor: WidgetStateProperty.resolveWith(
         (states) {
           if (states.contains(WidgetState.selected)) {
             return Get.theme.customColors.primaryColor;
           }
-          return Get.theme.customColors.black;
+          return Get.theme.customColors.greyBg;
         },
       ),
     ),
@@ -374,78 +388,84 @@ class AppTheme {
       color: Get.theme.customColors.primaryColor,
     ),
     textTheme: TextTheme(
-      /// Headline styles: Used for larger text like AppBars and main titles
-      headlineLarge: TextStyle(
-          fontFamily: 'Montserrat',
-          color: Get.theme.customColors.black,
-          fontSize: 26,
-          fontWeight: FontWeight.w600),
-      headlineMedium: TextStyle(
-          fontFamily: 'Montserrat',
-          color: Get.theme.customColors.black,
-          fontSize: 22,
-          fontWeight: FontWeight.w600),
-      headlineSmall: TextStyle(
-          fontFamily: 'Montserrat',
-          color: Get.theme.customColors.black,
-          fontSize: 20,
-          fontWeight: FontWeight.w600),
 
-      /// Title styles: Smaller than headline styles, medium emphasis for shorter text
-      bodyLarge: TextStyle(
-          fontFamily: 'Montserrat',
-          color: Get.theme.customColors.black,
-          fontSize: 20,
-          fontWeight: FontWeight.w500),
-      bodyMedium: TextStyle(
-          fontFamily: 'Montserrat',
-          color: Get.theme.customColors.black,
-          fontSize: 18,
-          fontWeight: FontWeight.w500),
-      bodySmall: TextStyle(
-          fontFamily: 'Montserrat',
-          color: Get.theme.customColors.black,
-          fontSize: 16,
-          fontWeight: FontWeight.w500),
+        /// Headline styles: Used for larger text like AppBars and main titles
+        headlineLarge: TextStyle(
+            fontFamily: 'Montserrat',
+            color: Get.theme.customColors.black,
+            fontSize: 26,
+            fontWeight: FontWeight.w600),
+        headlineMedium: TextStyle(
+            fontFamily: 'Montserrat',
+            color: Get.theme.customColors.black,
+            fontSize: 22,
+            fontWeight: FontWeight.w600),
+        headlineSmall: TextStyle(
+            fontFamily: 'Montserrat',
+            color: Get.theme.customColors.black,
+            fontSize: 20,
+            fontWeight: FontWeight.w600),
 
-      /// Label styles: Used for descriptions and small text with a more subtle appearance
-      labelLarge: TextStyle(
-          fontFamily: 'Montserrat',
-          color: Get.theme.customColors.greyTextColor,
-          fontSize: 18,
-          fontWeight: FontWeight.w400),
-      labelMedium: TextStyle(
-          fontFamily: 'Montserrat',
-          color: Get.theme.customColors.greyTextColor,
-          fontSize: 16,
-          fontWeight: FontWeight.w400),
-      labelSmall: TextStyle(
-          fontFamily: 'Montserrat',
-          color: Get.theme.customColors.greyTextColor,
-          fontSize: 14,
-          fontWeight: FontWeight.w400),
+        /// Title styles: Smaller than headline styles, medium emphasis for shorter text
+        bodyLarge: TextStyle(
+            fontFamily: 'Montserrat',
+            color: Get.theme.customColors.black,
+            fontSize: 20,
+            fontWeight: FontWeight.w500),
+        bodyMedium: TextStyle(
+            fontFamily: 'Montserrat',
+            color: Get.theme.customColors.black,
+            fontSize: 18,
+            fontWeight: FontWeight.w500),
+        bodySmall: TextStyle(
+            fontFamily: 'Montserrat',
+            color: Get.theme.customColors.black,
+            fontSize: 16,
+            fontWeight: FontWeight.w500),
 
-      // You can add more text styles according to your design
+        /// Label styles: Used for descriptions and small text with a more subtle appearance
+        labelLarge: TextStyle(
+            fontFamily: 'Montserrat',
+            color: Get.theme.customColors.greyTextColor,
+            fontSize: 18,
+            fontWeight: FontWeight.w400),
+        labelMedium: TextStyle(
+            fontFamily: 'Montserrat',
+            color: Get.theme.customColors.greyTextColor,
+            fontSize: 16,
+            fontWeight: FontWeight.w400),
+        labelSmall: TextStyle(
+            fontFamily: 'Montserrat',
+            color: Get.theme.customColors.greyTextColor,
+            fontSize: 14,
+            fontWeight: FontWeight.w400),
+        titleSmall: TextStyle(
+            fontFamily: 'nunito',
+            color: Get.theme.customColors.greyTextColor,
+            fontSize: 16,
+            fontWeight: FontWeight.w300)
 
-      /// Used for Headline Like AppBar And Other Titles which are largest in Ui.
-      // headlineLarge: const TextStyle(color: Get.theme.customColors.white, fontSize: 26, fontWeight: FontWeight.w600),
-      // headlineMedium: const TextStyle(color: Get.theme.customColors.white, fontSize: 22, fontWeight: FontWeight.w600),
-      // headlineSmall: const TextStyle(color: Get.theme.customColors.white, fontSize: 20, fontWeight: FontWeight.w600),
+        // You can add more text styles according to your design
 
-      // ///  title styles:  are smaller than headline styles and should be used for shorter, medium-emphasis text.
-      // // titleLarge: ,
+        /// Used for Headline Like AppBar And Other Titles which are largest in Ui.
+        // headlineLarge: const TextStyle(color: Get.theme.customColors.white, fontSize: 26, fontWeight: FontWeight.w600),
+        // headlineMedium: const TextStyle(color: Get.theme.customColors.white, fontSize: 22, fontWeight: FontWeight.w600),
+        // headlineSmall: const TextStyle(color: Get.theme.customColors.white, fontSize: 20, fontWeight: FontWeight.w600),
 
-      // /// Used For Most Used Styles
-      // bodyLarge: const TextStyle(color: Get.theme.customColors.white, fontSize: 20, fontWeight: FontWeight.w500),
-      // bodyMedium: const TextStyle(color: Get.theme.customColors.white, fontSize: 18, fontWeight: FontWeight.w500),
-      // bodySmall: const TextStyle(color: Get.theme.customColors.white, fontSize: 16, fontWeight: FontWeight.w500),
+        // ///  title styles:  are smaller than headline styles and should be used for shorter, medium-emphasis text.
+        // // titleLarge: ,
 
-      // ///USED for Description and Small Text.
-      // labelLarge: TextStyle(color: Get.theme.customColors.bgOneColor, fontSize: 18, fontWeight: FontWeight.w400),
-      // labelMedium: TextStyle(color: Get.theme.customColors.bgOneColor, fontSize: 16, fontWeight: FontWeight.w400),
-      // labelSmall: TextStyle(color: Get.theme.customColors.bgOneColor, fontSize: 14, fontWeight: FontWeight.w400),
+        // /// Used For Most Used Styles
+        // bodyLarge: const TextStyle(color: Get.theme.customColors.white, fontSize: 20, fontWeight: FontWeight.w500),
+        // bodyMedium: const TextStyle(color: Get.theme.customColors.white, fontSize: 18, fontWeight: FontWeight.w500),
+        // bodySmall: const TextStyle(color: Get.theme.customColors.white, fontSize: 16, fontWeight: FontWeight.w500),
 
-      //   Also U can add More TextStyle According Your Design
-    ),
+        // ///USED for Description and Small Text.
+        // labelLarge: TextStyle(color: Get.theme.customColors.bgOneColor, fontSize: 18, fontWeight: FontWeight.w400),
+        // labelMedium: TextStyle(color: Get.theme.customColors.bgOneColor, fontSize: 16, fontWeight: FontWeight.w400),
+        // labelSmall: TextStyle(color: Get.theme.customColors.bgOneColor, fontSize: 14, fontWeight: FontWeight.w400),
+
+        //   Also U can add More TextStyle According Your Design
+        ),
   );
 }
