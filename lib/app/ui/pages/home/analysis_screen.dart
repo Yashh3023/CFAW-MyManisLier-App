@@ -66,6 +66,8 @@ class AnalysisScreen extends GetItHook<HomeController> {
           children: [
             _buildHeader(),
             Gap(30.h),
+            _buildIsHeLyingSection(),
+            Gap(30.h),
             _buildOverallSummary(),
             Gap(20.h),
             _buildDivider(),
@@ -95,6 +97,40 @@ class AnalysisScreen extends GetItHook<HomeController> {
     );
   }
 
+  Widget _buildIsHeLyingSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(AppStrings.T.lbl_is_he_lying,
+            style: Get.theme.textTheme.bodyMedium!.copyWith(
+                color: Get.theme.customColors.white,
+                fontWeight: FontWeight.w700)),
+        Gap(2.h),
+        ReadMoreText(
+          'Based on the analysis, there is a 77% chance that the individual is being deceptive. Key indicators include shifts in tone, vague responses, and inconsistencies.',
+          style: TextStyle(
+            fontSize: 14.sp,
+            color: Get.theme.customColors.greyTextColor,
+            fontWeight: FontWeight.w500,
+          ),
+          moreStyle: Get.theme.textTheme.labelSmall!.copyWith(
+            color: Get.theme.customColors.darkGrey,
+            fontWeight: FontWeight.w500,
+          ),
+          lessStyle: Get.theme.textTheme.labelSmall!.copyWith(
+            color: Get.theme.customColors.darkGrey,
+            fontWeight: FontWeight.w500,
+          ),
+          trimLength: 100,
+          trimMode: TrimMode.Length,
+          delimiter: '',
+          trimCollapsedText: ' more...',
+          trimExpandedText: ' less.',
+        ),
+      ],
+    );
+  }
+
   Widget _buildOverallSummary() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,11 +141,7 @@ class AnalysisScreen extends GetItHook<HomeController> {
                 fontWeight: FontWeight.w700)),
         Gap(2.h),
         ReadMoreText(
-          'The conversation had a predominantly positive tone with occasional neutral exchanges. However, there were a few vague responses that may require clarification. A slight shift in communication style was observed, transitioning from casual to formal. Overall, no major red flags were detected, but it’s worth addressing specific areas of concern for better clarity.',
-          // style: Get.theme.textTheme.labelSmall!.copyWith(
-          //   color: Get.theme.customColors.greyTextColor,
-          //   fontWeight: FontWeight.w500,
-          // ),
+          'The conversation maintained a predominantly positive and constructive tone throughout, fostering a collaborative atmosphere. The exchanges generally reflected a neutral to slightly optimistic dynamic, with the occasional need for clarification on certain points. While the flow was smooth for the most part, a few responses appeared vague or less specific, which may benefit from further elaboration to ensure alignment and understanding.A notable aspect of the interaction was the subtle shift in communication style, transitioning from a more casual, conversational tone to a formal and structured one. This change, while not disruptive, highlights the importance of consistency to maintain a cohesive exchange. The tone, though professional, could benefit from balancing accessibility with thoroughness, ensuring all responses remain approachable yet comprehensive.Overall, no major concerns or red flags were identified, but there are opportunities for refinement. These include addressing ambiguities in responses, maintaining a consistent tone, and ensuring all details are explicitly clear. By focusing on these areas, the clarity, cohesion, and overall quality of communication can be enhanced.',
           style: TextStyle(
             fontSize: 14.sp,
             color: Get.theme.customColors.greyTextColor,

@@ -23,6 +23,15 @@ class GenericQuestionController extends GetxController {
   var hasTrustIssues = false.obs;
   var hasChangedStyle = false.obs;
   var hasHappenedBefore = false.obs;
+  var isOtherSelected = false.obs;
+  var otherConcern = "".obs;
+
+  var isthirdQOtherSelected = false.obs;
+  var isthirdQotherConcern = "".obs;
+
+  var selectedTone = "".obs;
+
+  final TextEditingController otherToneController = TextEditingController();
 
   void changePage(int index) {
     currentIndex.value = index;

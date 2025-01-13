@@ -1,3 +1,4 @@
+import 'package:info_popup/info_popup.dart';
 import 'package:mymanislier/app/utils/helpers/exporter.dart';
 
 class WelcomeHomeScreen extends GetItHook<HomeController> {
@@ -148,7 +149,6 @@ class WelcomeHomeScreen extends GetItHook<HomeController> {
           controller: controller.pasteTextConversaionController,
           hintLabel: AppStrings.T.lbl_paste_text_conversaion_here,
         ),
-        // Wrap the Visibility widget with ValueListenableBuilder
         ValueListenableBuilder<TextEditingValue>(
           valueListenable: controller.pasteTextConversaionController,
           builder: (context, text, child) {
@@ -189,21 +189,45 @@ class WelcomeHomeScreen extends GetItHook<HomeController> {
         ValueListenableBuilder<TextEditingValue>(
           valueListenable: controller.pasteTextConversaionController,
           builder: (context, text, child) {
-            return Visibility(
-              visible: text.text.isNotEmpty,
-              child: InkWell(
-                onTap: () {
-                  controller.pasteTextConversaionController.clear();
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(13),
-                  child: Align(
-                      alignment: Alignment.centerRight,
-                      child:
-                          CustomImageView(imagePath: AssetConstants.icClose)),
-                ),
-              ),
-            );
+            return text.text.isNotEmpty
+                ? Visibility(
+                    visible: text.text.isNotEmpty,
+                    child: InkWell(
+                      onTap: () {
+                        controller.pasteTextConversaionController.clear();
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(13),
+                        child: Align(
+                            alignment: Alignment.centerRight,
+                            child: CustomImageView(
+                                imagePath: AssetConstants.icClose)),
+                      ),
+                    ),
+                  )
+                : InfoPopupWidget(
+                    contentTheme: InfoPopupContentTheme(
+                      infoContainerBackgroundColor:
+                          Get.theme.customColors.textfieldFillColor!,
+                      infoTextStyle: Get.textTheme.bodySmall!.copyWith(
+                          color: Get.theme.customColors.white, fontSize: 13.sp),
+                    ),
+                    contentOffset: const Offset(0, 0),
+                    arrowTheme:
+                        const InfoPopupArrowTheme(color: Colors.transparent),
+                    contentTitle:
+                        "How to Copy Text to the Clipboard \n \nStep 1: Select the Text Highlight the text you want to copy (for example, a username or URL). \n\n Step 2: Copy the Text Look for the 'Copy' option in the app (usually in a context menu, button, or long press).Tap or click 'Copy' to copy the selected text to your clipboard.\n\nStep 3: Paste the Text  Press the 'paste' button to insert the text into the desired conversation..",
+                    child: Padding(
+                      padding: const EdgeInsets.all(13),
+                      child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Icon(
+                            Icons.info_outline,
+                            color: Get.theme.customColors.grey,
+                            size: 21.0.sp,
+                          )),
+                    ),
+                  );
           },
         ),
       ],
@@ -231,8 +255,8 @@ class WelcomeHomeScreen extends GetItHook<HomeController> {
         ),
         CenterText(
           AppStrings.T.lbl_or,
-          style: Get.theme.textTheme.bodySmall!
-              .copyWith(color: Get.theme.customColors.greyTextColor),
+          style: Get.theme.textTheme.bodySmall!.copyWith(
+              color: Get.theme.customColors.white, fontWeight: FontWeight.bold),
         ),
         Expanded(
           child: Container(
@@ -257,6 +281,7 @@ class WelcomeHomeScreen extends GetItHook<HomeController> {
   Widget _buildUploadImages() {
     return ImagePickerWidget(
       onImagesSelected: (selectedImages) {
+        controller.pasteTextConversaionController.clear();
         debugPrint('Selected images: $selectedImages');
       },
     );

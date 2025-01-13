@@ -113,7 +113,7 @@ class TextInputField extends TextFormField {
             prefixIcon: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                prefixIcon!,
+                prefixIcon ?? const SizedBox.shrink(),
                 maxLines! > 1
                     ? const SizedBox.shrink()
                     : Container(

@@ -208,63 +208,106 @@ class GenericQuestionsScreen extends GetItHook<GenericQuestionController> {
               ),
         ),
         Gap(20.h),
-        ...['Cheating', 'Lying', 'Inconsistency', 'Loss of Interest'].map(
-          (concern) => Obx(
-            () => GestureDetector(
-              onTap: () {
-                if (controller.concerns.contains(concern)) {
-                  controller.concerns.remove(concern);
-                } else {
-                  controller.concerns.add(concern);
-                }
-              },
-              child: Container(
-                height: 60.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12.r),
-                  color: controller.concerns.contains(concern)
-                      ? Get.theme.customColors.white
-                      : Get.theme.customColors.bgColor,
-                ),
-                margin: EdgeInsets.symmetric(vertical: 8.h),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w),
-                  child: Row(
-                    children: [
-                      Transform.scale(
-                        scale: 1.2,
-                        child: Checkbox(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100.r),
-                          ),
-                          value: controller.concerns.contains(concern),
-                          onChanged: (checked) {
-                            if (checked!) {
-                              controller.concerns.add(concern);
-                            } else {
-                              controller.concerns.remove(concern);
-                            }
-                          },
-                          checkColor: Get.theme.customColors.white,
-                          activeColor: Get.theme.customColors.black,
+        Expanded(
+          child: ListView(
+            shrinkWrap: true,
+            children: [
+              ...[
+                'Cheating',
+                'Lying',
+                'Inconsistency',
+                'Loss of Interest',
+                'Other'
+              ].map(
+                (concern) => Obx(
+                  () => GestureDetector(
+                    onTap: () {
+                      if (concern == 'Other') {
+                        controller.isOtherSelected.value =
+                            !controller.isOtherSelected.value;
+                      } else {
+                        if (controller.concerns.contains(concern)) {
+                          controller.concerns.remove(concern);
+                        } else {
+                          controller.concerns.add(concern);
+                        }
+                      }
+                    },
+                    child: Container(
+                      height: 60.h,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12.r),
+                        color: (concern == 'Other' &&
+                                    controller.isOtherSelected.value) ||
+                                controller.concerns.contains(concern)
+                            ? Get.theme.customColors.white
+                            : Get.theme.customColors.bgColor,
+                      ),
+                      margin: EdgeInsets.symmetric(vertical: 8.h),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16.w),
+                        child: Row(
+                          children: [
+                            Transform.scale(
+                              scale: 1.2,
+                              child: Checkbox(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(100.r),
+                                ),
+                                value: concern == 'Other'
+                                    ? controller.isOtherSelected.value
+                                    : controller.concerns.contains(concern),
+                                onChanged: (checked) {
+                                  if (concern == 'Other') {
+                                    controller.isOtherSelected.value = checked!;
+                                  } else if (checked!) {
+                                    controller.concerns.add(concern);
+                                  } else {
+                                    controller.concerns.remove(concern);
+                                  }
+                                },
+                                checkColor: Get.theme.customColors.white,
+                                activeColor: Get.theme.customColors.black,
+                              ),
+                            ),
+                            Gap(12.w),
+                            Expanded(
+                              child: Text(
+                                concern,
+                                style: Get.textTheme.bodySmall?.copyWith(
+                                  color: (concern == 'Other' &&
+                                              controller
+                                                  .isOtherSelected.value) ||
+                                          controller.concerns.contains(concern)
+                                      ? Get.theme.customColors.bgColor
+                                      : Get.theme.customColors.white,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      Gap(12.w),
-                      Expanded(
-                        child: Text(
-                          concern,
-                          style: Get.textTheme.bodySmall?.copyWith(
-                            color: controller.concerns.contains(concern)
-                                ? Get.theme.customColors.bgColor
-                                : Get.theme.customColors.white,
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                 ),
               ),
-            ),
+              Obx(
+                () => controller.isOtherSelected.value
+                    ? Padding(
+                        padding: EdgeInsets.symmetric(vertical: 16.h),
+                        child: TextInputField(
+                          maxLines: 2,
+                          borderRadius: 12.r,
+                          type: InputType.text,
+                          keyboardType: TextInputType.name,
+                          textInputAction: TextInputAction.done,
+                          controller: TextEditingController(),
+                          hintLabel: AppStrings.T.lbl_other,
+                        ),
+                      )
+                    : const SizedBox.shrink(),
+              ),
+            ],
           ),
         ),
       ],
@@ -272,60 +315,78 @@ class GenericQuestionsScreen extends GetItHook<GenericQuestionController> {
   }
 
   Widget _buildThirdQuestion() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        CenterText(
-          'What is the tone of the conversation?',
-          style: Theme.of(Get.context!).textTheme.bodyLarge?.copyWith(
-                fontWeight: FontWeight.w600,
-                color: Get.theme.customColors.white,
-              ),
-        ),
-        Gap(20.h),
-        ...['Casual', 'Argumentative', 'Serious', 'Angry'].map(
-          (duration) => Obx(
-            () => Container(
-              height: 60.h,
-              margin: EdgeInsets.symmetric(vertical: 8.h),
-              decoration: BoxDecoration(
-                color: controller.selectedDuration.value == duration
-                    ? Get.theme.customColors.white
-                    : Get.theme.customColors.bgColor,
-                borderRadius: BorderRadius.circular(12.r),
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Radio<String>(
-                    value: duration,
-                    groupValue: controller.selectedDuration.value,
-                    activeColor: Get.theme.customColors.black,
-                    onChanged: (value) {
-                      controller.selectedDuration.value = value!;
-                    },
-                  ),
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        controller.selectedDuration.value = duration;
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          CenterText(
+            'What is the tone of the conversation?',
+            style: Theme.of(Get.context!).textTheme.bodyLarge?.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: Get.theme.customColors.white,
+                ),
+          ),
+          Gap(20.h),
+          ...['Casual', 'Argumentative', 'Serious', 'Angry', 'Other'].map(
+            (tone) => Obx(
+              () => Container(
+                height: 60.h,
+                margin: EdgeInsets.symmetric(vertical: 8.h),
+                decoration: BoxDecoration(
+                  color: controller.selectedTone.value == tone
+                      ? Get.theme.customColors.white
+                      : Get.theme.customColors.bgColor,
+                  borderRadius: BorderRadius.circular(12.r),
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Radio<String>(
+                      value: tone,
+                      groupValue: controller.selectedTone.value,
+                      activeColor: Get.theme.customColors.black,
+                      onChanged: (value) {
+                        controller.selectedTone.value = value!;
                       },
-                      child: Text(
-                        duration,
-                        style: Get.textTheme.bodySmall?.copyWith(
-                          color: controller.selectedDuration.value == duration
-                              ? Get.theme.customColors.bgColor
-                              : Get.theme.customColors.white,
+                    ),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          controller.selectedTone.value = tone;
+                        },
+                        child: Text(
+                          tone,
+                          style: Get.textTheme.bodySmall?.copyWith(
+                            color: controller.selectedTone.value == tone
+                                ? Get.theme.customColors.bgColor
+                                : Get.theme.customColors.white,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-      ],
+          Obx(
+            () => controller.selectedTone.value == 'Other'
+                ? Padding(
+                    padding: EdgeInsets.symmetric(vertical: 16.h),
+                    child: TextInputField(
+                      maxLines: 2,
+                      borderRadius: 12.r,
+                      type: InputType.text,
+                      keyboardType: TextInputType.name,
+                      textInputAction: TextInputAction.done,
+                      controller: TextEditingController(),
+                      hintLabel: AppStrings.T.lbl_other,
+                    ),
+                  )
+                : const SizedBox.shrink(),
+          ),
+        ],
+      ),
     );
   }
 
