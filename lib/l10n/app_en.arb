@@ -130,7 +130,7 @@
     "lbl_image_suport_message": "Only support .jpg, .png and pdf files",
     "lbl_congratulations": "Congratulations!",
     "lbl_account_created_successfully": "Your account has been created successfully",
-    "lbl_generic_questions": "Generic Questions",
+    "lbl_generic_questions": "Initial Questions",
     "lbl_previous": "Previous",
     "lbl_finish": "Finish",
     "lbl_unlock_your_analysis": "Unlock Your Analysis",
@@ -210,7 +210,8 @@
     "lbl_enter_your_reason": "Enter your reason",
     "lbl_delete_my_account": "Delete My Account",
     "lbl_conformation_delete_account": "Are you sure you want to delete your account? You will lose all your data and your account will not be recovered.",
-    "lbl_cancel":"Cancel"
+    "lbl_cancel":"Cancel",
+    "lbl_is_he_lying":"Is he lying?"
 
     
 

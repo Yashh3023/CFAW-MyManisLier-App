@@ -95,7 +95,7 @@ class SignUpAuthenticationScreen extends GetItHook<AuthController> {
         hapticFeedbackType: HapticFeedbackType.lightImpact,
         validator: AppValidations.verificationCodeValidation,
         focusedPinTheme: _buildPinTheme(border: Get.theme.primaryColor),
-        defaultPinTheme: _buildPinTheme(),
+        defaultPinTheme: _buildPinTheme(border: Get.theme.customColors.white),
         errorPinTheme: _buildPinTheme(border: Get.theme.colorScheme.error),
       ),
     );

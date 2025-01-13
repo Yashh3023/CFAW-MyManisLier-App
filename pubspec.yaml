@@ -46,6 +46,7 @@ dependencies:
   flutter_spinkit: ^5.2.1
 
   cupertino_icons: ^1.0.8
+  info_popup: ^4.3.2
 
 flutter_gen:
   line_lenght: 160
